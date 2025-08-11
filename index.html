@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -6,32 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>民谣俱乐部 | 音乐视频平台</title>
     
-    <!-- 资源预加载 -->
-    <link rel="preconnect" href="https://vjs.zencdn.net">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://r2.1701701.xyz">
-    <link rel="preload" href="https://vjs.zencdn.net/8.10.0/video.min.js" as="script">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/hls.js@latest" as="script">
-    
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 关键CSS内联 -->
     <style>
         :root {
-            --bg-dark: #0a0a0f;
-            --bg-card: rgba(15, 15, 25, 0.9);
-            --bg-hover: rgba(35, 35, 55, 0.8);
-            --primary: #d4af37; /* 金色 */
-            --primary-dark: #b08d26;
-            --accent: #ffd700; /* 琥珀色 */
-            --text-primary: #f0f0ff;
-            --text-secondary: #a0a0c0;
+            --bg-dark: #0f1117; /* 深蓝灰背景 */
+            --bg-card: rgba(25, 28, 36, 0.95); /* 卡片背景 */
+            --bg-hover: rgba(45, 50, 65, 0.85); /* 悬停背景 */
+            --primary: #d4af37; /* 琥珀金主色 */
+            --primary-dark: #b08d26; /* 深琥珀金 */
+            --accent: #ffd700; /* 亮金色强调色 */
+            --text-primary: #f0f0f8; /* 浅灰紫色文字 */
+            --text-secondary: #a0a8c0; /* 浅灰蓝文字 */
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --transition: all 0.3s ease;
-            --shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             --glass: rgba(255, 255, 255, 0.05);
-            --glow: 0 0 15px rgba(212, 175, 55, 0.4);
+            --glow: 0 0 15px rgba(212, 175, 55, 0.3); /* 金色光晕 */
         }
         
         * {
@@ -41,14 +32,13 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #0f1117 0%, #1a1d28 100%);
             color: var(--text-primary);
             font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
             min-height: 100vh;
             padding: 20px 15px;
             overflow-x: hidden;
             line-height: 1.6;
-            position: relative;
         }
         
         body::before {
@@ -102,10 +92,11 @@
             transform: rotate(15deg);
         }
         
-        /* 导航菜单样式 */
+        /* 导航菜单样式 - 优化设计 */
         .nav-menu {
             display: flex;
             gap: 15px;
+            position: relative;
         }
         
         .nav-link {
@@ -113,74 +104,160 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            padding: 6px 12px;
+            padding: 8px 15px;
             border-radius: var(--radius-md);
             transition: var(--transition);
             position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link i {
+            font-size: 16px;
+            transition: var(--transition);
         }
         
         .nav-link:hover {
             color: var(--primary);
             background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-md);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-link:hover::before {
+            opacity: 0.15;
         }
         
         .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
             width: 0;
             height: 2px;
             background: var(--primary);
-            transition: width 0.3s ease;
+            transform: translateX(-50%);
+            transition: width 0.3s ease, box-shadow 0.3s ease;
         }
         
         .nav-link:hover::after {
-            width: 100%;
+            width: 80%;
+            box-shadow: 0 0 10px var(--primary);
         }
         
-        /* 移动端菜单 - 优化动画效果 */
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        /* 移动端菜单 - 优化设计 */
         .mobile-menu {
             display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background: var(--bg-card);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 17, 23, 0.95);
             z-index: 1000;
-            padding: 15px;
             flex-direction: column;
-            gap: 10px;
-            min-width: 200px;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            opacity: 0;
-            transform: translateY(-20px);
-            transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
-                        transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
         .mobile-menu.active {
             display: flex;
-            opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .mobile-menu-logo {
+            font-size: 20px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-close:hover {
+            color: var(--primary);
+            transform: rotate(90deg);
+        }
+        
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
         }
         
         .mobile-menu .nav-link {
-            padding: 10px 15px;
+            padding: 15px 0;
+            font-size: 16px;
             width: 100%;
-            text-align: center;
+            text-align: left;
             transition: all 0.3s ease;
-            border-radius: var(--radius-sm);
+            border-radius: 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
         
         .mobile-menu .nav-link:hover {
-            background: rgba(212, 175, 55, 0.15);
-            transform: translateX(5px);
+            background: transparent;
+            transform: translateX(10px);
+            color: var(--primary);
         }
         
-        /* 播放器区域优化 - 确保播放器存在 */
+        .mobile-menu .nav-link:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-menu-footer {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        /* DPlayer 自定义样式 */
         .player-section {
             border-radius: var(--radius-md);
             padding: 0;
@@ -204,77 +281,46 @@
             z-index: 10;
         }
         
-        #video-container {
+        #dplayer-container {
             width: 100%;
             border-radius: var(--radius-md);
             overflow: hidden;
             position: relative;
             transform: translateZ(0);
+            aspect-ratio: 16/9;
         }
         
-        #main-video {
-            width: 100%;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        /* DPlayer 自定义主题色 */
+        .dplayer .dplayer-controller .dplayer-bar-wrap .dplayer-bar .dplayer-played {
+            background: var(--accent) !important;
         }
         
-        .video-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: var(--radius-md);
-            overflow: hidden;
+        .dplayer .dplayer-controller .dplayer-bar-wrap .dplayer-bar .dplayer-played::after {
+            background: var(--accent) !important;
+            border-color: var(--accent) !important;
         }
         
-        .vjs-control-bar {
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(8px);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        .dplayer .dplayer-controller .dplayer-bar-wrap .dplayer-bar .dplayer-loaded {
+            background: rgba(255, 255, 255, 0.3) !important;
         }
         
-        .vjs-play-progress, .vjs-volume-level {
-            background-color: var(--accent) !important;
+        .dplayer .dplayer-controller .dplayer-icons .dplayer-volume .dplayer-thumb {
+            background: var(--accent) !important;
         }
         
-        .vjs-big-play-button {
-            background: rgba(212, 175, 55, 0.3) !important;
-            backdrop-filter: blur(5px);
-            border: 2px solid rgba(255, 255, 255, 0.2) !important;
-            transition: var(--transition) !important;
+        .dplayer .dplayer-controller .dplayer-icons .dplayer-setting .dplayer-setting-box .dplayer-setting-speed-item.dplayer-setting-speed-item-active {
+            color: var(--accent) !important;
         }
         
-        .vjs-big-play-button:hover {
-            background: rgba(212, 175, 55, 0.5) !important;
-            transform: scale(1.1) !important;
+        .dplayer .dplayer-controller .dplayer-icons .dplayer-play-icon {
+            color: var(--accent) !important;
         }
         
-        /* 修复播放按钮状态 */
-        .vjs-play-control:before {
-            content: "\f101" !important; /* 播放图标 */
-            font-family: VideoJS !important;
+        .dplayer .dplayer-controller .dplayer-icons .dplayer-volume .dplayer-volume-bar .dplayer-volume-bar-inner {
+            background: var(--accent) !important;
         }
         
-        .vjs-playing .vjs-play-control:before {
-            content: "\f103" !important; /* 暂停图标 */
-        }
-        
-        /* 修复进度条拖动问题 */
-        .vjs-progress-control {
-            cursor: pointer !important;
-            z-index: 2 !important;
-        }
-        
-        .vjs-play-progress {
-            z-index: 1 !important;
-        }
-        
-        .vjs-load-progress {
-            z-index: 0 !important;
-        }
-        
-        /* 分类导航优化 - 确保所有分类都有图标 */
+        /* 分类导航优化 */
         .categories-container {
             position: relative;
             padding: 0;
@@ -348,7 +394,7 @@
             border-color: var(--accent);
         }
         
-        /* 视频列表优化 - 电脑端居中显示 */
+        /* 视频列表优化 */
         .videos-section {
             display: flex;
             justify-content: center;
@@ -595,7 +641,65 @@
             margin-left: 15px;
         }
         
-        /* 响应式优化 - 移动端适配 */
+        /* 移动端菜单按钮 - 优化设计 */
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            position: relative;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn span {
+            position: absolute;
+            height: 3px;
+            width: 24px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn span:nth-child(1) {
+            top: 12px;
+        }
+        
+        .mobile-menu-btn span:nth-child(2) {
+            top: 18px;
+        }
+        
+        .mobile-menu-btn span:nth-child(3) {
+            top: 24px;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 18px;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 18px;
+        }
+        
+        /* 响应式优化 */
         @media (max-width: 1200px) {
             .videos-list {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -642,11 +746,11 @@
             }
             
             .nav-menu {
-                display: none; /* 移动端隐藏导航菜单 */
+                display: none;
             }
             
             .mobile-menu-btn {
-                display: block;
+                display: flex;
             }
             
             .player-section {
@@ -654,11 +758,7 @@
                 border-radius: var(--radius-sm);
             }
             
-            #video-container {
-                border-radius: var(--radius-sm);
-            }
-            
-            .video-js {
+            #dplayer-container {
                 border-radius: var(--radius-sm);
             }
             
@@ -729,42 +829,48 @@
                 font-size: 10px;
             }
         }
-        
-        /* 移动端菜单按钮 */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 22px;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: var(--radius-sm);
-            transition: var(--transition);
-        }
-        
-        .mobile-menu-btn:hover {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--primary);
-        }
-        
-        @media (max极简-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-        }
     </style>
+    
+    <!-- 非关键CSS异步加载 -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 </head>
 <body>
     <div class="loader">
         <div class="loader-circle"></div>
     </div>
     
-    <!-- 兼容性提示 -->
     <div class="compatibility-alert" id="compatibility-alert">
         <i class="fas fa-exclamation-triangle"></i>
         <span id="compatibility-message">正在检测您的设备兼容性...</span>
         <button class="close" id="close-alert">&times;</button>
+    </div>
+    
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <i class="fas fa-guitar"></i>
+                民谣俱乐部
+            </div>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                &times;
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+            <a href="#" class="nav-link"><i class="fas fa-info-circle"></i> 关于我们</a>
+            <a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> 最新活动</a>
+            <a href="#" class="nav-link"><i class="fas fa-envelope"></i> 联系方式</a>
+            <a href="#" class="nav-link"><i class="fas fa-comments"></i> 社区论坛</a>
+        </div>
+        <div class="mobile-menu-footer">
+            © 2025 民谣俱乐部
+        </div>
     </div>
     
     <div class="container">
@@ -774,41 +880,26 @@
                 <span>民谣俱乐部</span>
             </div>
             
-            <!-- 导航菜单 -->
+            <!-- 导航菜单 - 优化设计 -->
             <nav class="nav-menu">
-                <a href="#" class="nav-link">首页</a>
-                <a href="#" class="nav-link">关于我们</a>
-                <a href="#" class="nav-link">最新活动</极简>
-                <a href="#" class="nav-link">联系方式</a>
-                <a href="#" class="nav-link">社区论坛</a>
+                <a href="#" class="nav-link"><i class="fas fa-home"></i> 首页</a>
+                <a href="#" class="nav-link"><i class="fas fa-info-circle"></i> 关于我们</a>
+                <a href="#" class="nav-link"><i class="fas fa-calendar-alt"></i> 最新活动</a>
+                <a href="#" class="nav-link"><i class="fas fa-envelope"></i> 联系方式</a>
+                <a href="#" class="nav-link"><i class="fas fa-comments"></i> 社区论坛</a>
             </nav>
             
-            <!-- 移动端菜单按钮 -->
+            <!-- 移动端菜单按钮 - 优化设计 -->
             <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            
-            <!-- 移动端菜单 - 优化动画效果 -->
-            <div class="mobile-menu" id="mobile-menu">
-                <a href="#" class="nav-link">首页</a>
-                <a href="#" class="nav-link">关于我们</a>
-                <a href="#" class="nav-link">最新活动</a>
-                <a href="#" class="nav-link">联系方式</a>
-                <a href="#" class="nav-link">社区论坛</a>
-            </div>
         </header>
         
-        <!-- 播放器区域 - 确保播放器存在 -->
+        <!-- DPlayer 播放器区域 -->
         <section class="player-section">
-            <div id="video-container">
-                <div id="main-video">
-                    <video id="video-player" class="video-js vjs-default-skin" controls playsinline preload="auto">
-                        <p class="vjs-no-js">
-                            请启用JavaScript或使用支持HTML5视频的浏览器
-                        </p>
-                    </video>
-                </div>
-            </div>
+            <div id="dplayer-container"></div>
         </section>
         
         <!-- 分类导航 -->
@@ -818,7 +909,7 @@
             </div>
         </section>
         
-        <!-- 视频列表 - 电脑端居中显示 -->
+        <!-- 视频列表 -->
         <section class="videos-section">
             <div class="videos-list" id="videos-list">
                 <div class="no-videos">
@@ -833,14 +924,27 @@
         </footer>
     </div>
 
-    <!-- 使用最新video.js版本 -->
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-    <!-- 使用hls.js作为后备方案 -->
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    
+    <!-- 异步加载关键脚本 -->
     <script>
-        // 使用立即执行函数封装代码，减少全局变量
-        (function() {
+        // 关键功能初始化
+        window.addEventListener('DOMContentLoaded', function() {
+            // 创建脚本加载函数
+            function loadScript(src, callback) {
+                const script = document.createElement('script');
+                script.src = src;
+                script.defer = true;
+                script.onload = callback;
+                document.body.appendChild(script);
+            }
+            
+            // 先加载核心功能
+            loadScript('https://cdn.jsdelivr.net/npm/hls.js@latest', function() {
+                loadScript('https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js', initApp);
+            });
+        });
+        
+        // 应用核心逻辑
+        function initApp() {
             // 更完整的视频数据（民谣主题）
             const videoData = {
                 bgyh: [ // 逼哥夜話 -> bgyh
@@ -848,7 +952,7 @@
                         id: 1, 
                         title: "B哥夜話上海", 
                         url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E4%B8%8A%E6%B5%B7/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E4%B8%8A%E6%B5%B7%E3%80%8B.m3u8", 
-                        thumb: "./img/bgyhfm.png"
+                        thumb: "https://r2.1701701.xyz/img/bgyhfm.png"
                     }
                 ],
                 bgyh2: [ // 逼哥夜話第二季 -> bgyh2
@@ -856,23 +960,17 @@
                         id: 201, 
                         title: "逼哥夜話 第二季 01 - 深圳", 
                         url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8901%20-%20%E6%B7%B1%E5%9C%B3/playlist.m3u8", 
-                        thumb: "./img/bgyh2fm.png"
+                        thumb: "https://r2.1701701.xyz/img/bgyh2fm.png"
                     }
                 ],
-
-            
-            wmsss: [ // 我們的叁叁肆 -> wmsss
-                { 
-                    id: 301, 
-                    title: "我們的叁叁肆 安徽篇 - 预告", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%87%20-%20%E9%A2%84%E极简%91%8A/playlist.m3u8", 
-                    thumb: "./img/huida.JPG"
-                }
-              
-            ],
-            
-           
-
+                wmsss: [ // 我們的叁叁肆 -> wmsss
+                    { 
+                        id: 301, 
+                        title: "我們的叁叁肆 安徽篇 - 预告", 
+                        url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%87%20-%20%E9%A2%84%E5%91%8A/playlist.m3u8", 
+                        thumb: "https://r2.1701701.xyz/img/huida.JPG"
+                    }
+                ],
                 knxy: [ // 跨年巡演 -> knxy
                     { 
                         id: 401, 
@@ -882,75 +980,68 @@
                     }
                 ],
                 jlp: [ // 紀錄片 -> jlp
-                    
+                    // 示例视频
+                    { 
+                        id: 501, 
+                        title: "民谣之旅 - 纪录片", 
+                        url: "https://r2.1701701.xyz/%E5%9B%9E%E7%AD%94.mp4", 
+                        thumb: "https://r2.1701701.xyz/img/huida.JPG"
+                    }
                 ],
                 qt: [ // 其他 -> qt
-                   
+                    // 示例视频
+                    { 
+                        id: 601, 
+                        title: "民谣音乐会现场", 
+                       url: "https://r2.1701701.xyz/%E5%9B%9E%E7%AD%94.mp4", 
+                        thumb: "https://r2.1701701.xyz/img/huida.JPG"
+                    }
                 ]
             };
 
-            // 分类列表（更新为要求的分类） - 确保所有分类都有图标
+            // 分类列表
             const categories = [
                 { id: 'bgyh', name: '逼哥夜話', icon: 'fas fa-microphone-alt' },
                 { id: 'bgyh2', name: '逼哥夜話第二季', icon: 'fas fa-microphone-alt' },
                 { id: 'wmsss', name: '我們的叁叁肆', icon: 'fas fa-bus' },
-                { id: 'knxy', name: '跨年巡演', icon: 'fas fa-calendar-star' },
+                { id: 'knxy', name: '跨年巡演', icon: 'fas fa-film' },
                 { id: 'jlp', name: '紀錄片', icon: 'fas fa-film' },
-                { id: 'qt', name: '其他', icon: 'fas fa-ellipsis-h' }
+                { id: 'qt', name: '其他', icon: 'fas fa-film' }
             ];
 
-            // 初始化播放器
-            const player = videojs('video-player', {
-                html5: {
-                    vhs: {
-                        overrideNative: !videojs.browser.IS_SAFARI
-                    }
-                },
-                playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2],
-                controls: true,
-                fluid: true,
-                responsive: true,
-                userActions: {
-                    hotkeys: function(event) {
-                        // 空格键控制播放/暂停
-                        if (event.which === 32) {
-                            event.preventDefault();
-                            if (player.paused()) {
-                                player.play();
-                            } else {
-                                player.pause();
-                            }
-                        }
-                    }
-                }
-            });
+            // 全局 DPlayer 实例
+            let dp = null;
+            let currentVideoUrl = '';
 
-            // 添加HLS.js支持作为后备方案
-            function setupHlsFallback() {
-                // 检测原生HLS支持
-                const video = document.getElementById('video-player_html5_api');
+            // 初始化 DPlayer 播放器
+            function initDPlayer() {
+                if (dp) return dp;
                 
-                if (Hls.isSupported() && !video.canPlayType('application/vnd.apple.mpegurl')) {
-                    console.log("使用Hls.js作为后备方案");
-                    
-                    player.on('play', function() {
-                        const src = player.currentSrc();
-                        
-                        // 如果当前源是HLS流
-                        if (src && src.endsWith('.m3u8')) {
-                            const hls = new Hls();
-                            hls.loadSource(src);
-                            hls.attachMedia(video);
-                            
-                            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                                player.play();
-                            });
-                        }
-                    });
-                }
+                dp = new DPlayer({
+                    container: document.getElementById('dplayer-container'),
+                    live: false,
+                    autoplay: false,
+                    theme: '#d4af37', // 金色主题
+                    loop: false,
+                    lang: 'zh-cn',
+                    hotkey: true,
+                    volume: 0.7,
+                    playbackSpeed: [0.5, 0.75, 1, 1.25, 1.5, 2],
+                    mutex: true,
+                    video: {
+                        url: '',
+                        pic: '' // 默认封面
+                    },
+                    errorHandler: function(error) {
+                        console.error('DPlayer error:', error);
+                        showCompatibilityAlert('视频播放失败: ' + error.message);
+                    }
+                });
+                
+                return dp;
             }
 
-            // 初始化分类导航 - 确保所有分类都有图标
+            // 初始化分类导航
             function initCategories() {
                 const container = document.getElementById('categories-container');
                 container.innerHTML = '';
@@ -960,16 +1051,13 @@
                     btn.className = 'category-btn';
                     btn.dataset.category = category.id;
                     
-                    // 添加图标 - 确保所有分类都有图标
                     const icon = document.createElement('i');
                     icon.className = category.icon;
                     btn.appendChild(icon);
                     
-                    // 添加文字
                     const text = document.createTextNode(` ${category.name}`);
                     btn.appendChild(text);
                     
-                    // 设置第一个分类为默认激活状态
                     if (category.id === 'bgyh') {
                         btn.classList.add('active');
                     }
@@ -999,13 +1087,17 @@
                     item.className = 'video-item';
                     item.dataset.id = video.id;
                     item.dataset.url = video.url;
+                    item.dataset.thumb = video.thumb;
                     
                     // 生成随机进度（演示用）
                     const progress = Math.floor(Math.random() * 100);
                     
                     item.innerHTML = `
                         <div class="thumbnail">
-                            <img src="placeholder.jpg" data-src="${video.thumb}" alt="${video.title} thumbnail" class="lazyload">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='124' viewBox='0 0 220 124'%3E%3Crect width='220' height='124' fill='%231a1a2e'/%3E%3C/svg%3E" 
+                                 data-src="${video.thumb}" 
+                                 alt="${video.title}" 
+                                 class="lazyload">
                             <div class="play-icon"><i class="fas fa-play"></i></div>
                             <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
                         </div>
@@ -1022,7 +1114,7 @@
             // 添加懒加载函数
             function initLazyLoad() {
                 const lazyImages = document.querySelectorAll('img.lazyload');
-                const observer = new IntersectionObserver((entries, observer) => {
+                const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
                             const img = entry.target;
@@ -1031,45 +1123,133 @@
                             observer.unobserve(img);
                         }
                     });
-                }, { rootMargin: '100px 0px' });
+                }, { rootMargin: '200px 0px' });
                 
                 lazyImages.forEach(img => observer.observe(img));
             }
 
             // 播放视频
-            function playVideo(url, title = '精彩视频') {
+            function playVideo(url, thumb = '', title = '精彩视频') {
                 if (!url) {
                     showCompatibilityAlert('此视频源不可用，请选择其他视频');
                     return;
                 }
                 
+                // 避免重复加载相同视频
+                if (currentVideoUrl === url) {
+                    dp.play();
+                    return;
+                }
+                
+                currentVideoUrl = url;
+                
                 // 显示加载状态
-                const playerContainer = document.getElementById('video-container');
+                const playerContainer = document.querySelector('.player-section');
                 playerContainer.classList.add('loading');
                 
                 // 设置超时处理
                 const loadTimeout = setTimeout(() => {
                     playerContainer.classList.remove('loading');
-                    showCompatibilityAlert('视频加载时间较长，请检查网络连接');
-                }, 5000);
+                    showCompatibilityAlert('视频加载时间较长，请耐心等待');
+                }, 15000);
                 
-                // 更新播放器源
-                player.ready(() => {
-                    player.src({
-                        src: url,
-                        type: 'application/x-mpegURL'
+                try {
+                    // 确保播放器已初始化
+                    const player = initDPlayer();
+                    
+                    // 销毁旧播放器实例
+                    if (player && player.video) {
+                        player.destroy();
+                        dp = null;
+                    }
+                    
+                    // 创建新播放器实例
+                    dp = new DPlayer({
+                        container: document.getElementById('dplayer-container'),
+                        video: {
+                            url: url,
+                            pic: thumb,
+                            type: url.endsWith('.m3u8') ? 'hls' : 'auto'
+                        },
+                        // 添加HLS配置优化
+                        hls: {
+                            liveSyncDurationCount: 3,
+                            maxMaxBufferLength: 30,
+                            enableWorker: true
+                        },
+                        errorHandler: function(error) {
+                            console.error('播放错误:', error);
+                            showCompatibilityAlert('视频播放失败，请重试');
+                            clearTimeout(loadTimeout);
+                            playerContainer.classList.remove('loading');
+                        }
                     });
                     
-                    player.play().then(() => {
+                    // 添加时长稳定处理
+                    let durationStabilized = false;
+                    let lastDuration = 0;
+                    
+                    // 播放成功回调
+                    dp.on('canplay', function() {
                         clearTimeout(loadTimeout);
                         playerContainer.classList.remove('loading');
-                    }).catch(error => {
-                        clearTimeout(loadTimeout);
-                        playerContainer.classList.remove('loading');
-                        console.error('播放错误:', error);
-                        showCompatibilityAlert('视频播放失败，请尝试其他视频');
+                        document.getElementById('compatibility-alert').style.display = 'none';
+                        
+                        // 添加时长稳定处理
+                        if (!durationStabilized) {
+                            // 获取初始时长
+                            const initialDuration = dp.video.duration;
+                            lastDuration = initialDuration;
+                            
+                            // 设置定时器检查时长变化
+                            const durationCheck = setInterval(() => {
+                                if (dp.video.duration !== lastDuration) {
+                                    lastDuration = dp.video.duration;
+                                } else {
+                                    // 时长稳定后更新UI
+                                    updateDurationDisplay(lastDuration);
+                                    durationStabilized = true;
+                                    clearInterval(durationCheck);
+                                }
+                            }, 500);
+                        }
                     });
-                });
+                    
+                    // 播放失败回调
+                    dp.on('error', function() {
+                        showCompatibilityAlert('视频播放失败，请检查网络连接');
+                        clearTimeout(loadTimeout);
+                        playerContainer.classList.remove('loading');
+                    });
+                    
+                    // 开始播放
+                    dp.play();
+                    
+                } catch (error) {
+                    console.error('播放错误:', error);
+                    showCompatibilityAlert('视频播放失败: ' + error.message);
+                    clearTimeout(loadTimeout);
+                    playerContainer.classList.remove('loading');
+                }
+            }
+
+            // 更新时长显示函数
+            function updateDurationDisplay(duration) {
+                const timeElements = document.querySelectorAll('.dplayer-time');
+                if (timeElements.length > 1) {
+                    const durationElement = timeElements[1];
+                    durationElement.textContent = formatTime(duration);
+                }
+            }
+            
+            // 时间格式化函数
+            function formatTime(seconds) {
+                const h = Math.floor(seconds / 3600);
+                const m = Math.floor((seconds % 3600) / 60);
+                const s = Math.floor(seconds % 60);
+                return (h > 0 ? h + ':' : '') + 
+                       (m < 10 ? '0' + m : m) + ':' + 
+                       (s < 10 ? '0' + s : s);
             }
 
             // 显示兼容性提示
@@ -1080,46 +1260,45 @@
                 messageElement.textContent = message;
                 alert.style.display = 'flex';
                 
-                // 5秒后自动隐藏
+                // 10秒后自动隐藏
                 setTimeout(() => {
                     alert.style.display = 'none';
-                }, 5000);
+                }, 10000);
             }
 
             // 检测设备兼容性
             function detectCompatibility() {
-                const alert = document.getElementById('compatibility-alert');
-                const messageElement = document.getElementById('compatibility-message');
-                
-                // 检测HLS原生支持
+                // 仅在确实需要时显示提示
                 const video = document.createElement('video');
-                const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-                const canPlayHLS = video.canPlayType('application/vnd.apple.mpegurl');
-                
-                if (!canPlayHLS && !Hls.isSupported()) {
-                    messageElement.textContent = '您的设备可能不支持HLS视频播放，部分内容可能无法正常播放';
-                    alert.style.display = 'flex';
-                } else if (!isSafari && !canPlayHLS) {
-                    messageElement.textContent = '正在使用JavaScript兼容模式播放HLS视频';
-                    alert.style.display = 'flex';
+                if (!video.canPlayType('application/vnd.apple.mpegurl') && 
+                    !Hls.isSupported()) {
+                    showCompatibilityAlert('您的设备可能需要JavaScript兼容模式播放视频');
                 }
             }
 
             // 应用初始化
             function initApp() {
+                // 初始化播放器
+                initDPlayer();
                 initCategories();
                 loadCategoryVideos('bgyh');
-                setupHlsFallback();
                 detectCompatibility();
                 
-                // 移动端菜单功能 - 优化动画效果
+                // 移动端菜单功能 - 优化设计
                 const mobileMenuBtn = document.getElementById('mobile-menu-btn');
                 const mobileMenu = document.getElementById('mobile-menu');
+                const mobileMenuClose = document.getElementById('mobile-menu-close');
                 const closeAlertBtn = document.getElementById('close-alert');
                 
                 mobileMenuBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     mobileMenu.classList.toggle('active');
+                    mobileMenuBtn.classList.toggle('active');
+                });
+                
+                mobileMenuClose.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
                 });
                 
                 closeAlertBtn.addEventListener('click', () => {
@@ -1130,6 +1309,7 @@
                 document.addEventListener('click', (event) => {
                     if (!mobileMenu.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
                         mobileMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
                     }
                 });
                 
@@ -1147,7 +1327,9 @@
                 document.getElementById('videos-list').addEventListener('click', (e) => {
                     const item = e.target.closest('.video-item');
                     if (item) {
-                        playVideo(item.dataset.url, item.querySelector('.video-title').textContent);
+                        const url = item.dataset.url;
+                        const thumb = item.querySelector('img').dataset.src;
+                        playVideo(url, thumb, item.querySelector('.video-title').textContent);
                     }
                 });
                 
@@ -1157,14 +1339,9 @@
                 }, 1000);
             }
 
-            // 页面加载完成后初始化
-            if (document.readyState !== 'loading') {
-                initApp();
-            } else {
-                document.addEventListener('DOMContentLoaded', initApp);
-            }
-        })();
+            // 执行初始化
+            initApp();
+        }
     </script>
 </body>
 </html>
-
