@@ -371,7 +371,15 @@
             gap: 10px;
             padding: 10px 5px;
             scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 10px;
             justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .categories-scroll {
+                justify-content: flex-start;
+            }
         }
         
         .categories-scroll::-webkit-scrollbar {
@@ -1567,7 +1575,6 @@
                     
                     // 播放失败回调
                     dp.on('error', function() {
-                        showCompatibilityAlert('视频播放失败，请检查网络连接');
                         clearTimeout(loadTimeout);
                         playerContainer.classList.remove('loading');
                     });
