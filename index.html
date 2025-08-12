@@ -174,7 +174,6 @@
         
         /* 移动端菜单 - 优化设计 */
         .mobile-menu {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -185,12 +184,16 @@
             flex-direction: column;
             backdrop-filter: blur(10px);
             transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
         }
         
         .mobile-menu.active {
-            display: flex;
             transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
         }
         
         .mobile-menu-header {
@@ -205,6 +208,14 @@
             font-size: 20px;
             color: var(--primary);
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mobile-menu-logo i {
+            font-size: 20px;
+            color: var(--primary);
         }
         
         .mobile-menu-close {
@@ -234,9 +245,17 @@
             font-size: 16px;
             width: 100%;
             text-align: left;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
             border-radius: 0;
             border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        
+        .mobile-menu.active .nav-link {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: calc(0.05s * var(--index, 0));
         }
         
         .mobile-menu .nav-link:hover {
@@ -1256,18 +1275,18 @@
                 }
             ],
                 knxy: [ // 跨年巡演 -> knxy
-                    { 
-                        id: 401, 
-                        title: "回答", 
-                        url: "https://r2.1701701.xyz/%E5%9B%9E%E7%AD%94.mp4", 
-                        thumb: "https://r2.1701701.xyz/img/huida.JPG"
-                    }
+                    
                 ],
                 jlp: [ // 紀錄片 -> jlp
                    
                 ],
                 qt: [ // 其他 -> qt
-                   
+                   { 
+                        id: 601, 
+                        title: "回答", 
+                        url: "https://r2.1701701.xyz/%E5%9B%9E%E7%AD%94.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    }
                 ]
             };
 
@@ -1633,6 +1652,12 @@
                 const mobileMenu = document.getElementById('mobile-menu');
                 const mobileMenuClose = document.getElementById('mobile-menu-close');
                 const closeAlertBtn = document.getElementById('close-alert');
+                const menuLinks = document.querySelectorAll('.mobile-menu .nav-link');
+                
+                // 为菜单项添加索引
+                menuLinks.forEach((link, index) => {
+                    link.style.setProperty('--index', index);
+                });
                 
                 mobileMenuBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
