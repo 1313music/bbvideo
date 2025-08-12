@@ -515,16 +515,20 @@
         
         .video-title {
             padding: 12px;
-            font-size: 14px;
+            font-size: 15px;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
-            height: 42px;
+            height: 50px;
+            line-height: 1.4;
             transition: var(--transition);
             background: rgba(0, 0, 0, 0.3);
             font-weight: 500;
+            color: var(--text-primary);
+            margin: 0;
+          
         }
         
         .video-item:hover .video-title {
@@ -657,68 +661,7 @@
             border-top: 1px solid rgba(212, 175, 55, 0.1);
         }
         
-        /* 加载动画 */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
-        }
-        
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .spinner {
-            width: 50px;
-            height: 50px;
-            position: relative;
-        }
-        
-        .spinner:before, .spinner:after {
-            content: '';
-            position: absolute;
-            border-radius: 50%;
-        }
-        
-        .spinner:before {
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0) 60%);
-            animation: pulse 1s ease-in-out infinite;
-        }
-        
-        .spinner:after {
-            width: 80%;
-            height: 80%;
-            background: transparent;
-            border: 4px solid transparent;
-            border-top-color: var(--primary);
-            border-left-color: var(--primary);
-            border-radius: 50%;
-            top: 10%;
-            left: 10%;
-            animation: spin 0.8s linear infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(0.8); opacity: 0.5; }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+       
         
         /* 兼容性提示 */
         .compatibility-alert {
@@ -732,12 +675,17 @@
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             z-index: 10000;
             font-weight: 500;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             animation: slideUp 0.5s ease-out;
             display: none;
+            white-space: nowrap;
+            max-width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         @keyframes slideUp {
@@ -957,9 +905,7 @@
     </noscript>
 </head>
 <body>
-    <div class="loader">
-        <div class="spinner"></div>
-    </div>
+ 
     
     <div class="compatibility-alert" id="compatibility-alert">
         <i class="fas fa-exclamation-triangle"></i>
@@ -1396,7 +1342,7 @@
                     },
                     // 添加移动端优化配置
                     mobileControls: true,
-                    hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
+                    hideControlsAfter: 1000 // 1秒后自动隐藏控制按钮
                 });
                 
                 return dp;
@@ -1450,8 +1396,7 @@
                     item.dataset.url = video.url;
                     item.dataset.thumb = video.thumb;
                     
-                    // 生成随机进度（演示用）
-                    const progress = Math.floor(Math.random() * 100);
+                    
                     
                     item.innerHTML = `
                         <div class="thumbnail">
@@ -1460,7 +1405,8 @@
                                  alt="${video.title}" 
                                  class="lazyload">
                             <div class="play-icon"><i class="fas fa-play"></i></div>
-                            <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
+                            <div class="progress-bar" style="height:2px"><div class="progress" style="width:100%"></div></div>
+                            
                         </div>
                         <div class="video-title">${video.title}</div>
                     `;
@@ -1537,6 +1483,7 @@
                             pic: thumb,
                             type: url.endsWith('.m3u8') ? 'hls' : 'auto'
                         },
+                        
                         // 添加HLS配置优化
                         hls: {
                             liveSyncDurationCount: 3,
@@ -1586,7 +1533,31 @@
                         if (window.innerWidth <= 768) {
                             setTimeout(() => {
                                 dp.controller.hide();
-                            }, 3000); // 3秒后隐藏控制按钮
+                                // 隐藏暂停按钮
+                                const playIcon = document.querySelector('.dplayer-play-icon');
+                                if (playIcon) playIcon.style.display = 'none';
+                            }, 500); // 0.5秒后隐藏控制按钮
+                        }
+                    });
+                    
+                    // 监听播放事件
+                    dp.on('play', function() {
+                        if (window.innerWidth <= 768) {
+                            setTimeout(() => {
+                                dp.controller.hide();
+                                // 隐藏暂停按钮
+                                const playIcon = document.querySelector('.dplayer-play-icon');
+                                if (playIcon) playIcon.style.display = 'none';
+                            }, 500);
+                        }
+                    });
+                    
+                    // 监听暂停事件
+                    dp.on('pause', function() {
+                        if (window.innerWidth <= 768) {
+                            // 显示暂停按钮
+                            const playIcon = document.querySelector('.dplayer-play-icon');
+                            if (playIcon) playIcon.style.display = 'block';
                         }
                     });
                     
@@ -1607,24 +1578,7 @@
                 }
             }
 
-            // 更新时长显示函数
-            function updateDurationDisplay(duration) {
-                const timeElements = document.querySelectorAll('.dplayer-time');
-                if (timeElements.length > 1) {
-                    const durationElement = timeElements[1];
-                    durationElement.textContent = formatTime(duration);
-                }
-            }
-            
-            // 时间格式化函数
-            function formatTime(seconds) {
-                const h = Math.floor(seconds / 3600);
-                const m = Math.floor((seconds % 3600) / 60);
-                const s = Math.floor(seconds % 60);
-                return (h > 0 ? h + ':' : '') + 
-                       (m < 10 ? '0' + m : m) + ':' + 
-                       (s < 10 ? '0' + s : s);
-            }
+          
 
             // 显示兼容性提示
             function showCompatibilityAlert(message) {
@@ -1827,10 +1781,7 @@
                     });
                 });
                 
-                // 隐藏加载动画
-                setTimeout(() => {
-                    document.querySelector('.loader').classList.add('hidden');
-                }, 1000);
+            
             }
 
             // 执行初始化
