@@ -599,6 +599,15 @@
             margin-bottom: 20px;
         }
         
+        .placeholder-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            margin: 20px auto;
+            max-height: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
         .placeholder-title {
             font-size: 24px;
             color: var(--primary);
@@ -1623,7 +1632,20 @@
                     case 'about':
                         icon.innerHTML = '<i class="fas fa-info-circle"></i>';
                         title.textContent = '关于';
-                        text.textContent = '欢迎关注我们的公众号：民谣俱乐部，获取更多歌曲资源与资讯！';
+                        text.textContent = '欢迎关注我们的公众号，了解更多有关民谣俱乐部的消息';
+                        
+                        // 添加公众号二维码图片
+                        const placeholderContent = document.getElementById('placeholder-content');
+                        const existingImage = document.getElementById('about-image');
+                        
+                        if (!existingImage) {
+                            const image = document.createElement('img');
+                            image.id = 'about-image';
+                            image.className = 'placeholder-image';
+                            image.src = 'https://v.1701701.xyz/img/qrcode.jpg'; // 替换为您的公众号二维码图片URL
+                            image.alt = '民谣俱乐部公众号二维码';
+                            placeholderContent.insertBefore(image, text);
+                        }
                         break;
                 }
             }
