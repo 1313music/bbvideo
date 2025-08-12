@@ -1393,7 +1393,10 @@
                     errorHandler: function(error) {
                         console.error('DPlayer error:', error);
                         showCompatibilityAlert('视频播放失败: ' + error.message);
-                    }
+                    },
+                    // 添加移动端优化配置
+                    mobileControls: true,
+                    hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
                 });
                 
                 return dp;
@@ -1505,6 +1508,10 @@
                 const playerContainer = document.querySelector('.player-section');
                 playerContainer.classList.add('loading');
                 
+                // 隐藏暂停按钮
+                const playIcon = document.querySelector('.dplayer-play-icon');
+                if (playIcon) playIcon.style.display = 'none';
+                
                 // 设置超时处理
                 const loadTimeout = setTimeout(() => {
                     playerContainer.classList.remove('loading');
@@ -1524,6 +1531,7 @@
                     // 创建新播放器实例
                     dp = new DPlayer({
                         container: document.getElementById('dplayer-container'),
+                        contextmenu: [], // 禁用右键菜单
                         video: {
                             url: url,
                             pic: thumb,
@@ -1553,6 +1561,8 @@
                         playerContainer.classList.remove('loading');
                         document.getElementById('compatibility-alert').style.display = 'none';
                         
+                        
+                        
                         // 添加时长稳定处理
                         if (!durationStabilized) {
                             // 获取初始时长
@@ -1570,6 +1580,13 @@
                                     clearInterval(durationCheck);
                                 }
                             }, 500);
+                        }
+                        
+                        // 移动端优化：播放后自动隐藏控制按钮
+                        if (window.innerWidth <= 768) {
+                            setTimeout(() => {
+                                dp.controller.hide();
+                            }, 3000); // 3秒后隐藏控制按钮
                         }
                     });
                     
@@ -1665,7 +1682,7 @@
                     case 'guitar':
                         icon.innerHTML = '<i class="fas fa-guitar"></i>';
                         title.textContent = '吉他谱';
-                        text.textContent = 'https://www.weiyun.com/document?fileId=1482357921_a1fc5a585a38e55958695081d555a4b0_af5f417e-e61a-4d9d-9b97-9ca1614eb22b&officeType=pdf&tdsourcetag=s_weiyun_file';
+                        text.textContent = '暂无吉他谱，后续将更新，敬请期待！';
                         
                         break;
                         
@@ -1689,7 +1706,7 @@
                     case 'about':
                         icon.innerHTML = '<i class="fas fa-info-circle"></i>';
                         title.textContent = '关于';
-                        text.textContent = '欢迎关注我们的公众号，了解更多有关民谣俱乐部的消息';
+                        text.textContent = '欢迎关注我们的公众号，获取更多相关内容';
                         
                         // 添加公众号二维码图片
                         const placeholderContent = document.getElementById('placeholder-content');
