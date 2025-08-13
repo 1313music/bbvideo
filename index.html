@@ -1537,8 +1537,8 @@
                 // 设置超时处理
                 const loadTimeout = setTimeout(() => {
                     playerContainer.classList.remove('loading');
-                    showCompatibilityAlert('视频加载时间较长，请耐心等待');
-                }, 15000);
+                    showCompatibilityAlert('视频加载时间较长，请尝试使用夸克或 QQ 浏览器');
+                }, 10000); // 缩短超时时间为 10 秒
                 
                 try {
                     // 确保播放器已初始化
@@ -1554,33 +1554,63 @@
                     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
                     
-                    // 创建新播放器实例
+                    // 强制 iOS 使用 hls.js（禁用原生 HLS）
+                    if (isIOS && Hls.isSupported()) {
+                        const hls = new Hls({
+                            enableWorker: false, // iOS 禁用 Worker
+                            maxBufferLength: 30,
+                            lowLatencyMode: false
+                        });
+                        
+                        hls.loadSource(url);
+                        hls.attachMedia(document.createElement('video'));
+                        
+                        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                            clearTimeout(loadTimeout);
+                            playerContainer.classList.remove('loading');
+                            
+                            dp = new DPlayer({
+                                container: document.getElementById('dplayer-container'),
+                                video: {
+                                    url: url,
+                                    pic: thumb,
+                                    type: 'customHls',
+                                    customType: {
+                                        'customHls': function (video, player) {
+                                            hls.attachMedia(video);
+                                        }
+                                    }
+                                },
+                                autoplay: true
+                            });
+                        });
+                        
+                        hls.on(Hls.Events.ERROR, (event, data) => {
+                            console.error('HLS 错误:', data);
+                            showCompatibilityAlert('视频加载失败，请尝试使用夸克或 QQ 浏览器');
+                            clearTimeout(loadTimeout);
+                            playerContainer.classList.remove('loading');
+                        });
+                        
+                        return;
+                    }
+                    
+                    // 非 iOS 或其他情况使用默认逻辑
                     dp = new DPlayer({
                         container: document.getElementById('dplayer-container'),
-                        contextmenu: [], // 禁用右键菜单
+                        contextmenu: [],
                         video: {
                             url: url,
                             pic: thumb,
                             type: (url.endsWith('.m3u8') || url.endsWith('.js')) ? 'hls' : 'auto'
                         },
-                        
-                        // 添加HLS配置优化
                         hls: {
-                            liveSyncDurationCount: 3,
-                            maxMaxBufferLength: 30,
-                            enableWorker: !isIOS, // iOS 禁用 Worker 以避免兼容性问题
-                            pLoader: isIOS ? undefined : undefined, // iOS 使用默认加载器
+                            enableWorker: false,
+                            maxBufferLength: 30
                         },
-                        autoHide: true, // 默认自动隐藏控制栏
-                        hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
-                            // 针对 iOS 的特定错误提示
-                            if (isIOS && error.message.includes('HLS')) {
-                                showCompatibilityAlert('iOS 浏览器兼容性问题，请尝试使用夸克或 QQ 浏览器');
-                            } else {
-                                showCompatibilityAlert('视频播放失败，请重试');
-                            }
+                            showCompatibilityAlert('视频播放失败: ' + error.message);
                             clearTimeout(loadTimeout);
                             playerContainer.classList.remove('loading');
                         }
