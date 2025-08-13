@@ -1565,13 +1565,21 @@
                         hls: {
                             liveSyncDurationCount: 3,
                             maxMaxBufferLength: 30,
-                            enableWorker: true,
+                            enableWorker: !/iPad|iPhone|iPod/.test(navigator.userAgent), // iOS禁用Worker
                             // 强制将伪装文件识别为HLS流
                             xhrSetup: function(xhr, url) {
                                 if (url.includes('roadmap.js')) {
                                     xhr.setRequestHeader('Content-Type', 'application/vnd.apple.mpegurl');
                                 }
-                            }
+                                // iOS专用配置
+                                if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+                                    xhr.setRequestHeader('Accept', 'application/vnd.apple.mpegurl');
+                                }
+                            },
+                            // iOS专用参数
+                            fragLoadingTimeOut: 10000,
+                            fragLoadingMaxRetry: 3,
+                            startLevel: -1
                         },
                         autoHide: true, // 默认自动隐藏控制栏
                         hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
@@ -1677,9 +1685,16 @@
 
             // 检测设备兼容性
             function detectCompatibility() {
-                // 仅在确实需要时显示提示
+                // 检测iOS Safari
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                 const video = document.createElement('video');
-                if (!video.canPlayType('application/vnd.apple.mpegurl') && 
+                
+                // iOS专用提示
+                if (isIOS) {
+                    showCompatibilityAlert('iOS设备请确保使用Safari最新版，如遇播放问题请尝试全屏播放');
+                }
+                // 其他设备兼容性检测
+                else if (!video.canPlayType('application/vnd.apple.mpegurl') && 
                     !Hls.isSupported()) {
                     showCompatibilityAlert('您的设备可能需要JavaScript兼容模式播放视频');
                 }
