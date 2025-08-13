@@ -259,7 +259,7 @@
         }
         
         .mobile-menu .nav-link {
-            padding: 15px 0;
+            padding: 15px 15px;
             font-size: 16px;
             width: 100%;
             text-align: left;
@@ -277,9 +277,17 @@
         }
         
         .mobile-menu .nav-link:hover {
-            background: transparent;
-            transform: translateX(10px);
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(15px);
             color: var(--primary);
+            border-radius: var(--radius-md);
+        }
+        
+        .mobile-menu .nav-link.active {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            border-radius: var(--radius-md);
         }
         
         .mobile-menu .nav-link:last-child {
@@ -355,6 +363,23 @@
         
         .dplayer .dplayer-controller .dplayer-icons .dplayer-volume .dplayer-volume-bar .dplayer-volume-bar-inner {
             background: var(--accent) !important;
+        }
+        
+        /* 默认隐藏控制栏 */
+        .dplayer .dplayer-controller {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .dplayer.dplayer-hide-controller .dplayer-controller {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .dplayer:hover .dplayer-controller {
+            opacity: 1;
+            visibility: visible;
         }
         
         /* 分类导航优化 */
@@ -466,11 +491,30 @@
             box-shadow: var(--shadow);
         }
         
+        .video-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
         .video-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             z-index: 2;
             border-color: var(--primary);
+        }
+        
+        .video-item:hover::before {
+            transform: translateX(100%);
+            transition-duration: 1s;
         }
         
         .thumbnail {
@@ -480,6 +524,7 @@
             background-position: center;
             transition: var(--transition);
             transform-origin: center;
+            z-index: 2;
         }
         
         .thumbnail img {
@@ -529,7 +574,8 @@
             font-weight: 500;
             color: var(--text-primary);
             margin: 0;
-          
+            position: relative;
+            z-index: 2;
         }
         
         .video-item:hover .video-title {
@@ -922,15 +968,15 @@
                 民谣俱乐部
             </div>
             <div class="mobile-menu-center-logo">
-                <i class="fas fa-star-half-alt"></i>
+             <i class="fa-solid fa-champagne-glasses"></i>
             </div>
             <button class="mobile-menu-close" id="mobile-menu-close">
                 <i class="fas fa-times"></i>
             </button>
         </div>
         <div class="mobile-menu-links">
-            <a href="#" class="nav-link active" data-menu="home"><i class="fas fa-home"></i> 首页</a>
-            <a href="#" class="nav-link" data-menu="videos"><i class="fas fa-video"></i> 视频</a>   
+            <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
+            <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>   
             <a href="#" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
             <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
             <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
@@ -1306,10 +1352,10 @@
             const categories = [
                 { id: 'bgyh', name: '逼哥夜話', icon: 'fas fa-microphone-alt' },
                 { id: 'bgyh2', name: '逼哥夜話第二季', icon: 'fas fa-microphone-alt' },
-                { id: 'wmsss', name: '我們的叁叁肆', icon: 'fas fa-bus' },
-                { id: 'knxy', name: '跨年巡演', icon: 'fas fa-video' },
-                { id: 'jlp', name: '紀錄片', icon: 'fas fa-film' },
-                { id: 'qt', name: '其他', icon: 'fas fa-question-circle' }
+                { id: 'wmsss', name: '我們的叁叁肆', icon: 'fa-solid fa-clapperboard' },
+                { id: 'knxy', name: '跨年巡演', icon: 'fas fa-film' },
+                { id: 'jlp', name: '紀錄片', icon: 'fas fa-video' },
+                { id: 'qt', name: '其他', icon: 'fa-solid fa-file-video' }
             ];
 
             // 全局 DPlayer 实例
@@ -1341,8 +1387,16 @@
                     },
                     // 添加移动端优化配置
                     mobileControls: true,
-                    hideControlsAfter: 1000 // 1秒后自动隐藏控制按钮
+                    hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
+                    autoHide: true // 默认自动隐藏控制栏
                 });
+                
+                // 初始化后立即隐藏控制栏
+                setTimeout(() => {
+                    if (dp && dp.controller) {
+                        dp.controller.hide();
+                    }
+                }, 100);
                 
                 return dp;
             }
@@ -1489,6 +1543,8 @@
                             maxMaxBufferLength: 30,
                             enableWorker: true
                         },
+                        autoHide: true, // 默认自动隐藏控制栏
+                        hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
                             showCompatibilityAlert('视频播放失败，请重试');
@@ -1507,7 +1563,13 @@
                         playerContainer.classList.remove('loading');
                         document.getElementById('compatibility-alert').style.display = 'none';
                         
-                        
+                        // 立即隐藏控制栏
+                        setTimeout(() => {
+                            dp.controller.hide();
+                            // 隐藏暂停按钮
+                            const playIcon = document.querySelector('.dplayer-play-icon');
+                            if (playIcon) playIcon.style.display = 'none';
+                        }, 100);
                         
                         // 添加时长稳定处理
                         if (!durationStabilized) {
@@ -1526,16 +1588,6 @@
                                     clearInterval(durationCheck);
                                 }
                             }, 500);
-                        }
-                        
-                        // 移动端优化：播放后自动隐藏控制按钮
-                        if (window.innerWidth <= 768) {
-                            setTimeout(() => {
-                                dp.controller.hide();
-                                // 隐藏暂停按钮
-                                const playIcon = document.querySelector('.dplayer-play-icon');
-                                if (playIcon) playIcon.style.display = 'none';
-                            }, 500); // 0.5秒后隐藏控制按钮
                         }
                     });
                     
@@ -1623,7 +1675,7 @@
                            case 'home':
                         icon.innerHTML = '<i class="fas fa-home"></i>'; 
                         title.textContent = '首页';
-                        text.textContent = '这里是首页';
+                        text.textContent = 'welcome';
                         break;  
 
                     case 'music':
