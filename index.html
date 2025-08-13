@@ -365,11 +365,16 @@
             background: var(--accent) !important;
         }
         
-        /* 控制栏默认可见 */
+        /* 默认隐藏控制栏 */
         .dplayer .dplayer-controller {
-            opacity: 1;
-            visibility: visible;
+            opacity: 0;
+            visibility: hidden;
             transition: all 0.3s ease;
+        }
+        
+        .dplayer.dplayer-hide-controller .dplayer-controller {
+            opacity: 0;
+            visibility: hidden;
         }
         
         .dplayer:hover .dplayer-controller {
@@ -1332,25 +1337,25 @@
                         id: 401, 
                         title: "2009 我爱南京", 
                         url: "https://2009.1701701.xyz/video/roadmap.js", 
-                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
                     },
                     { 
                         id: 402, 
                         title: "2014 I/O", 
                         url: "https://2014.1701701.xyz/video/roadmap.js", 
-                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
                     },
                      { 
                         id: 403, 
                         title: "2015 看见", 
                         url: "https://2015.1701701.xyz/video/roadmap.js", 
-                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
                     },
                      { 
                         id: 404, 
-                        title: "2018  洗心革面", 
-                        url: "https://2018.1701701.xyz/video/roadmap.js", 
-                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                        title: "2019  洗心革面", 
+                        url: "https://2019.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
                     }
                 ],
                 jlp: [ // 紀錄片 -> jlp
@@ -1403,13 +1408,16 @@
                         console.error('DPlayer error:', error);
                         showCompatibilityAlert('视频播放失败: ' + error.message);
                     },
-                    // 移除自定义控制栏设置，使用默认行为
+                    // 添加移动端优化配置
+                    mobileControls: true,
+                    hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
+                    autoHide: true // 默认自动隐藏控制栏
                 });
                 
-                // 使用默认控制栏行为
+                // 初始化后立即隐藏控制栏
                 setTimeout(() => {
                     if (dp && dp.controller) {
-                        // 不强制隐藏控制栏，使用默认行为
+                        dp.controller.hide();
                     }
                 }, 100);
                 
@@ -1503,8 +1511,6 @@
                 lazyImages.forEach(img => observer.observe(img));
             }
 
-
-            
             // 播放视频
             function playVideo(url, thumb = '', title = '精彩视频') {
                 if (!url) {
@@ -1538,14 +1544,10 @@
                     // 确保播放器已初始化
                     const player = initDPlayer();
                     
-                    // 优化播放器实例切换
+                    // 销毁旧播放器实例
                     if (player && player.video) {
-                        try {
-                            player.video.pause();
-                            player.notice('正在加载视频...');
-                        } catch (e) {
-                            console.log('切换视频时暂停失败:', e);
-                        }
+                        player.destroy();
+                        dp = null;
                     }
                     
                     // 创建新播放器实例
@@ -1555,6 +1557,7 @@
                         video: {
                             url: url,
                             pic: thumb,
+                            // 明确指定伪装成.js的M3U8文件为hls类型
                             type: url.endsWith('.m3u8') || url.includes('roadmap.js') ? 'hls' : 'auto'
                         },
                         
@@ -1562,9 +1565,16 @@
                         hls: {
                             liveSyncDurationCount: 3,
                             maxMaxBufferLength: 30,
-                            enableWorker: true
+                            enableWorker: true,
+                            // 强制将伪装文件识别为HLS流
+                            xhrSetup: function(xhr, url) {
+                                if (url.includes('roadmap.js')) {
+                                    xhr.setRequestHeader('Content-Type', 'application/vnd.apple.mpegurl');
+                                }
+                            }
                         },
-                        // 使用默认控制栏行为
+                        autoHide: true, // 默认自动隐藏控制栏
+                        hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
                             showCompatibilityAlert('视频播放失败，请重试');
@@ -1583,17 +1593,13 @@
                         playerContainer.classList.remove('loading');
                         document.getElementById('compatibility-alert').style.display = 'none';
                         
-                        // 移动端特殊处理
-                        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                            // 保留移动端默认行为
-                            dp.container.addEventListener('touchstart', function() {
-                                if (!dp.video.paused) {
-                                    setTimeout(hideCenterPlayButton, 300);
-                                }
-                            });
-                        }
-                        
-                        // 使用默认控制栏行为
+                        // 立即隐藏控制栏
+                        setTimeout(() => {
+                            dp.controller.hide();
+                            // 隐藏暂停按钮
+                            const playIcon = document.querySelector('.dplayer-play-icon');
+                            if (playIcon) playIcon.style.display = 'none';
+                        }, 100);
                         
                         // 添加时长稳定处理
                         if (!durationStabilized) {
@@ -1617,33 +1623,29 @@
                     
                     // 监听播放事件
                     dp.on('play', function() {
-                        // 默认播放行为
+                        if (window.innerWidth <= 768) {
+                            setTimeout(() => {
+                                dp.controller.hide();
+                                // 隐藏暂停按钮
+                                const playIcon = document.querySelector('.dplayer-play-icon');
+                                if (playIcon) playIcon.style.display = 'none';
+                            }, 500);
+                        }
                     });
                     
                     // 监听暂停事件
                     dp.on('pause', function() {
-                        // 默认暂停行为
-                    });
-                    
-                    // 监听点击事件
-                    dp.container.addEventListener('click', function(e) {
-                        // 默认点击行为
+                        if (window.innerWidth <= 768) {
+                            // 显示暂停按钮
+                            const playIcon = document.querySelector('.dplayer-play-icon');
+                            if (playIcon) playIcon.style.display = 'block';
+                        }
                     });
                     
                     // 播放失败回调
-                    dp.on('error', function(error) {
+                    dp.on('error', function() {
                         clearTimeout(loadTimeout);
                         playerContainer.classList.remove('loading');
-                        
-                        // 显示错误信息
-                        dp.notice('播放失败: ' + (error.message || '未知错误'), 5000);
-                        
-                        // 恢复UI状态
-                        const playIcon = document.querySelector('.dplayer-play-icon');
-                        if (playIcon) playIcon.style.display = 'block';
-                        
-                        // 记录错误
-                        console.error('DPlayer播放错误:', error);
                     });
                     
                     // 开始播放
