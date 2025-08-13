@@ -1072,7 +1072,7 @@
         
         // 应用核心逻辑
         function initApp() {
-           
+            // 更完整的视频数据（民谣主题）
             const videoData = {
                      bgyh: [ // 逼哥夜話 -> bgyh
                 { 
@@ -1345,13 +1345,13 @@
                         url: "https://2014.1701701.xyz/video/roadmap.js", 
                         thumb: "https://v.1701701.xyz/img/bg.jpg"
                     },
-                     { 
+                    { 
                         id: 403, 
                         title: "2015 看见", 
                         url: "https://2015.1701701.xyz/video/roadmap.js", 
                         thumb: "https://v.1701701.xyz/img/bg.jpg"
                     },
-                     { 
+                    { 
                         id: 404, 
                         title: "2019  洗心革面", 
                         url: "https://2019.1701701.xyz/video/roadmap.js", 
@@ -1557,29 +1557,14 @@
                         video: {
                             url: url,
                             pic: thumb,
-                            // 明确指定伪装成.js的M3U8文件为hls类型
-                            type: url.endsWith('.m3u8') || url.includes('roadmap.js') ? 'hls' : 'auto'
+                            type: (url.endsWith('.m3u8') || url.endsWith('.js')) ? 'hls' : 'auto'
                         },
                         
                         // 添加HLS配置优化
                         hls: {
                             liveSyncDurationCount: 3,
                             maxMaxBufferLength: 30,
-                            enableWorker: !/iPad|iPhone|iPod/.test(navigator.userAgent), // iOS禁用Worker
-                            // 强制将伪装文件识别为HLS流
-                            xhrSetup: function(xhr, url) {
-                                if (url.includes('roadmap.js')) {
-                                    xhr.setRequestHeader('Content-Type', 'application/vnd.apple.mpegurl');
-                                }
-                                // iOS专用配置
-                                if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
-                                    xhr.setRequestHeader('Accept', 'application/vnd.apple.mpegurl');
-                                }
-                            },
-                            // iOS专用参数
-                            fragLoadingTimeOut: 10000,
-                            fragLoadingMaxRetry: 3,
-                            startLevel: -1
+                            enableWorker: true
                         },
                         autoHide: true, // 默认自动隐藏控制栏
                         hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
@@ -1685,16 +1670,9 @@
 
             // 检测设备兼容性
             function detectCompatibility() {
-                // 检测iOS Safari
-                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                // 仅在确实需要时显示提示
                 const video = document.createElement('video');
-                
-                // iOS专用提示
-                if (isIOS) {
-                    showCompatibilityAlert('iOS设备请确保使用Safari最新版，如遇播放问题请尝试全屏播放');
-                }
-                // 其他设备兼容性检测
-                else if (!video.canPlayType('application/vnd.apple.mpegurl') && 
+                if (!video.canPlayType('application/vnd.apple.mpegurl') && 
                     !Hls.isSupported()) {
                     showCompatibilityAlert('您的设备可能需要JavaScript兼容模式播放视频');
                 }
