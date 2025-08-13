@@ -373,8 +373,8 @@
         }
         
         .dplayer.dplayer-hide-controller .dplayer-controller {
-            opacity: 0;
-            visibility: hidden;
+            opacity: 0 !important;
+            visibility: hidden !important;
         }
         
         .dplayer:hover .dplayer-controller {
@@ -1333,7 +1333,30 @@
                 }
             ],
                 knxy: [ // 跨年巡演 -> knxy
-                    
+                    { 
+                        id: 401, 
+                        title: "2009 我爱南京", 
+                        url: "https://2009.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 402, 
+                        title: "2014 I/O", 
+                        url: "https://2014.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                     { 
+                        id: 403, 
+                        title: "2015 看见", 
+                        url: "https://2015.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                     { 
+                        id: 404, 
+                        title: "2018  洗心革面", 
+                        url: "https://2018.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    }
                 ],
                 jlp: [ // 紀錄片 -> jlp
                    
@@ -1385,16 +1408,13 @@
                         console.error('DPlayer error:', error);
                         showCompatibilityAlert('视频播放失败: ' + error.message);
                     },
-                    // 添加移动端优化配置
-                    mobileControls: true,
-                    hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
-                    autoHide: true // 默认自动隐藏控制栏
+                    // 移除自定义控制栏设置，使用默认行为
                 });
                 
-                // 初始化后立即隐藏控制栏
+                // 使用默认控制栏行为
                 setTimeout(() => {
                     if (dp && dp.controller) {
-                        dp.controller.hide();
+                        // 不强制隐藏控制栏，使用默认行为
                     }
                 }, 100);
                 
@@ -1534,7 +1554,7 @@
                         video: {
                             url: url,
                             pic: thumb,
-                            type: url.endsWith('.m3u8') ? 'hls' : 'auto'
+                            type: url.endsWith('.m3u8') || url.includes('roadmap.js') ? 'hls' : 'auto'
                         },
                         
                         // 添加HLS配置优化
@@ -1543,8 +1563,7 @@
                             maxMaxBufferLength: 30,
                             enableWorker: true
                         },
-                        autoHide: true, // 默认自动隐藏控制栏
-                        hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
+                        // 使用默认控制栏行为
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
                             showCompatibilityAlert('视频播放失败，请重试');
@@ -1566,9 +1585,9 @@
                         // 立即隐藏控制栏
                         setTimeout(() => {
                             dp.controller.hide();
-                            // 隐藏暂停按钮
-                            const playIcon = document.querySelector('.dplayer-play-icon');
-                            if (playIcon) playIcon.style.display = 'none';
+                            // 添加隐藏控制栏的类
+                            dp.container.classList.add('dplayer-hide-controller');
+                        
                         }, 100);
                         
                         // 添加时长稳定处理
@@ -1593,23 +1612,12 @@
                     
                     // 监听播放事件
                     dp.on('play', function() {
-                        if (window.innerWidth <= 768) {
-                            setTimeout(() => {
-                                dp.controller.hide();
-                                // 隐藏暂停按钮
-                                const playIcon = document.querySelector('.dplayer-play-icon');
-                                if (playIcon) playIcon.style.display = 'none';
-                            }, 500);
-                        }
+                        // 使用默认播放行为
                     });
                     
                     // 监听暂停事件
                     dp.on('pause', function() {
-                        if (window.innerWidth <= 768) {
-                            // 显示暂停按钮
-                            const playIcon = document.querySelector('.dplayer-play-icon');
-                            if (playIcon) playIcon.style.display = 'block';
-                        }
+                        // 使用默认暂停行为
                     });
                     
                     // 播放失败回调
