@@ -1550,6 +1550,10 @@
                         dp = null;
                     }
                     
+                    // 检测是否为 iOS 设备
+                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    
                     // 创建新播放器实例
                     dp = new DPlayer({
                         container: document.getElementById('dplayer-container'),
@@ -1564,13 +1568,19 @@
                         hls: {
                             liveSyncDurationCount: 3,
                             maxMaxBufferLength: 30,
-                            enableWorker: true
+                            enableWorker: !isIOS, // iOS 禁用 Worker 以避免兼容性问题
+                            pLoader: isIOS ? undefined : undefined, // iOS 使用默认加载器
                         },
                         autoHide: true, // 默认自动隐藏控制栏
                         hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
-                            showCompatibilityAlert('视频播放失败，请重试');
+                            // 针对 iOS 的特定错误提示
+                            if (isIOS && error.message.includes('HLS')) {
+                                showCompatibilityAlert('iOS 浏览器兼容性问题，请尝试使用夸克或 QQ 浏览器');
+                            } else {
+                                showCompatibilityAlert('视频播放失败，请重试');
+                            }
                             clearTimeout(loadTimeout);
                             playerContainer.classList.remove('loading');
                         }
