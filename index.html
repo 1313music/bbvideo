@@ -382,6 +382,11 @@
             visibility: visible;
         }
         
+        /* 隐藏DPlayer右键菜单 */
+        .dplayer .dplayer-menu {
+            display: none !important;
+        }
+        
         /* 分类导航优化 */
         .categories-container {
             position: relative;
@@ -1538,9 +1543,7 @@
                 const playerContainer = document.querySelector('.player-section');
                 playerContainer.classList.add('loading');
                 
-                // 隐藏暂停按钮
-                const playIcon = document.querySelector('.dplayer-play-icon');
-                if (playIcon) playIcon.style.display = 'none';
+                
                 
                 // 设置超时处理
                 const loadTimeout = setTimeout(() => {
@@ -1707,9 +1710,7 @@
                         // 立即隐藏控制栏
                         setTimeout(() => {
                             dp.controller.hide();
-                            // 隐藏暂停按钮
-                            const playIcon = document.querySelector('.dplayer-play-icon');
-                            if (playIcon) playIcon.style.display = 'none';
+                           
                             
                             // 检测是否为iOS设备
                             const isIOSCanPlay = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
@@ -1743,28 +1744,7 @@
                         }
                     });
                     
-                    // 监听播放事件
-                    dp.on('play', function() {
-                        if (window.innerWidth <= 768) {
-                            setTimeout(() => {
-                                dp.controller.hide();
-                                // 隐藏暂停按钮
-                                const playIcon = document.querySelector('.dplayer-play-icon');
-                                if (playIcon) playIcon.style.display = 'none';
-                            }, 500);
-                        }
-                    });
-                    
-                    // 移除这里的代码，统一在setupMobileControlsAutoHide函数中处理
-                    
-                    // 监听暂停事件
-                    dp.on('pause', function() {
-                        if (window.innerWidth <= 768) {
-                            // 显示暂停按钮
-                            const playIcon = document.querySelector('.dplayer-play-icon');
-                            if (playIcon) playIcon.style.display = 'block';
-                        }
-                    });
+                 
                     
                     // 播放失败回调
                     dp.on('error', function() {
