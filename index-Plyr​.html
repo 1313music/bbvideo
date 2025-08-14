@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>民谣俱乐部 | 音乐视频平台</title>
+    
+    <!-- 资源预加载 -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Plyr播放器样式 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.css" />
+    
+    <!-- Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0f1117;
+            --bg-card: rgba(25, 28, 36, 0.95);
+            --bg-hover: rgba(45, 50, 65, 0.85);
+            --primary: #d4af37;
+            --primary-dark: #b08d26;
+            --accent: #ffd700;
+            --text-primary: #f0f0f8;
+            --text-secondary: #a0a8c0;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --transition: all 0.3s ease;
+            --shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --glass: rgba(255, 255, 255, 0.05);
+            --glow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f1117 0%, #1a1d28 100%);
+            color: var(--text-primary);
+            font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            min-height: 100vh;
+            padding: 20px 15px;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -2;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+            transition: transform 0.5s ease;
+        }
+        
+        .logo:hover i {
+            transform: rotate(15deg);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+            position: relative;
+        }
+        
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-link i {
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-md);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-link:hover::before {
+            opacity: 0.15;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transform: translateX(-50%);
+            transition: width 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 80%;
+            box-shadow: 0 0 10px var(--primary);
+        }
+        
+        .nav-link.active {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        .nav-link.active::after {
+            width: 100%;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 17, 23, 0.95);
+            z-index: 1000;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            transform: translateX(100%);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+        
+        .mobile-menu-center-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: var(--primary);
+        }
+        
+        .mobile-menu-logo {
+            font-size: 20px;
+            color: var(--primary);
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mobile-menu-logo i {
+            font-size: 20px;
+            color: var(--primary);
+        }
+        
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 32px;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 10px;
+            margin-right: 0;
+            transform-origin: center center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+        }
+        
+        .mobile-menu-close:hover {
+            color: var(--primary);
+            transform: rotate(90deg) translateY(0);
+            transform-origin: center center;
+        }
+        
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        
+        .mobile-menu .nav-link {
+            padding: 15px 15px;
+            font-size: 16px;
+            width: 100%;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        
+        .mobile-menu.active .nav-link {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: calc(0.05s * var(--index, 0));
+        }
+        
+        .mobile-menu .nav-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateX(15px);
+            color: var(--primary);
+            border-radius: var(--radius-md);
+        }
+        
+        .mobile-menu .nav-link.active {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            border-radius: var(--radius-md);
+        }
+        
+        .mobile-menu .nav-link:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-menu-footer {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .player-section {
+            border-radius: var(--radius-md);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: #000;
+        }
+        
+        .player-section.loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" stroke="%23d4af37" stroke-width="8" fill="none" stroke-dasharray="60 200" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 极 50 50"/></circle></svg>') center center no-repeat;
+            background-size: 50px;
+            border-radius: var(--radius-md);
+            z-index: 10;
+        }
+        
+        #player {
+            width: 100%;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            transform: translateZ(0);
+            aspect-ratio: 16/9;
+        }
+        
+        .plyr__control--overlaid {
+            background: rgba(212, 175, 55, 0.8);
+            color: #0f1117;
+        }
+        
+        .plyr--video .plyr__controls {
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 10px;
+        }
+        
+        .plyr__control:hover, 
+        .plyr__control[aria-expanded="true"] {
+            background: var(--primary);
+            color: #0f1117;
+        }
+        
+        .plyr--full-ui input[type="range"] {
+            color: var(--primary);
+        }
+        
+        .plyr__menu__container .plyr__control[role="menuitemradio"][aria-checked="true"]::before {
+            background: var(--primary);
+        }
+        
+        .categories-container {
+            position: relative;
+            padding: 0;
+        }
+        
+        .categories-scroll {
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            gap: 10px;
+            padding: 10px 5px;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scroll-padding: 10px;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .categories-scroll {
+                justify-content: flex-start;
+            }
+        }
+        
+        .categories极 -scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .category-btn {
+            flex: 0 0 auto;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            contain: layout paint style;
+        }
+        
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .category-btn:hover {
+            transform: translateY(-3px);
+            color: var(--text-primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            background: var(--bg-hover);
+            border-color: var(--primary);
+        }
+        
+        .category-btn:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .category-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: var(--glow);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+        }
+        
+        .videos-section {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .videos-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 2px;
+            max-width: 1200px;
+            width: 100%;
+            contain: layout paint;
+        }
+        
+        .video-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: var(--shadow);
+            contain: layout paint style;
+            will-change: transform, box-shadow;
+        }
+        
+        .video-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.8s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            z-index: 2;
+            border-color: var(--primary);
+        }
+        
+        .video-item:hover::before {
+            transform: translateX(100%);
+            transition-duration: 1s;
+        }
+        
+        .thumbnail {
+            position: relative;
+            padding-top: 56.25%;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+            transform-origin: center;
+            z-index: 2;
+        }
+        
+        .thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            will-change: transform;
+        }
+        
+        .video-item:hover .thumbnail img {
+            transform: scale(1.05);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 15px;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition);
+        }
+        
+        .video-item:hover .video-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .video-title {
+            padding: 12px 5px;
+            font-size: 15px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            height: 55px;
+            line-height: 1.4;
+            transition: var(--transition);
+            background: rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .video-item:hover .video-title {
+            color: var(--primary);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .video-info {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+        }
+        
+        .video-item:hover .play-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .play-icon i {
+            font-size: 20px;
+            margin-left: 5px;
+            color: white;
+        }
+        
+        .progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.15);
+            width: 100%;
+        }
+        
+        .progress {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        
+        .no-videos {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-secondary);
+            font-size: 18px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .no-videos i {
+            font-size: 40px;
+            color: var(--primary);
+        }
+        
+        .placeholder-content {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            margin-top: 20px;
+        }
+        
+        .placeholder-content.active {
+            display: block;
+        }
+        
+        .placeholder-icon {
+            font-size: 60px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .placeholder-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-sm);
+            margin: 20px auto;
+            max-height: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .placeholder-title {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .placeholder-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0 15px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .compatibility-alert {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(212, 175, 55, 0.9);
+            color: #000;
+            padding: 12px 25px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            z-index: 10000;
+            font-weight: 500;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            animation: slideUp 0.5s ease-out;
+            display: none;
+            white-space: nowrap;
+            max-width: 90%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @keyframes slideUp {
+            from { bottom: -50px; opacity: 0; }
+            to { bottom: 20px; opacity: 1; }
+        }
+        
+        .compatibility-alert i {
+            font-size: 22px;
+        }
+        
+        .compatibility-alert .close {
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            position: relative;
+            width: 40px;
+            height: 40px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary);
+        }
+        
+        .mobile-menu-btn span {
+            position: absolute;
+            height: 3px;
+            width: 24px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn span:nth-child(1) {
+            top: 12px;
+        }
+        
+        .mobile-menu-btn span:nth-child(2) {
+            top: 18px;
+        }
+        
+        .mobile-menu-btn span:nth-child(3) {
+            top: 24px;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 18px;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 18px;
+        }
+        
+        @media (max-width: 1200px) {
+            .videos-list {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .logo {
+                font-size: 20px;
+            }
+            
+            .nav-menu {
+                gap: 12px;
+            }
+            
+            .nav-link {
+                font-size: 13px;
+                padding: 5px 10px;
+            }
+        }
+        
+        @media (max-width: 788px) {
+            body {
+                padding: 15px 10px;
+            }
+            
+            .videos-section {
+                display: block;
+            }
+            
+            .videos-list {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+                max-width: 100%;
+            }
+            
+            .category-btn {
+                padding: 8px 15px;
+                font-size: 15px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .player-section {
+                padding: 0;
+                border-radius: var(--radius-sm);
+            }
+            
+            #player {
+                border-radius: var(--radius-sm);
+            }
+            
+            .video-title {
+                font-size: 13px;
+                height: 38px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .videos-list {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            
+            .category-btn {
+                padding: 7px 12px;
+                font-size: 15px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .video-title {
+                font-size: 12px;
+                height: 36px;
+            }
+            
+            .no-videos {
+                font-size: 16px;
+                padding: 30px 0;
+            }
+            
+            .no-videos i {
+                font-size: 35px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .videos-list {
+                gap: 10px;
+            }
+            
+            .category-btn {
+                padding: 6px 10px;
+                font-size: 15px;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .video-title {
+                font-size: 13px;
+                height: 44px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .videos-list {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .category-btn {
+                padding: 5px 8px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="compatibility-alert" id="compatibility-alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span id="compatibility-message">正在检测您的设备兼容性...</span>
+        <button class="close" id="close-alert">&times;</button>
+    </div>
+    
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo">
+                <i class="fas fa-guitar"></i>
+                民谣俱乐部
+            </div>
+            <div class="mobile-menu-center-logo">
+                <i class="fa-solid fa-champagne-glasses"></i>
+            </div>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
+            <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>   
+            <a href="#" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
+            <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
+            <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
+            <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
+            <a href="#" class="nav-link" data-menu="about"><i class="fas fa-info-circle"></i> 关于</a>
+        </div>
+        <div class="mobile-menu-footer">
+            © 2025 民谣俱乐部
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-guitar"></i>
+                <span>民谣俱乐部</span>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
+                <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>
+                <a href="#" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
+                <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
+                <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
+                <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
+                <a href="#" class="nav-link" data-menu="about"><i class="fas fa-info-circle"></i> 关于</a>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+        
+        <section class="player-section">
+            <video id="player" playsinline controls></video>
+        </section>
+        
+        <section class="categories-container">
+            <div class="categories-scroll" id="categories-container">
+                <!-- 分类会通过JS动态添加 -->
+            </div>
+        </section>
+        
+        <section class="videos-section">
+            <div class="videos-list" id="videos-list">
+                <div class="no-videos">
+                    <i class="fas fa-film"></i>
+                    <div>请选择分类浏览视频内容</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="placeholder-content" id="placeholder-content">
+            <div class="placeholder-icon" id="placeholder-icon">
+                <i class="fas fa-guitar"></i>
+            </div>
+            <h2 class="placeholder-title" id="placeholder-title">吉他谱</h2>
+            <p class="placeholder-text" id="placeholder-text">吉他谱内容即将上线，敬请期待！</p>
+        </section>
+        
+        <footer>
+            © 2025 民谣俱乐部 - 音乐与故事的空间
+        </footer>
+    </div>
+
+    <script>
+        // 关键功能初始化
+        window.addEventListener('DOMContentLoaded', function() {
+            // 创建脚本加载函数
+            function loadScript(src, callback) {
+                const script = document.createElement('script');
+                script.src = src;
+                script.defer = true;
+                script.onload = callback;
+                script.onerror = function() {
+                    console.error('脚本加载失败: ' + src);
+                    showCompatibilityAlert('脚本加载失败，请刷新页面重试');
+                };
+                document.body.appendChild(script);
+            }
+            
+            // 显示兼容性提示
+            function showCompatibilityAlert(message) {
+                const alert = document.getElementById('compatibility-alert');
+                const messageSpan = document.getElementById('compatibility-message');
+                if (alert && messageSpan) {
+                    messageSpan.textContent = message;
+                    alert.style.display = 'flex';
+                }
+            }
+            
+            // 关闭提示按钮
+            const closeAlertBtn = document.getElementById('close-alert');
+            if (closeAlertBtn) {
+                closeAlertBtn.addEventListener('click', function() {
+                    const alert = document.getElementById('compatibility-alert');
+                    if (alert) {
+                        alert.style.display = 'none';
+                    }
+                });
+            }
+            
+            // 加载Plyr播放器
+            loadScript('https://cdn.jsdelivr.net/npm/plyr@3.7.8/dist/plyr.min.js', function() {
+                loadScript('https://cdn.jsdelivr.net/npm/hls.js@latest', initApp);
+            });
+            
+            // 注册Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                            console.log('ServiceWorker 注册成功: ', registration.scope);
+                        })
+                        .catch(function(err) {
+                            console.log('ServiceWorker 注册失败: ', err);
+                        });
+                });
+            }
+        });
+        
+        // 应用核心逻辑
+        function initApp() {
+            try {
+                // 更完整的视频数据（民谣主题）
+                const videoData = {
+                    bgyh: [
+                        { 
+                            id: 1, 
+                            title: "逼哥夜話 - 上海", 
+                            url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E4%B8%8A%E6%B5%B7/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E4%B8%8A%E6%B5%B7%E3%80%8B.m3u8", 
+                            thumb: "https://v.1701701.xyz/img/bgyhfm.png"
+                        },
+                        { 
+                            id: 2, 
+                            title: "逼哥夜話 - 寧波 上", 
+                            url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E5%AF%A7%E6%B3%A2%E4%B8%8A/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E5%AF%A7%E6%B3%A2%E3%80%8B%E4%B8%8A.m3u8", 
+                            thumb: "https://v.1701701.xyz/img/bgyhfm.png"
+                        },
+                        { 
+                            id: 3, 
+                            title: "逼哥夜話 - 寧波 下", 
+                            url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E5%AF%A7%E6%B3%A2%E4%B8%8B/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E5%AF%A7%E6%B3%A2%E3%80%8B%E4%B8%8B.m3u8", 
+                            thumb: "https://v.1701701.xyz/img/bgyhfm.png"
+                        }
+                    ],
+                    bgyh2: [
+                        { 
+                            id: 201, 
+                            title: "逼哥夜話 第二季 01 - 深圳", 
+                            url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8901%20-%20%E6%B7%B1%E5%9C%B3/playlist.m3u8", 
+                            thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
+                        },
+                        { 
+                            id: 202, 
+                            title: "逼哥夜話 第二季 02 - 西安", 
+                            url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8902%20-%20%E8%A5%BF%E5%AE%89/playlist.m3u8", 
+                            thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
+                        }
+                    ],
+                    wmsss: [
+                        { 
+                            id: 301, 
+                            title: "安徽篇 - 预告", 
+                            url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%87%20-%20%E9%A2%84%E5%91%8A/playlist.m3u8", 
+                            thumb: "https://v.1701701.xyz/img/334.jpg"
+                        },
+                        { 
+                            id: 302, 
+                            title: "安徽篇01 - 出發吧！還剩333", 
+                            url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8701%20-%20%E5%87%BA%E7%99%BC%E5%90%A7%EF%BC%81%E9%82%84%E5%89%A9333/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8极 F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8701%20-%20%E5%87%BA%E7%99%BC%E5%90%A7%EF%BC%81%E9%82%84%E5%89%A9333.m3u8", 
+                            thumb: "https://v.1701701.xyz/img/334.jpg"
+                        }
+                    ],
+                    knxy: [ // 跨年巡演 -> knxy
+                    { 
+                        id: 401, 
+                        title: "2009 我爱南京", 
+                        url: "https://2009.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/bg.jpg",
+                        
+                    },
+                    { 
+                        id: 402, 
+                        title: "2014 I/O", 
+                        url: "https://2014.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
+                    },
+                    { 
+                        id: 403, 
+                        title: "2015 看见", 
+                        url: "https://2015.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
+                    },
+                    { 
+                        id: 404, 
+                        title: "2019  洗心革面", 
+                        url: "https://2019.1701701.xyz/video/roadmap.js", 
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
+                    }
+                ],
+                jlp: [ // 紀錄片 -> jlp
+                   
+                ],
+                qt: [ // 其他 -> qt
+                   { 
+                        id: 601, 
+                        title: "回答", 
+                        url: "https://r2.1701701.xyz/%E5%9B%9E%E7%AD%94.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    }
+                ]
+                    
+                };
+                
+                // 初始化播放器 - 修复按钮显示问题
+                const player = new Plyr('#player', {
+                    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'fullscreen'],
+                    settings: ['captions', 'quality', 'speed'],
+                    captions: { active: true, language: 'auto', update: true },
+                    // 修复图标加载问题
+                    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+                    iconPrefix: 'fas',
+                    // 确保图标正确加载
+                    loadSprite: true
+                });
+                
+                // 渲染分类导航
+                function renderCategories() {
+                    const container = document.getElementById('categories-container');
+                    if (!container) return;
+                    
+                    const fragment = document.createDocumentFragment();
+                    
+                    Object.keys(videoData).forEach(category => {
+                        const btn = document.createElement('button');
+                        btn.className = 'category-btn';
+                        btn.textContent = getCategoryName(category);
+                        btn.dataset.category = category;
+                        fragment.appendChild(btn);
+                    });
+                    
+                    container.innerHTML = '';
+                    container.appendChild(fragment);
+                    
+                    // 使用事件委托处理分类点击
+                    container.addEventListener('click', function(e) {
+                        if (e.target.classList.contains('category-btn')) {
+                            // 移除所有按钮的active类
+                            document.querySelectorAll('.category-btn').forEach(b => 
+                                b.classList.remove('active'));
+                            // 添加当前按钮的active类
+                            e.target.classList.add('active');
+                            // 渲染该分类的视频
+                            renderVideos(e.target.dataset.category);
+                        }
+                    });
+                    
+                    // 默认激活第一个分类
+                    if (Object.keys(videoData).length > 0) {
+                        const firstBtn = container.querySelector('.category-btn');
+                        if (firstBtn) {
+                            firstBtn.classList.add('active');
+                            renderVideos(Object.keys(videoData)[0]);
+                        }
+                    }
+                }
+                
+                // 获取分类名称
+                function getCategoryName(key) {
+                    const names = {
+                        bgyh: "逼哥夜话",
+                        bgyh2: "逼哥夜话第二季",
+                        wmsss: "我们的叁叁肆",
+                        knxy: "跨年巡演",
+                        jlp: "纪录片",
+                        qt: "其他"
+                    };
+                    return names[key] || key;
+                }
+                
+                // 渲染视频列表
+                function renderVideos(category) {
+                    const videos = videoData[category];
+                    const container = document.getElementById('videos-list');
+                    if (!container) return;
+                    
+                    if (!videos || videos.length === 0) {
+                        container.innerHTML = `
+                            <div class="no-videos">
+                                <i class="fas fa-film"></i>
+                                <div>该分类下暂无视频内容</div>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    const fragment = document.createDocumentFragment();
+                    
+                    videos.forEach(video => {
+                        const item = document.createElement('div');
+                        item.className = 'video-item';
+                        item.dataset.id = video.id;
+                        item.dataset.url = video.url;
+                        
+                        item.innerHTML = `
+                            <div class="thumbnail">
+                                <img src="${video.thumb}" 
+                                     alt="${video.title}"
+                                     loading="lazy"
+                                     width="220" 
+                                     height="124">
+                                <div class="play-icon">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress"></div>
+                                </div>
+                            </div>
+                            <h3 class="video-title">${video.title}</h3>
+                        `;
+                        fragment.appendChild(item);
+                    });
+                    
+                    container.innerHTML = '';
+                    container.appendChild(fragment);
+                }
+                
+                // 播放视频
+                function playVideo(url) {
+                    if (!player) return;
+                    
+                    try {
+                        if (Hls.isSupported()) {
+                            const hls = new Hls();
+                            hls.loadSource(url);
+                            hls.attachMedia(player.media);
+                            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                                player.play();
+                            });
+                        } else if (player.media.canPlayType('application/vnd.apple.mpegurl')) {
+                            player.source = {
+                                type: 'video',
+                                sources: [{
+                                    src: url,
+                                    type: 'application/x-mpegURL'
+                                }]
+                            };
+                            player.play();
+                        } else {
+                            console.error('HLS not supported');
+                            showCompatibilityAlert('您的浏览器不支持HLS视频播放');
+                        }
+                    } catch (error) {
+                        console.error('播放视频出错:', error);
+                        showCompatibilityAlert('播放视频出错: ' + error.message);
+                    }
+                }
+                
+                // 使用事件委托处理视频点击
+                document.getElementById('videos-list').addEventListener('click', function(e) {
+                    const videoItem = e.target.closest('.video-item');
+                    if (videoItem) {
+                        playVideo(videoItem.dataset.url);
+                    }
+                });
+                
+                // 移动端菜单功能
+                const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+                const mobileMenu = document.getElementById('mobile-menu');
+                const mobileMenuClose = document.getElementById('mobile-menu-close');
+                
+                if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
+                    mobileMenuBtn.addEventListener('click', () => {
+                        mobileMenu.classList.add('active');
+                    });
+                    
+                    mobileMenuClose.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                    });
+                }
+                
+                // 初始化分类和视频
+                renderCategories();
+                
+                // 隐藏兼容性提示
+                const alert = document.getElementById('compatibility-alert');
+                if (alert) {
+                    alert.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('初始化应用出错:', error);
+                showCompatibilityAlert('初始化应用出错: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
