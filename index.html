@@ -1074,7 +1074,7 @@
                     Hls.DefaultConfig.maxMaxBufferLength = 60;
                     Hls.DefaultConfig.liveSyncDurationCount = 3;
                 }
-                loadScript('https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js', initApp);
+                loadScript('https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js', initializeApp);
             });
         });
         
@@ -1843,7 +1843,7 @@
             }
 
             // 应用初始化
-            function initApp() {
+            function initAppUI() {
                 // 初始化播放器
                 initDPlayer();
                 initCategories();
@@ -1938,7 +1938,7 @@
             }
 
             // 执行初始化
-            initApp();
+            initAppUI();
         }
     </script>
 </body>
