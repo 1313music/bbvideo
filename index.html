@@ -1594,7 +1594,9 @@
                                             }
                                         }
                                     },
-                                    autoplay: true
+                                    autoplay: true,
+                                    autoHide: true,
+                                    hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
                                 });
                                 dp.on('play', function(){
                                     setTimeout(function(){
@@ -1622,7 +1624,9 @@
                                     pic: thumb,
                                     type: 'auto'
                                 },
-                                autoplay: true
+                                autoplay: true,
+                                autoHide: true,
+                                hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
                             });
                             dp.on('play', function(){
                                 setTimeout(function(){
@@ -1650,7 +1654,7 @@
                             enableWorker: true
                         },
                         autoHide: true, // 默认自动隐藏控制栏
-                        hideControlsAfter: 1000, // 1秒后自动隐藏控制按钮
+                        hideControlsAfter: 3000, // 3秒后自动隐藏控制按钮
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
                             showCompatibilityAlert('视频播放失败，请重试');
@@ -1709,6 +1713,23 @@
                         }
                     });
                     
+                    // 添加自动隐藏控制器的功能
+                    let controlsHideTimer;
+                    const dplayerContainer = document.getElementById('dplayer-container');
+                    
+                    // 监听触摸事件，在移动端上显示控制器后启动自动隐藏定时器
+                    if (window.innerWidth <= 768) {
+                        dplayerContainer.addEventListener('touchstart', function() {
+                            // 清除之前的定时器
+                            clearTimeout(controlsHideTimer);
+                            
+                            // 设置新的定时器，3秒后自动隐藏控制器
+                            controlsHideTimer = setTimeout(() => {
+                                dp.controller.hide();
+                            }, 3000);
+                        });
+                    }
+                    
                     // 监听暂停事件
                     dp.on('pause', function() {
                         if (window.innerWidth <= 768) {
@@ -1727,6 +1748,9 @@
                     // 开始播放
                     dp.play();
                     
+                    // 设置移动端控制器自动隐藏
+                    setupMobileControlsAutoHide();
+                    
                 } catch (error) {
                     console.error('播放错误:', error);
                     showCompatibilityAlert('视频播放失败: ' + error.message);
@@ -1737,6 +1761,27 @@
 
           
 
+            // 设置移动端控制器自动隐藏
+            function setupMobileControlsAutoHide() {
+                if (!dp || window.innerWidth > 768) return;
+                
+                const dplayerContainer = document.getElementById('dplayer-container');
+                let controlsHideTimer;
+                
+                // 监听触摸事件
+                dplayerContainer.addEventListener('touchstart', function() {
+                    // 清除之前的定时器
+                    clearTimeout(controlsHideTimer);
+                    
+                    // 设置新的定时器，3秒后自动隐藏控制器
+                    controlsHideTimer = setTimeout(() => {
+                        if (dp && !dp.video.paused) {
+                            dp.controller.hide();
+                        }
+                    }, 3000);
+                });
+            }
+            
             // 显示兼容性提示
             function showCompatibilityAlert(message) {
                 const alert = document.getElementById('compatibility-alert');
