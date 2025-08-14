@@ -1559,14 +1559,14 @@
                     }
                     
                     // 检测是否为 iOS 设备
-                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                    const isIOSMain = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
                     
                     // 检查是否为MP4文件
                     const isMP4 = url.toLowerCase().endsWith('.mp4');
                     
                     // 对于iOS设备的处理
-                    if (isIOS) {
+                    if (isIOSMain) {
                         if (!isMP4 && Hls.isSupported()) {
                             // 对于HLS流使用hls.js
                             const hls = new Hls({
@@ -1581,6 +1581,9 @@
                             hls.on(Hls.Events.MANIFEST_PARSED, () => {
                                 clearTimeout(loadTimeout);
                                 playerContainer.classList.remove('loading');
+                                
+                                // 检测是否为iOS设备
+                                const isIOSPlayer = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
                                 
                                 dp = new DPlayer({
                                     container: document.getElementById('dplayer-container'),
@@ -1600,7 +1603,18 @@
                                 });
                                 dp.on('play', function(){
                                     setTimeout(function(){
-                                        document.getElementById('dplayer-container').classList.add('dplayer-hide-controller')
+                                        document.getElementById('dplayer-container').classList.add('dplayer-hide-controller');
+                                        
+                                        // 检测是否为iOS设备
+                                        const isIOSPlayback = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                                        if (isIOSPlayback) {
+                                            // 为iOS设备添加额外的控制器自动隐藏功能
+                                            const dplayerVideo = document.querySelector('.dplayer-video-current');
+                                            if (dplayerVideo) {
+                                                // 确保视频元素已加载
+                                                setupIOSAutoHide(dplayerVideo);
+                                            }
+                                        }
                                     }, 1000)
                                 });
                             });
@@ -1617,6 +1631,9 @@
                             clearTimeout(loadTimeout);
                             playerContainer.classList.remove('loading');
                             
+                            // 检测是否为iOS设备
+                            const isIOSNative = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                            
                             dp = new DPlayer({
                                 container: document.getElementById('dplayer-container'),
                                 video: {
@@ -1630,7 +1647,18 @@
                             });
                             dp.on('play', function(){
                                 setTimeout(function(){
-                                    document.getElementById('dplayer-container').classList.add('dplayer-hide-controller')
+                                    document.getElementById('dplayer-container').classList.add('dplayer-hide-controller');
+                                    
+                                    // 检测是否为iOS设备
+                                    const isIOSControl = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                                    if (isIOSControl) {
+                                        // 为iOS设备添加额外的控制器自动隐藏功能
+                                        const dplayerVideo = document.querySelector('.dplayer-video-current');
+                                        if (dplayerVideo) {
+                                            // 确保视频元素已加载
+                                            setupIOSAutoHide(dplayerVideo);
+                                        }
+                                    }
                                 }, 1000)
                             });
                             return;
@@ -1638,6 +1666,9 @@
                     }
                     
                     // 非 iOS 或其他情况使用默认逻辑
+                    // 检测是否为iOS设备
+                    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                    
                     dp = new DPlayer({
                         container: document.getElementById('dplayer-container'),
                         contextmenu: [], // 禁用右键菜单
@@ -1654,7 +1685,7 @@
                             enableWorker: true
                         },
                         autoHide: true, // 默认自动隐藏控制栏
-                        hideControlsAfter: 3000, // 3秒后自动隐藏控制按钮
+                        hideControlsAfter: isIOSDevice ? 3000 : 3000, // 3秒后自动隐藏控制按钮
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
                             showCompatibilityAlert('视频播放失败，请重试');
@@ -1679,6 +1710,17 @@
                             // 隐藏暂停按钮
                             const playIcon = document.querySelector('.dplayer-play-icon');
                             if (playIcon) playIcon.style.display = 'none';
+                            
+                            // 检测是否为iOS设备
+                            const isIOSCanPlay = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                            if (isIOSCanPlay) {
+                                // 为iOS设备添加额外的控制器自动隐藏功能
+                                const dplayerVideo = document.querySelector('.dplayer-video-current');
+                                if (dplayerVideo) {
+                                    // 确保视频元素已加载
+                                    setupIOSAutoHide(dplayerVideo);
+                                }
+                            }
                         }, 100);
                         
                         // 添加时长稳定处理
@@ -1713,22 +1755,7 @@
                         }
                     });
                     
-                    // 添加自动隐藏控制器的功能
-                    let controlsHideTimer;
-                    const dplayerContainer = document.getElementById('dplayer-container');
-                    
-                    // 监听触摸事件，在移动端上显示控制器后启动自动隐藏定时器
-                    if (window.innerWidth <= 768) {
-                        dplayerContainer.addEventListener('touchstart', function() {
-                            // 清除之前的定时器
-                            clearTimeout(controlsHideTimer);
-                            
-                            // 设置新的定时器，3秒后自动隐藏控制器
-                            controlsHideTimer = setTimeout(() => {
-                                dp.controller.hide();
-                            }, 3000);
-                        });
-                    }
+                    // 移除这里的代码，统一在setupMobileControlsAutoHide函数中处理
                     
                     // 监听暂停事件
                     dp.on('pause', function() {
@@ -1768,6 +1795,9 @@
                 const dplayerContainer = document.getElementById('dplayer-container');
                 let controlsHideTimer;
                 
+                // 检测是否为iOS设备
+                const isIOSMobile = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+                
                 // 监听触摸事件
                 dplayerContainer.addEventListener('touchstart', function() {
                     // 清除之前的定时器
@@ -1780,6 +1810,35 @@
                         }
                     }, 3000);
                 });
+                
+                // 针对iOS设备的特殊处理
+                if (isIOSMobile) {
+                    // 监听视频播放器的点击事件
+                    const dplayerVideo = document.querySelector('.dplayer-video-current');
+                    if (dplayerVideo) {
+                        dplayerVideo.addEventListener('click', function() {
+                            // 清除之前的定时器
+                            clearTimeout(controlsHideTimer);
+                            
+                            // 设置新的定时器，3秒后自动隐藏控制器
+                            controlsHideTimer = setTimeout(() => {
+                                if (dp && !dp.video.paused) {
+                                    dp.controller.hide();
+                                }
+                            }, 3000);
+                        });
+                    }
+                    
+                    // 添加额外的事件监听器，确保控制器会自动隐藏
+                    document.addEventListener('touchend', function() {
+                        if (dp && !dp.video.paused) {
+                            clearTimeout(controlsHideTimer);
+                            controlsHideTimer = setTimeout(() => {
+                                dp.controller.hide();
+                            }, 3000);
+                        }
+                    });
+                }
             }
             
             // 显示兼容性提示
@@ -1796,6 +1855,45 @@
                 }, 1000);
             }
 
+            // 为iOS设备设置自动隐藏控制器
+            function setupIOSAutoHide(videoElement) {
+                if (!dp || !videoElement) return;
+                
+                let iosControlsHideTimer;
+                
+                // 监听视频元素的点击事件
+                videoElement.addEventListener('click', function() {
+                    // 清除之前的定时器
+                    clearTimeout(iosControlsHideTimer);
+                    
+                    // 设置新的定时器，3秒后自动隐藏控制器
+                    iosControlsHideTimer = setTimeout(() => {
+                        if (dp && !dp.video.paused) {
+                            dp.controller.hide();
+                        }
+                    }, 3000);
+                });
+                
+                // 监听控制器显示事件
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.attributeName === 'class') {
+                            const controllerVisible = !document.querySelector('.dplayer').classList.contains('dplayer-hide-controller');
+                            if (controllerVisible && !dp.video.paused) {
+                                // 控制器显示时，设置定时器自动隐藏
+                                clearTimeout(iosControlsHideTimer);
+                                iosControlsHideTimer = setTimeout(() => {
+                                    dp.controller.hide();
+                                }, 3000);
+                            }
+                        }
+                    });
+                });
+                
+                // 观察播放器元素的class变化
+                observer.observe(document.querySelector('.dplayer'), { attributes: true });
+            }
+            
             // 检测设备兼容性
             function detectCompatibility() {
                 // 仅在确实需要时显示提示
