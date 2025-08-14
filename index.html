@@ -1065,7 +1065,7 @@
             }
             
             // 先加载核心功能
-            loadScript('https://cdn.jsdelivr.net/npm/hls.js@latest', function() {
+            loadScript('https://cdn.jsdelivr.net/npm/hls.js', function() {
                 // 强制使用 hls.js 在 iOS 上绕过原生 HLS 支持
                 if (Hls.isSupported()) {
                     Hls.DefaultConfig.enableWorker = true;
@@ -1361,8 +1361,8 @@
                     },
                     { 
                         id: 404, 
-                        title: "2019  洗心革面", 
-                        url: "https://2019.1701701.xyz/video/roadmap.js", 
+                        title: "2018  洗心革面", 
+                        url: "https://2018.1701701.xyz/video/roadmap.js", 
                         thumb: "https://v.1701701.xyz/img/bg.jpg"
                     }
                 ],
@@ -1558,7 +1558,51 @@
                         dp = null;
                     }
                     
-                    // 创建新播放器实例
+                    // 检测是否为 iOS 设备
+                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+                    
+                    // 强制 iOS 使用 hls.js（禁用原生 HLS）
+                    if (isIOS && Hls.isSupported()) {
+                        const hls = new Hls({
+                            enableWorker: false, // iOS 禁用 Worker
+                            maxBufferLength: 30,
+                            lowLatencyMode: false
+                        });
+                        
+                        hls.loadSource(url);
+                        hls.attachMedia(document.createElement('video'));
+                        
+                        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                            clearTimeout(loadTimeout);
+                            playerContainer.classList.remove('loading');
+                            
+                            dp = new DPlayer({
+                                container: document.getElementById('dplayer-container'),
+                                video: {
+                                    url: url,
+                                    pic: thumb,
+                                    type: 'customHls',
+                                    customType: {
+                                        'customHls': function (video, player) {
+                                            hls.attachMedia(video);
+                                        }
+                                    }
+                                },
+                                autoplay: true
+                            });
+                        });
+                        
+                        hls.on(Hls.Events.ERROR, (event, data) => {
+                            console.error('HLS 错误:', data);
+                            clearTimeout(loadTimeout);
+                            playerContainer.classList.remove('loading');
+                        });
+                        
+                        return;
+                    }
+                    
+                    // 非 iOS 或其他情况使用默认逻辑
                     dp = new DPlayer({
                         container: document.getElementById('dplayer-container'),
                         contextmenu: [], // 禁用右键菜单
