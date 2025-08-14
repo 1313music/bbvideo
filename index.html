@@ -1066,7 +1066,7 @@
             
             // 先加载核心功能
             loadScript('https://cdn.jsdelivr.net/npm/hls.js', function() {
-                // 强制使用 hls.js 在 iOS 上绕过原生 HLS 支持
+                // 配置 hls.js，但仅对HLS流使用，不影响MP4播放
                 if (Hls.isSupported()) {
                     Hls.DefaultConfig.enableWorker = true;
                     Hls.DefaultConfig.enableStreaming = true;
@@ -1079,7 +1079,7 @@
         });
         
         // 应用核心逻辑
-        function initApp() {
+        function initializeApp() {
             // 更完整的视频数据（民谣主题）
             const videoData = {
                      bgyh: [ // 逼哥夜話 -> bgyh
@@ -1427,7 +1427,7 @@
                     if (dp && dp.controller) {
                         dp.controller.hide();
                     }
-                }, 100);
+                }, 1000);
                 
                 return dp;
             }
@@ -1562,18 +1562,56 @@
                     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
                     
-                    // 强制 iOS 使用 hls.js（禁用原生 HLS）
-                    if (isIOS && Hls.isSupported()) {
-                        const hls = new Hls({
-                            enableWorker: false, // iOS 禁用 Worker
-                            maxBufferLength: 30,
-                            lowLatencyMode: false
-                        });
-                        
-                        hls.loadSource(url);
-                        hls.attachMedia(document.createElement('video'));
-                        
-                        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                    // 检查是否为MP4文件
+                    const isMP4 = url.toLowerCase().endsWith('.mp4');
+                    
+                    // 对于iOS设备的处理
+                    if (isIOS) {
+                        if (!isMP4 && Hls.isSupported()) {
+                            // 对于HLS流使用hls.js
+                            const hls = new Hls({
+                                enableWorker: false, // iOS 禁用 Worker
+                                maxBufferLength: 30,
+                                lowLatencyMode: false
+                            });
+                            
+                            hls.loadSource(url);
+                            hls.attachMedia(document.createElement('video'));
+                            
+                            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                                clearTimeout(loadTimeout);
+                                playerContainer.classList.remove('loading');
+                                
+                                dp = new DPlayer({
+                                    container: document.getElementById('dplayer-container'),
+                                    video: {
+                                        url: url,
+                                        pic: thumb,
+                                        type: 'customHls',
+                                        customType: {
+                                            'customHls': function (video, player) {
+                                                hls.attachMedia(video);
+                                            }
+                                        }
+                                    },
+                                    autoplay: true
+                                });
+                                dp.on('play', function(){
+                                    setTimeout(function(){
+                                        document.getElementById('dplayer-container').classList.add('dplayer-hide-controller')
+                                    }, 1000)
+                                });
+                            });
+                            
+                            hls.on(Hls.Events.ERROR, (event, data) => {
+                                console.error('HLS 错误:', data);
+                                clearTimeout(loadTimeout);
+                                playerContainer.classList.remove('loading');
+                            });
+                            
+                            return;
+                        } else {
+                            // 对于MP4文件使用原生播放
                             clearTimeout(loadTimeout);
                             playerContainer.classList.remove('loading');
                             
@@ -1582,30 +1620,17 @@
                                 video: {
                                     url: url,
                                     pic: thumb,
-                                    type: 'customHls',
-                                    customType: {
-                                        'customHls': function (video, player) {
-                                            hls.attachMedia(video);
-                                        }
-                                    }
+                                    type: 'auto'
                                 },
                                 autoplay: true
                             });
                             dp.on('play', function(){
-    setTimeout(function(){
-        document.getElementById('dplayer-container').classList.add('dplayer-hide-controller')
-    }, 1000)
-})
-
-                        });
-                        
-                        hls.on(Hls.Events.ERROR, (event, data) => {
-                            console.error('HLS 错误:', data);
-                            clearTimeout(loadTimeout);
-                            playerContainer.classList.remove('loading');
-                        });
-                        
-                        return;
+                                setTimeout(function(){
+                                    document.getElementById('dplayer-container').classList.add('dplayer-hide-controller')
+                                }, 1000)
+                            });
+                            return;
+                        }
                     }
                     
                     // 非 iOS 或其他情况使用默认逻辑
@@ -1615,7 +1640,7 @@
                         video: {
                             url: url,
                             pic: thumb,
-                            type: (url.endsWith('.m3u8') || url.endsWith('.js')) ? 'hls' : 'auto'
+                            type: (url.toLowerCase().endsWith('.m3u8') || url.toLowerCase().endsWith('.js')) ? 'hls' : 'auto'
                         },
                         
                         // 添加HLS配置优化
@@ -1720,10 +1745,10 @@
                 messageElement.textContent = message;
                 alert.style.display = 'flex';
                 
-                // 10秒后自动隐藏
+                // 1秒后自动隐藏
                 setTimeout(() => {
                     alert.style.display = 'none';
-                }, 10000);
+                }, 1000);
             }
 
             // 检测设备兼容性
