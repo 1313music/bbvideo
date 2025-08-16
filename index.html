@@ -596,7 +596,7 @@
             margin-top: 6px;
         }
         
-        .play-icon {
+        .play-icon, .folder-icon {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -614,15 +614,40 @@
             border: 2px solid rgba(255, 255, 255, 0.25);
         }
         
-        .video-item:hover .play-icon {
+        .video-item:hover .play-icon,
+        .video-item:hover .folder-icon {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1.1);
         }
         
-        .play-icon i {
+        .play-icon i, .folder-icon i {
             font-size: 20px;
-            margin-left: 5px;
             color: white;
+        }
+        
+        .play-icon i {
+            margin-left: 5px;
+        }
+        
+        /* 文件夹样式 */
+        .folder-item .thumbnail::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            
+            z-index: 1;
+        }
+        
+        .folder-icon {
+            z-index: 2;
+            background: rgba(212, 175, 55, 0.5);
+        }
+        
+        .back-folder .folder-icon {
+            background: rgba(212, 175, 55, 0.5);
         }
         
         .progress-bar {
@@ -1345,7 +1370,7 @@
                     thumb: "https://v.1701701.xyz/img/334.jpg"
                 }
             ],
-                knxy: [ // 跨年巡演 -> knxy
+                knxy: [ // 跨年音乐会 -> knxy
                     { 
                         id: 401, 
                         title: "2009 我爱南京", 
@@ -1369,9 +1394,41 @@
                         title: "2018  洗心革面", 
                         url: "https://2018.1701701.xyz/video/roadmap.js", 
                         thumb: "https://v.1701701.xyz/img/bg.jpg"
+                    },
+                    { 
+                        id: 405,
+                        title: "电声与管弦乐",
+                        isFolder: true,
+                        thumb: "https://v.1701701.xyz/img/bg.jpg", // 文件夹封面
+                        folderId: "dsygxl" // 文件夹ID，用于加载子文件夹内容
+                    }
+                ],
+                
+                // 添加电声与管弦乐子文件夹内容
+                dsygxl: [ // 电声与管弦乐子文件夹
+                    {
+                        id: 4051,
+                        title: "电声与管弦乐 - 序曲",
+                        url: "https://r2.1701701.xyz/dsygxl/xuqu.m3u8",
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
+                    },
+                    {
+                        id: 4052,
+                        title: "电声与管弦乐 - 第一乐章",
+                        url: "https://r2.1701701.xyz/dsygxl/dyyz.m3u8",
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
+                    },
+                    {
+                        id: 4053,
+                        title: "电声与管弦乐 - 第二乐章",
+                        url: "https://r2.1701701.xyz/dsygxl/deyz.m3u8",
+                        thumb: "https://v.1701701.xyz/img/bg.jpg"
                     }
                 ],
                 jlp: [ // 紀錄片 -> jlp
+                   
+                ],
+                yjj: [ // 音乐节 -> yjj
                    
                 ],
                 qt: [ // 其他 -> qt
@@ -1380,17 +1437,41 @@
                         title: "回答", 
                         url: "https://r2.1701701.xyz/%E5%9B%9E%E7%AD%94.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    {
+                        id: 602,
+                        title: "示例文件夹",
+                        isFolder: true,
+                        thumb: "https://v.1701701.xyz/img/folder.jpg", // 文件夹封面
+                        folderId: "qtfolder" // 文件夹ID，用于加载子文件夹内容
+                    }
+                ],
+                
+                // 添加qt分类下的示例文件夹内容
+                qtfolder: [ // qt分类下的示例文件夹
+                    {
+                        id: 6021,
+                        title: "示例视频1",
+                        url: "https://r2.1701701.xyz/qtfolder/video1.m3u8",
+                        thumb: "https://v.1701701.xyz/img/folder.jpg"
+                    },
+                    {
+                        id: 6022,
+                        title: "示例视频2",
+                        url: "https://r2.1701701.xyz/qtfolder/video2.m3u8",
+                        thumb: "https://v.1701701.xyz/img/folder.jpg"
                     }
                 ]
             };
 
             // 分类列表
             const categories = [
-                { id: 'bgyh', name: '逼哥夜話', icon: 'fas fa-microphone-alt' },
+                 { id: 'knxy', name: '跨年音乐会', icon: 'fas fa-film' },
+                 { id: 'bgyh', name: '逼哥夜話', icon: 'fas fa-microphone-alt' },
                 { id: 'bgyh2', name: '逼哥夜話第二季', icon: 'fas fa-microphone-alt' },
                 { id: 'wmsss', name: '我們的叁叁肆', icon: 'fa-solid fa-clapperboard' },
-                { id: 'knxy', name: '跨年巡演', icon: 'fas fa-film' },
                 { id: 'jlp', name: '紀錄片', icon: 'fas fa-video' },
+                { id: 'yjj', name: '音乐节', icon: 'fas fa-music' },
                 { id: 'qt', name: '其他', icon: 'fa-solid fa-file-video' }
             ];
 
@@ -1454,7 +1535,7 @@
                     const text = document.createTextNode(` ${category.name}`);
                     btn.appendChild(text);
                     
-                    if (category.id === 'bgyh') {
+                    if (category.id === 'knxy') {
                         btn.classList.add('active');
                     }
                     
@@ -1462,10 +1543,20 @@
                 });
             }
 
+            // 当前分类和路径追踪
+            let currentCategory = 'knxy';
+            let folderHistory = [];
+            
             // 加载分类下的视频
-            function loadCategoryVideos(categoryId) {
+            function loadCategoryVideos(categoryId, isSubFolder = false) {
                 const listContainer = document.getElementById('videos-list');
                 listContainer.innerHTML = '';
+                
+                // 更新当前分类
+                if (!isSubFolder) {
+                    currentCategory = categoryId;
+                    folderHistory = [];
+                }
                 
                 if (!videoData[categoryId] || videoData[categoryId].length === 0) {
                     listContainer.innerHTML = `
@@ -1477,28 +1568,64 @@
                     return;
                 }
                 
+                // 如果有文件夹历史，添加返回按钮
+                if (folderHistory.length > 0) {
+                    const backItem = document.createElement('div');
+                    backItem.className = 'video-item folder-item back-folder';
+                    backItem.innerHTML = `
+                        <div class="thumbnail">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='124' viewBox='0 0 220 124'%3E%3Crect width='220' height='124' fill='%231a1a2e'/%3E%3C/svg%3E" 
+                                 data-src="./img/back.jpg" 
+                                 alt="返回上一级" 
+                                 class="lazyload">
+                            <div class="folder-icon"><i class="fas fa-arrow-left"></i></div>
+                            <div class="progress-bar" style="height:2px"><div class="progress" style="width:100%"></div></div>
+                        </div>
+                        <div class="video-title">返回上一级</div>
+                    `;
+                    listContainer.appendChild(backItem);
+                }
+                
                 // 添加新内容
                 videoData[categoryId].forEach(video => {
                     const item = document.createElement('div');
-                    item.className = 'video-item';
-                    item.dataset.id = video.id;
-                    item.dataset.url = video.url;
-                    item.dataset.thumb = video.thumb;
                     
-                    
-                    
-                    item.innerHTML = `
-                        <div class="thumbnail">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='124' viewBox='0 0 220 124'%3E%3Crect width='220' height='124' fill='%231a1a2e'/%3E%3C/svg%3E" 
-                                 data-src="${video.thumb}" 
-                                 alt="${video.title}" 
-                                 class="lazyload">
-                            <div class="play-icon"><i class="fas fa-play"></i></div>
-                            <div class="progress-bar" style="height:2px"><div class="progress" style="width:100%"></div></div>
-                            
-                        </div>
-                        <div class="video-title">${video.title}</div>
-                    `;
+                    // 判断是否为文件夹
+                    if (video.isFolder) {
+                        item.className = 'video-item folder-item';
+                        item.dataset.id = video.id;
+                        item.dataset.folderId = video.folderId;
+                        item.dataset.thumb = video.thumb;
+                        
+                        item.innerHTML = `
+                            <div class="thumbnail">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='124' viewBox='0 0 220 124'%3E%3Crect width='220' height='124' fill='%231a1a2e'/%3E%3C/svg%3E" 
+                                     data-src="${video.thumb}" 
+                                     alt="${video.title}" 
+                                     class="lazyload">
+                                <div class="folder-icon"><i class="fas fa-folder-open"></i></div>
+                                <div class="progress-bar" style="height:2px"><div class="progress" style="width:100%"></div></div>
+                            </div>
+                            <div class="video-title">${video.title}</div>
+                        `;
+                    } else {
+                        item.className = 'video-item';
+                        item.dataset.id = video.id;
+                        item.dataset.url = video.url;
+                        item.dataset.thumb = video.thumb;
+                        
+                        item.innerHTML = `
+                            <div class="thumbnail">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='124' viewBox='0 0 220 124'%3E%3Crect width='220' height='124' fill='%231a1a2e'/%3E%3C/svg%3E" 
+                                     data-src="${video.thumb}" 
+                                     alt="${video.title}" 
+                                     class="lazyload">
+                                <div class="play-icon"><i class="fas fa-play"></i></div>
+                                <div class="progress-bar" style="height:2px"><div class="progress" style="width:100%"></div></div>
+                            </div>
+                            <div class="video-title">${video.title}</div>
+                        `;
+                    }
                     
                     listContainer.appendChild(item);
                 });
@@ -1768,7 +1895,8 @@
 
           
 
-            // 设置移动端控制器自动隐藏
+            // 设置移动端控制器自动隐藏安卓端
+        
             function setupMobileControlsAutoHide() {
                 if (!dp || window.innerWidth > 768) return;
                 
@@ -1829,13 +1957,13 @@
                 messageElement.textContent = message;
                 alert.style.display = 'flex';
                 
-                // 1秒后自动隐藏
+                // 3秒后自动隐藏
                 setTimeout(() => {
                     alert.style.display = 'none';
-                }, 1000);
+                }, 3000);
             }
 
-            // 为iOS设备设置自动隐藏控制器
+            // 为iOS设备设置自动隐藏控制器无操作自动隐藏
             function setupIOSAutoHide(videoElement) {
                 if (!dp || !videoElement) return;
                 
@@ -1853,22 +1981,7 @@
                         }
                     }, 3000);
                 });
-                
-                // 监听控制器显示事件
-                const observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        if (mutation.attributeName === 'class') {
-                            const controllerVisible = !document.querySelector('.dplayer').classList.contains('dplayer-hide-controller');
-                            if (controllerVisible && !dp.video.paused) {
-                                // 控制器显示时，设置定时器自动隐藏
-                                clearTimeout(iosControlsHideTimer);
-                                iosControlsHideTimer = setTimeout(() => {
-                                    dp.controller.hide();
-                                }, 3000);
-                            }
-                        }
-                    });
-                });
+           
                 
                 // 观察播放器元素的class变化
                 observer.observe(document.querySelector('.dplayer'), { attributes: true });
@@ -1962,7 +2075,7 @@
                 // 显示视频部分
                 document.querySelector('.player-section').style.display = 'block';
                 document.querySelector('.categories-container').style.display = 'block';
-                document.querySelector('.videos-section').style.display = 'block';
+                document.querySelector('.videos-section').style.display = 'flex'; // 修改为flex以保持居中
             }
 
             // 应用初始化
@@ -1970,7 +2083,7 @@
                 // 初始化播放器
                 initDPlayer();
                 initCategories();
-                loadCategoryVideos('bgyh');
+                loadCategoryVideos('knxy');
                 detectCompatibility();
                 
                 // 移动端菜单功能 - 优化设计
@@ -2018,14 +2131,36 @@
                     }
                 });
                 
-                // 使用事件委托处理视频点击
+                // 使用事件委托处理视频和文件夹点击
                 document.getElementById('videos-list').addEventListener('click', (e) => {
                     const item = e.target.closest('.video-item');
-                    if (item) {
-                        const url = item.dataset.url;
-                        const thumb = item.querySelector('img').dataset.src;
-                        playVideo(url, thumb, item.querySelector('.video-title').textContent);
+                    if (!item) return;
+                    
+                    // 处理返回上一级
+                    if (item.classList.contains('back-folder')) {
+                        if (folderHistory.length > 0) {
+                            const prevFolder = folderHistory.pop();
+                            loadCategoryVideos(prevFolder, true);
+                        } else {
+                            loadCategoryVideos(currentCategory);
+                        }
+                        return;
                     }
+                    
+                    // 处理文件夹点击
+                    if (item.classList.contains('folder-item')) {
+                        const folderId = item.dataset.folderId;
+                        if (folderId && videoData[folderId]) {
+                            folderHistory.push(currentCategory);
+                            loadCategoryVideos(folderId, true);
+                        }
+                        return;
+                    }
+                    
+                    // 处理视频点击
+                    const url = item.dataset.url;
+                    const thumb = item.querySelector('img').dataset.src;
+                    playVideo(url, thumb, item.querySelector('.video-title').textContent);
                 });
                 
                 // 使用事件委托处理菜单点击
