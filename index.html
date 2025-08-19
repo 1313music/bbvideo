@@ -1007,7 +1007,7 @@
         <div class="mobile-menu-links">
             <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
             <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>   
-            <a href="https://1701701.xyz/" class="nav-link" target="_blank"><i class="fas fa-music"></i> 音乐</a>
+            <a href="https://1701701.xyz/" class="nav-link"><i class="fas fa-music"></i> 音乐</a>
             <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
             <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
             <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
@@ -1030,7 +1030,7 @@
                 
                 <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
                 <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>
-                <a href="https://1701701.xyz/" class="nav-link" target="_blank"><i class="fas fa-music"></i> 音乐</a>
+                <a href="https://1701701.xyz/" class="nav-link"><i class="fas fa-music"></i> 音乐</a>
                 <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
                 <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
                 <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
@@ -2161,8 +2161,11 @@
                 // 使用事件委托处理菜单点击
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.addEventListener('click', (e) => {
-                        // 如果链接有target="_blank"属性，说明是外部链接，不阻止默认行为
-                        if (link.getAttribute('target') === '_blank') {
+                        // 获取菜单类型
+                        const menuType = link.dataset.menu;
+                        
+                        // 如果是音乐链接，直接跳转
+                        if (link.href === 'https://1701701.xyz/') {
                             // 如果是移动端，关闭菜单
                             if (mobileMenu.classList.contains('active')) {
                                 mobileMenu.classList.remove('active');
@@ -2178,9 +2181,6 @@
                         
                         // 给当前点击的菜单项添加active类
                         link.classList.add('active');
-                        
-                        // 获取菜单类型
-                        const menuType = link.dataset.menu;
                         
                         // 根据菜单类型显示内容
                         if (menuType === 'videos') {
