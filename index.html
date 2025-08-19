@@ -1007,8 +1007,8 @@
         <div class="mobile-menu-links">
             <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
             <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>   
-            <a href="#" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
-            <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
+            <a href="https://1701701.xyz/" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
+            <a href="https://www.weiyun.com/document?fileId=1482357921_a1fc5a585a38e55958695081d555a4b0_af5f417e-e61a-4d9d-9b97-9ca1614eb22b&officeType=pdf&tdsourcetag=s_weiyun_file" class="nav-link" data-menu="guitar" target="_blank"><i class="fas fa-guitar"></i> 吉他谱</a>
             <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
             <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
             <a href="#" class="nav-link" data-menu="about"><i class="fas fa-info-circle"></i> 关于</a>
@@ -1030,8 +1030,8 @@
                 
                 <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
                 <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>
-                <a href="music_player.html" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
-                <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
+                <a href="https://1701701.xyz/" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
+                <a href="https://www.weiyun.com/document?fileId=1482357921_a1fc5a585a38e55958695081d555a4b0_af5f417e-e61a-4d9d-9b97-9ca1614eb22b&officeType=pdf&tdsourcetag=s_weiyun_file" class="nav-link" data-menu="guitar"target="_blank"><i class="fas fa-guitar"></i> 吉他谱</a>
                 <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
                 <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
                 <a href="#" class="nav-link" data-menu="about"><i class="fas fa-info-circle"></i> 关于</a>
@@ -2166,6 +2166,27 @@
                 // 使用事件委托处理菜单点击
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.addEventListener('click', (e) => {
+                        // 获取菜单类型
+                        const menuType = link.dataset.menu;
+                        
+                        // 如果是音乐或吉他谱链接，允许默认跳转行为
+                        if (menuType === 'music' || menuType === 'guitar') {
+                            // 移除所有菜单项的active类
+                            document.querySelectorAll('.nav-link.active').forEach(e => e.classList.remove('active'));
+                            
+                            // 给当前点击的菜单项添加active类
+                            link.classList.add('active');
+                            
+                            // 如果是移动端，关闭菜单
+                            if (mobileMenu.classList.contains('active')) {
+                                mobileMenu.classList.remove('active');
+                                mobileMenuBtn.classList.remove('active');
+                            }
+                            // 允许链接跳转，不阻止默认行为
+                            return;
+                        }
+                        
+                        // 对于其他链接，阻止默认行为
                         e.preventDefault();
                         
                         // 移除所有菜单项的active类
@@ -2173,9 +2194,6 @@
                         
                         // 给当前点击的菜单项添加active类
                         link.classList.add('active');
-                        
-                        // 获取菜单类型
-                        const menuType = link.dataset.menu;
                         
                         // 根据菜单类型显示内容
                         if (menuType === 'videos') {
