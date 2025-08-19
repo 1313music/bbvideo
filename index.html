@@ -974,11 +974,11 @@
     </style>
     
     <!-- 非关键CSS异步加载 -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.27.1/DPlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.27.1/DPlayer.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+        <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     </noscript>
 </head>
 <body>
@@ -1007,8 +1007,8 @@
         <div class="mobile-menu-links">
             <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
             <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>   
-            <a href="https://1701701.xyz/" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
-            <a href="https://www.weiyun.com/document?fileId=1482357921_a1fc5a585a38e55958695081d555a4b0_af5f417e-e61a-4d9d-9b97-9ca1614eb22b&officeType=pdf&tdsourcetag=s_weiyun_file" class="nav-link" data-menu="guitar" target="_blank"><i class="fas fa-guitar"></i> 吉他谱</a>
+            <a href="https://1701701.xyz/" class="nav-link" target="_blank"><i class="fas fa-music"></i> 音乐</a>
+            <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
             <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
             <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
             <a href="#" class="nav-link" data-menu="about"><i class="fas fa-info-circle"></i> 关于</a>
@@ -1030,8 +1030,8 @@
                 
                 <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
                 <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>
-                <a href="https://1701701.xyz/" class="nav-link" data-menu="music"><i class="fas fa-music"></i> 音乐</a>
-                <a href="https://www.weiyun.com/document?fileId=1482357921_a1fc5a585a38e55958695081d555a4b0_af5f417e-e61a-4d9d-9b97-9ca1614eb22b&officeType=pdf&tdsourcetag=s_weiyun_file" class="nav-link" data-menu="guitar"target="_blank"><i class="fas fa-guitar"></i> 吉他谱</a>
+                <a href="https://1701701.xyz/" class="nav-link" target="_blank"><i class="fas fa-music"></i> 音乐</a>
+                <a href="#" class="nav-link" data-menu="guitar"><i class="fas fa-guitar"></i> 吉他谱</a>
                 <a href="#" class="nav-link" data-menu="autobiography"><i class="fas fa-book"></i> 自传</a>
                 <a href="#" class="nav-link" data-menu="message"><i class="fas fa-comments"></i> 留言</a>
                 <a href="#" class="nav-link" data-menu="about"><i class="fas fa-info-circle"></i> 关于</a>
@@ -1095,16 +1095,16 @@
             }
             
             // 先加载核心功能
-            loadScript('https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.12/hls.min.js', function() {
+            loadScript('https://cdn.jsdelivr.net/npm/hls.js', function() {
                 // 配置 hls.js，但仅对HLS流使用，不影响MP4播放
-                if (window.Hls && window.Hls.isSupported) {
-                    window.Hls.DefaultConfig.enableWorker = true;
-                    window.Hls.DefaultConfig.enableStreaming = true;
-                    window.Hls.DefaultConfig.maxBufferLength = 30;
-                    window.Hls.DefaultConfig.maxMaxBufferLength = 60;
-                    window.Hls.DefaultConfig.liveSyncDurationCount = 3;
+                if (Hls.isSupported()) {
+                    Hls.DefaultConfig.enableWorker = true;
+                    Hls.DefaultConfig.enableStreaming = true;
+                    Hls.DefaultConfig.maxBufferLength = 30;
+                    Hls.DefaultConfig.maxMaxBufferLength = 60;
+                    Hls.DefaultConfig.liveSyncDurationCount = 3;
                 }
-                loadScript('https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.27.1/DPlayer.min.js', initializeApp);
+                loadScript('https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.js', initializeApp);
             });
         });
         
@@ -2020,12 +2020,7 @@
                         text.textContent = 'welcome';
                         break;  
 
-                    case 'music':
-                        icon.innerHTML = '<i class="fas fa-music"></i>';
-                        title.textContent = '音乐';
-                        text.textContent = '暂无音乐，后续将更新，敬请期待！';
-                        break;
-                    
+                   
                     case 'guitar':
                         icon.innerHTML = '<i class="fas fa-guitar"></i>';
                         title.textContent = '吉他谱';
@@ -2166,27 +2161,16 @@
                 // 使用事件委托处理菜单点击
                 document.querySelectorAll('.nav-link').forEach(link => {
                     link.addEventListener('click', (e) => {
-                        // 获取菜单类型
-                        const menuType = link.dataset.menu;
-                        
-                        // 如果是音乐或吉他谱链接，允许默认跳转行为
-                        if (menuType === 'music' || menuType === 'guitar') {
-                            // 移除所有菜单项的active类
-                            document.querySelectorAll('.nav-link.active').forEach(e => e.classList.remove('active'));
-                            
-                            // 给当前点击的菜单项添加active类
-                            link.classList.add('active');
-                            
+                        // 如果链接有target="_blank"属性，说明是外部链接，不阻止默认行为
+                        if (link.getAttribute('target') === '_blank') {
                             // 如果是移动端，关闭菜单
                             if (mobileMenu.classList.contains('active')) {
                                 mobileMenu.classList.remove('active');
                                 mobileMenuBtn.classList.remove('active');
                             }
-                            // 允许链接跳转，不阻止默认行为
-                            return;
+                            return; // 允许默认行为（打开链接）
                         }
                         
-                        // 对于其他链接，阻止默认行为
                         e.preventDefault();
                         
                         // 移除所有菜单项的active类
@@ -2194,6 +2178,9 @@
                         
                         // 给当前点击的菜单项添加active类
                         link.classList.add('active');
+                        
+                        // 获取菜单类型
+                        const menuType = link.dataset.menu;
                         
                         // 根据菜单类型显示内容
                         if (menuType === 'videos') {
