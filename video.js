@@ -482,7 +482,7 @@
                     },
                     errorHandler: function(error) {
                         console.error('DPlayer error:', error);
-                        // 不显示错误提示
+                        showCompatibilityAlert('视频播放失败: ' + error.message);
                     },
                     // 添加移动端优化配置
                     mobileControls: true,
@@ -636,7 +636,7 @@
             // 播放视频
             function playVideo(url, thumb = '', title = '精彩视频') {
                 if (!url) {
-                    // 不显示错误提示
+                    showCompatibilityAlert('此视频源不可用，请选择其他视频');
                     return;
                 }
                 
@@ -648,17 +648,9 @@
                 
                 currentVideoUrl = url;
                 
-                // 检测是否为 OneDrive/SharePoint 链接
-                const isOneDriveLink = url.includes('sharepoint.com') || url.includes('onedrive.com');
-                
-                // 如果是 OneDrive 链接且在移动端，直接播放（不使用代理）
-                if (isOneDriveLink && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                    showLoadingAnimation();
-                }
-                
                 // 设置超时处理
                 const loadTimeout = setTimeout(() => {
-                    showLoadingAnimation();
+                    showCompatibilityAlert('视频加载时间较长，请耐心等待');
                 }, 15000);
                 
                 try {
@@ -734,9 +726,6 @@
                             hls.on(Hls.Events.ERROR, (event, data) => {
                                 console.error('HLS 错误:', data);
                                 clearTimeout(loadTimeout);
-                                
-                                // 不显示错误提示，直接尝试使用备用方法
-                                tryNativePlayback(window.originalVideoUrl || url, thumb, title);
                             });
                             
                             return;
@@ -801,10 +790,8 @@
                         hideControlsAfter: isIOSDevice ? 3000 : 3000, // 3秒后自动隐藏控制按钮
                         errorHandler: function(error) {
                             console.error('播放错误:', error);
+                            showCompatibilityAlert('视频播放失败，请重试');
                             clearTimeout(loadTimeout);
-                            
-                            // 不显示错误提示，直接尝试使用备用方法
-                            tryNativePlayback(window.originalVideoUrl || url, thumb, title);
                         }
                     });
                     
@@ -859,8 +846,6 @@
                     // 播放失败回调
                     dp.on('error', function() {
                         clearTimeout(loadTimeout);
-                        // 不显示错误提示，直接尝试使用备用方法
-                        tryNativePlayback(window.originalVideoUrl || url, thumb, title);
                     });
                     
                     // 开始播放
@@ -871,9 +856,8 @@
                     
                 } catch (error) {
                     console.error('播放错误:', error);
+                    showCompatibilityAlert('视频播放失败: ' + error.message);
                     clearTimeout(loadTimeout);
-                    // 不显示错误提示，直接尝试使用备用方法
-                    tryNativePlayback(window.originalVideoUrl || url, thumb, title);
                 }
             }
 
@@ -933,22 +917,18 @@
                 }
             }
             
-            // 显示兼容性提示（已禁用）
+            // 显示兼容性提示
             function showCompatibilityAlert(message) {
-                // 不显示任何错误提示
-                return;
-            }
-            
-            // 显示加载动画（已禁用）
-            function showLoadingAnimation() {
-                // 不显示加载动画
-                return;
-            }
-            
-            // 隐藏加载动画（已禁用）
-            function hideLoadingAnimation() {
-                // 不执行任何操作
-                return;
+                const alert = document.getElementById('compatibility-alert');
+                const messageElement = document.getElementById('compatibility-message');
+                
+                messageElement.textContent = message;
+                alert.style.display = 'flex';
+                
+                // 3秒后自动隐藏
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 3000);
             }
 
             // 为iOS设备设置自动隐藏控制器无操作自动隐藏
@@ -975,10 +955,14 @@
                 observer.observe(document.querySelector('.dplayer'), { attributes: true });
             }
             
-            // 检测设备兼容性（已禁用）
+            // 检测设备兼容性
             function detectCompatibility() {
-                // 不显示任何兼容性提示
-                return;
+                // 仅在确实需要时显示提示
+                const video = document.createElement('video');
+                if (!video.canPlayType('application/vnd.apple.mpegurl') && 
+                    !Hls.isSupported()) {
+                    showCompatibilityAlert('您的设备可能需要JavaScript兼容模式播放视频');
+                }
             }
 
 
@@ -1110,311 +1094,4 @@
 
             // 执行初始化
             initAppUI();
-            
-            // 原生播放函数（作为最后的回退方案）
-            function tryNativePlayback(url, thumb, title) {
-                // 显示加载动画
-                showLoadingAnimation();
-                
-                // 销毁现有播放器
-                if (dp && dp.video) {
-                    dp.destroy();
-                    dp = null;
-                }
-                
-                // 获取播放器容器
-                const container = document.getElementById('dplayer-container');
-                
-                // 清空容器
-                container.innerHTML = '';
-                
-                // 创建原生视频元素
-                const videoElement = document.createElement('video');
-                videoElement.id = 'native-video-player';
-                videoElement.controls = true;
-                videoElement.autoplay = true;
-                videoElement.playsInline = true; // iOS需要这个属性
-                videoElement.preload = 'metadata';
-                videoElement.style.width = '100%';
-                videoElement.style.height = '100%';
-                videoElement.style.backgroundColor = '#000';
-                
-                // 设置视频源
-                videoElement.src = url;
-                
-                // 添加海报图片
-                if (thumb) {
-                    videoElement.poster = thumb;
-                }
-                
-                // 添加到容器
-                container.appendChild(videoElement);
-                
-                // 添加错误处理
-                videoElement.addEventListener('error', function(e) {
-                    console.error('原生视频播放错误:', e);
-                    // 不显示错误提示
-                });
-                
-                // 添加加载事件
-                videoElement.addEventListener('canplay', function() {
-                    document.getElementById('compatibility-alert').style.display = 'none';
-                });
-                
-                // 尝试播放
-                videoElement.play().catch(function(error) {
-                    console.error('自动播放失败:', error);
-                    // 检查视频是否实际上已经在播放
-                    setTimeout(function() {
-                        if (!videoElement.paused && !videoElement.ended) {
-                            // 视频实际上已经在播放，隐藏错误提示
-                            document.getElementById('compatibility-alert').style.display = 'none';
-                        } else {
-                            // 视频确实没有播放，不显示提示
-                        }
-                    }, 1000);
-                });
-            }
-            
-            // 直接播放视频函数（用于代理失败时的回退方案）
-            function playVideoDirectly(url, thumb, title) {
-                // 清除之前的超时定时器
-                if (window.fallbackTimer) {
-                    clearTimeout(window.fallbackTimer);
-                    window.fallbackTimer = null;
-                }
-                
-                // 显示加载动画
-                showLoadingAnimation();
-                
-                // 设置超时处理
-                const loadTimeout = setTimeout(() => {
-                    showLoadingAnimation();
-                }, 15000);
-                
-                try {
-                    // 确保播放器已初始化
-                    const player = initDPlayer();
-                    
-                    // 销毁旧播放器实例
-                    if (player && player.video) {
-                        player.destroy();
-                        dp = null;
-                    }
-                    
-                    // 检测是否为 iOS 设备
-                    const isIOSMain = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-                    
-                    // 检查是否为MP4文件
-                    const isMP4 = url.toLowerCase().endsWith('.mp4');
-                    
-                    // 对于iOS设备的处理
-                    if (isIOSMain) {
-                        if (!isMP4 && Hls.isSupported()) {
-                            // 对于HLS流使用hls.js
-                            const hls = new Hls({
-                                enableWorker: false, // iOS 禁用 Worker
-                                maxBufferLength: 30,
-                                lowLatencyMode: false,
-                                // 添加CORS和重定向处理
-                                xhrSetup: function(xhr, url) {
-                                    xhr.withCredentials = false;
-                                    xhr.setRequestHeader('Cache-Control', 'no-cache');
-                                    xhr.setRequestHeader('Pragma', 'no-cache');
-                                }
-                            });
-                            
-                            hls.loadSource(url);
-                            hls.attachMedia(document.createElement('video'));
-                            
-                            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                                clearTimeout(loadTimeout);
-                                
-                                // 检测是否为iOS设备
-                                const isIOSPlayer = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                                
-                                dp = new DPlayer({
-                                    container: document.getElementById('dplayer-container'),
-                                    video: {
-                                        url: url,
-                                        pic: thumb,
-                                        type: 'customHls',
-                                        customType: {
-                                            'customHls': function (video, player) {
-                                                hls.attachMedia(video);
-                                            }
-                                        }
-                                    },
-                                    autoplay: true,
-                                    autoHide: true,
-                                    hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
-                                });
-                                dp.on('play', function(){
-                                    setTimeout(function(){
-                                        document.getElementById('dplayer-container').classList.add('dplayer-hide-controller');
-                                        
-                                        // 检测是否为iOS设备
-                                        const isIOSPlayback = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                                        if (isIOSPlayback) {
-                                            // 为iOS设备添加额外的控制器自动隐藏功能
-                                            const dplayerVideo = document.querySelector('.dplayer-video-current');
-                                            if (dplayerVideo) {
-                                                // 确保视频元素已加载
-                                                setupIOSAutoHide(dplayerVideo);
-                                            }
-                                        }
-                                    }, 1000)
-                                });
-                            });
-                            
-                            hls.on(Hls.Events.ERROR, (event, data) => {
-                                console.error('HLS 错误:', data);
-                                clearTimeout(loadTimeout);
-                                
-                                // 不显示错误提示，直接尝试使用备用方法
-                                tryNativePlayback(url, thumb, title);
-                            });
-                            
-                            return;
-                        } else {
-                            // 对于MP4文件使用原生播放
-                            clearTimeout(loadTimeout);
-                            
-                            // 检测是否为iOS设备
-                            const isIOSNative = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                            
-                            dp = new DPlayer({
-                                container: document.getElementById('dplayer-container'),
-                                video: {
-                                    url: url,
-                                    pic: thumb,
-                                    type: 'auto'
-                                },
-                                autoplay: true,
-                                autoHide: true,
-                                hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
-                            });
-                            dp.on('play', function(){
-                                setTimeout(function(){
-                                    document.getElementById('dplayer-container').classList.add('dplayer-hide-controller');
-                                    
-                                    // 检测是否为iOS设备
-                                    const isIOSControl = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                                    if (isIOSControl) {
-                                        // 为iOS设备添加额外的控制器自动隐藏功能
-                                        const dplayerVideo = document.querySelector('.dplayer-video-current');
-                                        if (dplayerVideo) {
-                                            // 确保视频元素已加载
-                                            setupIOSAutoHide(dplayerVideo);
-                                        }
-                                    }
-                                }, 1000)
-                            });
-                            return;
-                        }
-                    }
-                    
-                    // 非 iOS 或其他情况使用默认逻辑
-                    // 检测是否为iOS设备
-                    const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                    
-                    dp = new DPlayer({
-                        container: document.getElementById('dplayer-container'),
-                        contextmenu: [], // 禁用右键菜单
-                        video: {
-                            url: url,
-                            pic: thumb,
-                            type: (url.toLowerCase().endsWith('.m3u8') || url.toLowerCase().endsWith('.js')) ? 'hls' : 'auto'
-                        },
-                        
-                        // 添加HLS配置优化
-                        hls: {
-                            liveSyncDurationCount: 3,
-                            maxMaxBufferLength: 30,
-                            enableWorker: true,
-                            // 添加CORS和重定向处理
-                            xhrSetup: function(xhr, url) {
-                                xhr.withCredentials = false;
-                                xhr.setRequestHeader('Cache-Control', 'no-cache');
-                                xhr.setRequestHeader('Pragma', 'no-cache');
-                            }
-                        },
-                        autoHide: true, // 默认自动隐藏控制栏
-                        hideControlsAfter: isIOSDevice ? 3000 : 3000, // 3秒后自动隐藏控制按钮
-                        errorHandler: function(error) {
-                            console.error('播放错误:', error);
-                            clearTimeout(loadTimeout);
-                            
-                            // 不显示错误提示，直接尝试使用备用方法
-                            tryNativePlayback(url, thumb, title);
-                        }
-                    });
-                    
-                    // 添加时长稳定处理
-                    let durationStabilized = false;
-                    let lastDuration = 0;
-                    
-                    // 播放成功回调
-                    dp.on('canplay', function() {
-                        clearTimeout(loadTimeout);
-                        document.getElementById('compatibility-alert').style.display = 'none';
-                        
-                        // 立即隐藏控制栏
-                        setTimeout(() => {
-                            dp.controller.hide();
-                            
-                            
-                            // 检测是否为iOS设备
-                            const isIOSCanPlay = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-                            if (isIOSCanPlay) {
-                                // 为iOS设备添加额外的控制器自动隐藏功能
-                                const dplayerVideo = document.querySelector('.dplayer-video-current');
-                                if (dplayerVideo) {
-                                    // 确保视频元素已加载
-                                    setupIOSAutoHide(dplayerVideo);
-                                }
-                            }
-                        }, 100);
-                        
-                        // 添加时长稳定处理
-                        if (!durationStabilized) {
-                            // 获取初始时长
-                            const initialDuration = dp.video.duration;
-                            lastDuration = initialDuration;
-                            
-                            // 设置定时器检查时长变化
-                            const durationCheck = setInterval(() => {
-                                if (dp.video.duration !== lastDuration) {
-                                    lastDuration = dp.video.duration;
-                                } else {
-                                    // 时长稳定后更新UI
-                                    updateDurationDisplay(lastDuration);
-                                    durationStabilized = true;
-                                    clearInterval(durationCheck);
-                                }
-                            }, 500);
-                        }
-                    });
-                    
-                    // 播放失败回调
-                    dp.on('error', function() {
-                        clearTimeout(loadTimeout);
-                        // 不显示错误提示，直接尝试使用备用方法
-                        tryNativePlayback(url, thumb, title);
-                    });
-                    
-                    // 开始播放
-                    dp.play();
-                    
-                    // 设置移动端控制器自动隐藏
-                    setupMobileControlsAutoHide();
-                    
-                } catch (error) {
-                    console.error('播放错误:', error);
-                    clearTimeout(loadTimeout);
-                    // 不显示错误提示，直接尝试使用备用方法
-                    tryNativePlayback(url, thumb, title);
-                }
-            }
         }
