@@ -327,73 +327,73 @@
                     {
                         id: 4051,
                         title: "01 序曲",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ec7ht7iHFJpIu6hJU1dBJuYBhOIyIo7qScWGMR4Gu-tf6Q",
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ec7ht7iHFJpIu6hJU1dBJuYBhOIyIo7qScWGMR4Gu-tf6Q&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                     {
                         id: 4052,
                         title: "02 杭州",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWKhR5tS5ulKvZzsLQH-8wcBGrhz11t48WR2yo4exs8Ulg",
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWKhR5tS5ulKvZzsLQH-8wcBGrhz11t48WR2yo4exs8Ulg&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                     {
                         id: 4053,
                         title: "03 尽头",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EU-LNzQZe3dIhNrJ1Xl8D_kB7peN6WY9SZCnSBJWOxfdbw",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EU-LNzQZe3dIhNrJ1Xl8D_kB7peN6WY9SZCnSBJWOxfdbw&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4054,
                         title: "04 定西",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EZgWkUGMOZ1Ol1nrCHmT3MkBaOahLDiQzMqUM1EFB5riEA",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EZgWkUGMOZ1Ol1nrCHmT3MkBaOahLDiQzMqUM1EFB5riEA&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4055,
                         title: " 05 春末的南方城市",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EQPRtx_A505AobP9kluGkrUBZpjhwjrLZOFRkmxfSKb05Q",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EQPRtx_A505AobP9kluGkrUBZpjhwjrLZOFRkmxfSKb05Q&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4056,
                         title: "06 黑色信封",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EW0maOWdzaJJgLP-QpKjVocBrMXenFBwng8IPNuCqIIaRA",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EW0maOWdzaJJgLP-QpKjVocBrMXenFBwng8IPNuCqIIaRA&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4057,
                         title: "07 铅笔",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYG6W3DEPcxMvOxViCOW7GoBu0g5GypurNYlOj2eyiGWIw",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYG6W3DEPcxMvOxViCOW7GoBu0g5GypurNYlOj2eyiGWIw&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4058,
                         title: "08 和你在一起",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EQ3_wK5aKVZIj0NcvcooRkcBwdFjhEC_DIbJBMVcfqUlqg",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EQ3_wK5aKVZIj0NcvcooRkcBwdFjhEC_DIbJBMVcfqUlqg&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4059,
                         title: "09 墙上的向日葵",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWFJ6JlLFxBFifyTK0Ei9jUBHJVMycGx7ez0_tVryJIWLw",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWFJ6JlLFxBFifyTK0Ei9jUBHJVMycGx7ez0_tVryJIWLw&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4060,
                         title: "10 大象",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EeG9ZKjul5BIu3tprqBFDoYBa17XJd6A1VAbnlasgPzumA",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EeG9ZKjul5BIu3tprqBFDoYBa17XJd6A1VAbnlasgPzumA&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4061,
                         title: "11 门",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EXHCldFO65hJpivB8GW_a9kBIsJvUp6Efz32DN6d2L72aQ",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EXHCldFO65hJpivB8GW_a9kBIsJvUp6Efz32DN6d2L72aQ&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4062,
                         title: "12 回答",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EbHODu90XCFPuCOeJN8N5pYBX8BRD_iGyG1XLdwioVMYnA",
+                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EbHODu90XCFPuCOeJN8N5pYBX8BRD_iGyG1XLdwioVMYnA&download=1.mp4",
                         thumb: "./img/dsygxy.jpg"
                     }
                 ],
@@ -401,7 +401,7 @@
                    { 
                         id: 501, 
                         title: "专访李志 凤凰非常道 20150508", 
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWnFJY5oiz5On8JVy9Q1Iq4B8n8FEWiOVl-3tx6wKiSK7g", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWnFJY5oiz5On8JVy9Q1Iq4B8n8FEWiOVl-3tx6wKiSK7g&download=1.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
                     }
                 ],
@@ -409,15 +409,22 @@
                    { 
                         id: 601, 
                         title: "李志 台北早上好 【和你在一起】(feat 李庭匡) ", 
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ed5IreZUtZ9NvItoolJbJTQB7bA1iHVD6cAFRHwS5E6vnA", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ed5IreZUtZ9NvItoolJbJTQB7bA1iHVD6cAFRHwS5E6vnA&download=1.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 602, 
+                        title: "【挺】李志不插电巡演石家庄站红糖俱乐部 ", 
+                        url:"https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Eb-fcJzL6HBNjWmcu47mRE0BW2rh4DXMMYoQEZpgSwWv6w&download=1.mp4",
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
                     }
+                    
                 ],
                 qt: [ // 其他 -> qt
                    { 
                         id: 701, 
                         title: "[Official PV]  李志 (リージー-Li Zhi) Best Selection Songs [Vol.3]「倒影 (Reflection)」", 
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ER6R5JequA9AhbP9d22omCAB7Ds04A4aj5F2vo8oewE97Q", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ER6R5JequA9AhbP9d22omCAB7Ds04A4aj5F2vo8oewE97Q&download=1.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
                     },
                     {
@@ -434,13 +441,13 @@
                     {
                         id: 7021,
                         title: "李志《这个世界会好吗2015版》MV",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EUYLcNON_KhNhFZMOEIl9TsBjTWvq_8HA-vfLgR1fz87Xw",
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EUYLcNON_KhNhFZMOEIl9TsBjTWvq_8HA-vfLgR1fz87Xw&download=1.mp4",
                         thumb: "https://v.1701701.xyz/img/back.jpg"
                     },
                     {
                         id: 7022,
                         title: "恋曲1980",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYY5LvegFrxDhy6H6xpU8GIBRBZWKEBfCg--1pvsYLLmqg",
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYY5LvegFrxDhy6H6xpU8GIBRBZWKEBfCg--1pvsYLLmqg&download=1.mp4",
                         thumb: "https://v.1701701.xyz/img/back.jpg"
                     }
                 ]
@@ -951,6 +958,23 @@
                 });
            
                 
+                // 创建observer实例观察播放器元素的class变化
+                const observer = new MutationObserver(function(mutations) {
+                    mutations.forEach(function(mutation) {
+                        if (mutation.attributeName === 'class') {
+                            // 清除之前的定时器
+                            clearTimeout(iosControlsHideTimer);
+                            
+                            // 设置新的定时器，3秒后自动隐藏控制器
+                            iosControlsHideTimer = setTimeout(() => {
+                                if (dp && !dp.video.paused) {
+                                    dp.controller.hide();
+                                }
+                            }, 3000);
+                        }
+                    });
+                });
+                
                 // 观察播放器元素的class变化
                 observer.observe(document.querySelector('.dplayer'), { attributes: true });
             }
@@ -1094,4 +1118,19 @@
 
             // 执行初始化
             initAppUI();
+        }
+
+        // 实现 updateDurationDisplay 函数，解决未定义错误
+        function updateDurationDisplay(duration) {
+            // 这个函数目前不需要做具体操作，因为 DPlayer 播放器会自动显示时长
+            // 如果需要自定义显示，可以在这里添加代码
+            // console.log('视频时长稳定:', formatTime(duration));
+        }
+
+        // 格式化时间的辅助函数
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '00:00';
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
