@@ -426,7 +426,11 @@
                         title: "[Official PV]  李志 (リージー-Li Zhi) Best Selection Songs [Vol.3]「倒影 (Reflection)」", 
                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ER6R5JequA9AhbP9d22omCAB7Ds04A4aj5F2vo8oewE97Q&download=1.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
-                    },
+                    },  
+                    {  id: 703, 
+                        title: "关于郑州", 
+                        url: "https://b2.1701701.xyz/api/gyzz.mp4", 
+                        thumb: "https://v.1701701.xyz/img/back.jpg" },
                     {
                         id: 702,
                         title: "测试文件夹",
