@@ -290,7 +290,7 @@
                      { 
                         id: 401, 
                           title: "I/O", 
-                        url: "https://2014.1701701.xyz/video/roadmap.js", 
+                        url: "https://2014.1701701.xyz/video/2014.m3u8", 
                         thumb: "./img/io.jpg"
                         
                     },
@@ -309,7 +309,7 @@
                     { 
                         id: 404, 
                         title: "我爱南京", 
-                        url: "https://2009.1701701.xyz/video/roadmap.js", 
+                        url: "https://2009.1701701.xyz/video/2009.m3u8", 
                         thumb: "./img/wanj.jpg"
                         
                     },
