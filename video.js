@@ -297,7 +297,7 @@
                     { 
                         id: 402, 
                        title: "看见", 
-                        url: "https://2015.1701701.xyz/video/roadmap.js", 
+                        url: "https://2015.1701701.xyz/video/roadmap.m3u8", 
                         thumb: "./img/kj.jpg"
                     },
                     { 
