@@ -287,7 +287,7 @@
                 }
             ],
                 knxy: [ // 跨年音乐会 -> knxy
-                     { 
+                      { 
                         id: 401, 
                           title: "I/O", 
                         url: "https://2014.1701701.xyz/video/2014.m3u8", 
@@ -319,6 +319,30 @@
                         isFolder: true,
                         thumb: "./img/dsygxy.jpg", // 文件夹封面
                         folderId: "dsygxl" // 文件夹ID，用于加载子文件夹内容
+                    }
+                    ,
+                    { 
+                        id: 406, 
+                        title: "IMAGINE", 
+                        url: "https://b2.1701701.xyz/api/2011/playlist.m3u8", 
+                        thumb: "./img/wanj.jpg"
+                        
+                    }
+                    ,
+                    { 
+                        id: 407, 
+                        title: "108个关键词", 
+                        url: "https://b2.1701701.xyz/api/2012/playlist.m3u8", 
+                        thumb: "./img/wanj.jpg"
+                        
+                    }
+                    ,
+                    { 
+                        id: 408, 
+                        title: "北京降噪Ⅳ", 
+                        url: "https://b2.1701701.xyz/api/2016/playlist.m3u8", 
+                        thumb: "./img/wanj.jpg"
+                        
                     }
                 ],
                 
