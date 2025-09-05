@@ -32,67 +32,67 @@
                 { 
                     id: 1, 
                     title: "逼哥夜話 - 上海", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E4%B8%8A%E6%B5%B7/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E4%B8%8A%E6%B5%B7%E3%80%8B.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──上海》.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 2, 
                     title: "逼哥夜話 - 寧波 上", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E5%AF%A7%E6%B3%A2%E4%B8%8A/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E5%AF%A7%E6%B3%A2%E3%80%8B%E4%B8%8A.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──寧波》上.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 3, 
                     title: "逼哥夜話 - 寧波 下", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E5%AF%A7%E6%B3%A2%E4%B8%8B/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E5%AF%A7%E6%B3%A2%E3%80%8B%E4%B8%8B.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──寧波》下.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 4, 
                     title: "逼哥夜話 - 廈門 上", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E5%BB%88%E9%96%80%E4%B8%8A/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E5%BB%88%E9%96%80%E3%80%8B%E4%B8%8A.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──廈門》上.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 5, 
                     title: "逼哥夜話 - 廈門 下", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E5%BB%88%E9%96%80%E4%B8%8B/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E5%BB%88%E9%96%80%E3%80%8B%E4%B8%8B.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──廈門》下.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 6, 
                     title: "逼哥夜話 - 昆明 上", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E6%98%86%E6%98%8E%E4%B8%8A/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E6%98%86%E6%98%8E%E3%80%8B%E4%B8%8A.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──昆明》上.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 7, 
                     title: "逼哥夜話 - 昆明 下", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E6%98%86%E6%98%8E%E4%B8%8B/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E6%98%86%E6%98%8E%E3%80%8B%E4%B8%8B.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──昆明》下.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 8, 
                     title: "逼哥夜話 - 贵阳", 
-                    url: "https://r.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E8%B4%B5%E9%98%B3/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E8%B4%B5%E9%98%B3.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──贵阳》.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 9, 
                     title: "逼哥夜話 - 重慶 上", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E9%87%8D%E6%85%B6%E4%B8%8A/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E9%87%8D%E6%85%B6%E3%80%8B%E4%B8%8A.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──重慶》上.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 10, 
                     title: "逼哥夜話 - 重慶 下", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E9%87%8D%E6%85%B6%E4%B8%8B/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E9%87%8D%E6%85%B6%E3%80%8B%E4%B8%8B.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──重慶》下.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 },
                 { 
                     id: 11, 
                     title: "逼哥夜話 - 香港", 
-                    url: "https://r2.1701701.xyz/bgyh/B%E5%93%A5%E5%A4%9C%E8%A9%B1%E9%A6%99%E6%B8%AF/%E3%80%8AB%E5%93%A5%E5%A4%9C%E8%A9%B1%E2%94%80%E2%94%80%E9%A6%99%E6%B8%AF%E3%80%8B.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh/《B哥夜話──香港》.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyhfm.png"
                 }
             ],
@@ -100,37 +100,37 @@
                 { 
                     id: 201, 
                     title: "逼哥夜話 第二季 01 - 深圳", 
-                    url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8901%20-%20%E6%B7%B1%E5%9C%B3/playlist.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh2/01 - 深圳.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
                 },
                 { 
                     id: 202, 
                     title: "逼哥夜話 第二季 02 - 西安", 
-                    url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8902%20-%20%E8%A5%BF%E5%AE%89/playlist.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh2/02 - 西安.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
                 },
                 { 
                     id: 203, 
                     title: "逼哥夜話 第二季 03 - 上海", 
-                    url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8903%20-%20%E4%B8%8A%E6%B5%B7/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8903%20-%20%E4%B8%8A%E6%B5%B7.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh2/03 - 上海.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
                 },
                 { 
                     id: 204, 
                     title: "逼哥夜話 第二季 04 - 武漢", 
-                    url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8904%20-%20%E6%AD%A6%E6%BC%A2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8904%20-%20%E6%AD%A6%E6%BC%A2.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh2/04 - 武漢.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
                 },
                 { 
                     id: 205, 
                     title: "逼哥夜話 第二季 05 - 重慶", 
-                    url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8905%20-%20%E9%87%8D%E6%85%B6/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8905%20-%20%E9%87%8D%E6%85%B6.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh2/05 - 重慶.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
                 },
                 { 
                     id: 206, 
                     title: "逼哥夜話 第二季 06 - 北京", 
-                    url: "https://r2.1701701.xyz/bgyh2/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8906%20-%20%E5%8C%97%E4%BA%AC/%E6%9D%8E%E5%BF%97%E3%80%90%E9%80%BC%E5%93%A5%E5%A4%9C%E8%A9%B1%E3%80%91%EF%BC%88%E7%AC%AC%E4%BA%8C%E5%AD%A3%EF%BC%8906%20-%20%E5%8C%97%E4%BA%AC.m3u8", 
+                    url: "https://b2.1701701.xyz/api/yh2/06 - 北京.mp4", 
                     thumb: "https://v.1701701.xyz/img/bgyh2fm.png"
                 }
             ],
@@ -138,153 +138,153 @@
                 { 
                     id: 301, 
                     title: "安徽篇 - 预告", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%87%20-%20%E9%A2%84%E5%91%8A/playlist.m3u8", 
+                    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】安徽篇 - 预告/playlist.m3u8", 
                     thumb: "https://v.1701701.xyz/img/334.jpg"
                 },
                 { 
                     id: 302, 
                     title: "安徽篇01 - 出發吧！還剩333", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8701%20-%20%E5%87%BA%E7%99%BC%E5%90%A7%EF%BC%81%E9%82%84%E5%89%A9333/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8701%20-%20%E5%87%BA%E7%99%BC%E5%90%A7%EF%BC%81%E9%82%84%E5%89%A9333.m3u8", 
+                    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】安徽篇01 - 出發吧！還剩333/playlist.m3u8", 
                     thumb: "https://v.1701701.xyz/img/334.jpg"
                 },
                 { 
                     id: 303, 
                     title: "安徽篇02 - 我是巡演經理，也是道歉專業戶", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8702%20-%20%E6%88%91%E6%98%AF%E5%B7%A1%E6%BC%94%E7%B6%93%E7%90%86%EF%BC%8C%E4%B9%9F%E6%98%AF%E9%81%93%E6%AD%89%E5%B0%88%E6%A5%AD%E6%88%B6/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8702%20-%20%E6%88%91%E6%98%AF%E5%B7%A1%E6%BC%94%E7%B6%93%E7%90%86%EF%BC%8C%E4%B9%9F%E6%98%AF%E9%81%93%E6%AD%89%E5%B0%88%E6%A5%AD%E6%88%B6.m3u8", 
+                    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】安徽篇02 - 我是巡演經理，也是道歉專業戶/playlist.m3u8", 
                     thumb: "https://v.1701701.xyz/img/334.jpg"
                 },
                 { 
                     id: 304, 
                     title: "安徽篇03 - 淮南事變", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8703%20-%20%E6%B7%AE%E5%8D%97%E4%BA%8B%E8%AE%8A/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8703%20-%20%E6%B7%AE%E5%8D%97%E4%BA%8B%E8%AE%8A.m3u8", 
+                       url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】安徽篇03 - 淮南事變/playlist.m3u8", 
                     thumb: "https://v.1701701.xyz/img/334.jpg"
                 },
                 { 
-                    id: 305, 
-                    title: "安徽篇04 - 留給音響師的時間不多了", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8704%20-%20%E7%95%99%E7%B5%A6%E9%9F%B3%E9%9F%BF%E5%B8%AB%E7%9A%84%E6%99%82%E9%96%93%E4%B8%8D%E5%A4%9A%E4%BA%86/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8704%20-%20%E7%95%99%E7%B5%A6%E9%9F%B3%E9%9F%BF%E5%B8%AB%E7%9A%84%E6%99%82%E9%96%93%E4%B8%8D%E5%A4%9A%E4%BA%86.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 306, 
-                    title: "安徽篇05 - 日落前抵達", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8705%20-%20%E6%97%A5%E8%90%BD%E5%89%8D%E6%8A%B5%E9%81%94/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%AE%89%E5%BE%BD%E7%AF%8705%20-%20%E6%97%A5%E8%90%BD%E5%89%8D%E6%8A%B5%E9%81%94.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 307, 
-                    title: "山東篇01 - 明日復明日", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8701%20-%20%E6%98%8E%E6%97%A5%E5%BE%A9%E6%98%8E%E6%97%A5/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8701%20-%20%E6%98%8E%E6%97%A5%E5%BE%A9%E6%98%8E%E6%97%A5.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 308, 
-                    title: "山東篇02 - 明日何其多", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8702%20-%20%E6%98%8E%E6%97%A5%E4%BD%95%E5%85%B6%E5%A4%9A/playlist.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 309, 
-                    title: "山東篇03 - 自來水公司的口琴手", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8703%20-%20%E8%87%AA%E4%BE%86%E6%B0%B4%E5%85%AC%E5%8F%B8%E7%9A%84%E5%8F%A3%E7%90%B4%E6%89%8B/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8703%20-%20%E8%87%AA%E4%BE%86%E6%B0%B4%E5%85%AC%E5%8F%B8%E7%9A%84%E5%8F%A3%E7%90%B4%E6%89%8B.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 310, 
-                    title: "山東篇04 - 是誰還在唱歌", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8704%20-%20%E6%98%AF%E8%AA%B0%E9%82%84%E5%9C%A8%E5%94%B1%E6%AD%8C/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8704%20-%20%E6%98%AF%E8%AA%B0%E9%82%84%E5%9C%A8%E5%94%B1%E6%AD%8C.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 311, 
-                    title: "山東篇05 - 兩個好吉友", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8705%20-%20%E5%85%A9%E5%80%8B%E5%A5%BD%E5%90%89%E5%8F%8B/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8705%20-%20%E5%85%A9%E5%80%8B%E5%A5%BD%E5%90%89%E5%8F%8B.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 312, 
-                    title: "山東篇06 - 這個世界會好的", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8706%20-%20%E9%80%99%E5%80%8B%E4%B8%96%E7%95%8C%E6%9C%83%E5%A5%BD%E7%9A%84/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E5%B1%B1%E6%9D%B1%E7%AF%8706%20-%20%E9%80%99%E5%80%8B%E4%B8%96%E7%95%8C%E6%9C%83%E5%A5%BD%E7%9A%84.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 313, 
-                    title: "陜寧篇01 - 票！", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8701%20-%20%E7%A5%A8%EF%BC%81/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8701%20-%20%E7%A5%A8%EF%BC%81.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 314, 
-                    title: "陜寧篇02 - 圍城", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8702%20-%20%E5%9C%8D%E5%9F%8E/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8702%20-%20%E5%9C%8D%E5%9F%8E.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 315, 
-                    title: "陜寧篇03 - 王洪宇", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8703%20-%20%E7%8E%8B%E6%B4%AA%E5%AE%87/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8703%20-%20%E7%8E%8B%E6%B4%AA%E5%AE%87.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 316, 
-                    title: "陜寧篇04 - 這個不好說", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8704%20-%20%E9%80%99%E5%80%8B%E4%B8%8D%E5%A5%BD%E8%AA%AA/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8704%20-%20%E9%80%99%E5%80%8B%E4%B8%8D%E5%A5%BD%E8%AA%AA.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 317, 
-                    title: "陜寧篇05 - 鍵盤俠", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8705%20-%20%E9%8D%B5%E7%9B%A4%E4%BF%A0/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8705%20-%20%E9%8D%B5%E7%9B%A4%E4%BF%A0.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 318, 
-                    title: "陜寧篇06 - 再見小村", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8706%20-%20%E5%86%8D%E8%A6%8B%E5%B0%8F%E6%9D%91/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8706%20-%20%E5%86%8D%E8%A6%8B%E5%B0%8F%E6%9D%91.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 319, 
-                    title: "陜寧篇07 - 西夏王陵", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8707%20-%20%E8%A5%BF%E5%A4%8F%E7%8E%8B%E9%99%B5/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%99%9C%E5%AF%A7%E7%AF%8707%20-%20%E8%A5%BF%E5%A4%8F%E7%8E%8B%E9%99%B5.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 320, 
-                    title: "雲南篇01 - 整裝再發", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8701%20-%20%E6%95%B4%E8%A3%9D%E5%86%8D%E7%99%BC/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8701%20-%20%E6%95%B4%E8%A3%9D%E5%86%8D%E7%99%BC.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 321, 
-                    title: "雲南篇02 - 我是新來的燈光師，請多關照", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8702%20-%20%E6%88%91%E6%98%AF%E6%96%B0%E4%BE%86%E7%9A%84%E7%87%88%E5%85%89%E5%B8%AB%EF%BC%8C%E8%AB%8B%E5%A4%9A%E9%97%9C%E7%85%A7/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8702%20-%20%E6%88%91%E6%98%AF%E6%96%B0%E4%BE%86%E7%9A%84%E7%87%88%E5%85%89%E5%B8%AB%EF%BC%8C%E8%AB%8B%E5%A4%9A%E9%97%9C%E7%85%A7.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 322, 
-                    title: "雲南篇03 - 一个異類和他的同路人", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8703%20-%20%E4%B8%80%E4%B8%AA%E7%95%B0%E9%A1%9E%E5%92%8C%E4%BB%96%E7%9A%84%E5%90%8C%E8%B7%AF%E4%BA%BA/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8703%20-%20%E4%B8%80%E4%B8%AA%E7%95%B0%E9%A1%9E%E5%92%8C%E4%BB%96%E7%9A%84%E5%90%8C%E8%B7%AF%E4%BA%BA.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 323, 
-                    title: "雲南篇04 - 大理想國", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8704%20-%20%E5%A4%A7%E7%90%86%E6%83%B3%E5%9C%8B/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8704%20-%20%E5%A4%A7%E7%90%86%E6%83%B3%E5%9C%8B.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 324, 
-                    title: "雲南篇05 - 飛", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8705%20-%20%E9%A3%9B/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%8705%20-%20%E9%A3%9B.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                },
-                { 
-                    id: 325, 
-                    title: "雲南篇番外 - 荒", 
-                    url: "https://r2.1701701.xyz/334/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%87%E7%95%AA%E5%A4%96%20-%20%E8%8D%92/%E6%9D%8E%E5%BF%97%E3%80%90%E6%88%91%E5%80%91%E7%9A%84%E5%8F%81%E5%8F%81%E8%82%86%E3%80%91%E9%9B%B2%E5%8D%97%E7%AF%87%E7%95%AA%E5%A4%96%20-%20%E8%8D%92.m3u8", 
-                    thumb: "https://v.1701701.xyz/img/334.jpg"
-                }
+    id: 305, 
+    title: "安徽篇04 - 留給音響師的時間不多了", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】安徽篇04 - 留給音響師的時間不多了/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 306, 
+    title: "安徽篇05 - 日落前抵達", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】安徽篇05 - 日落前抵達/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 307, 
+    title: "山東篇01 - 明日復明日", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】山東篇01 - 明日復明日/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 308, 
+    title: "山東篇02 - 明日何其多", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】山東篇02 - 明日何其多/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 309, 
+    title: "山東篇03 - 自來水公司的口琴手", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】山東篇03 - 自來水公司的口琴手/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 310, 
+    title: "山東篇04 - 是誰還在唱歌", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】山東篇04 - 是誰還在唱歌/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 311, 
+    title: "山東篇05 - 兩個好吉友", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】山東篇05 - 兩個好吉友/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 312, 
+    title: "山東篇06 - 這個世界會好的", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】山東篇06 - 這個世界會好的/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 313, 
+    title: "陜寧篇01 - 票！", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】陜寧篇01 - 票！/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 314, 
+    title: "陜寧篇02 - 圍城", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】陜寧篇02 - 圍城/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 315, 
+    title: "陜寧篇03 - 王洪宇", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】陜寧篇03 - 王洪宇/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 316, 
+    title: "陜寧篇04 - 這個不好說", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】陜寧篇04 - 這個不好說/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 317, 
+    title: "陜寧篇05 - 鍵盤俠", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】陜寧篇05 - 鍵盤俠/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 318, 
+    title: "陜寧篇06 - 再見小村", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】陜寧篇06 - 再見小村/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 319, 
+    title: "陜寧篇07 - 西夏王陵", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】陜寧篇07 - 西夏王陵/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 320, 
+    title: "雲南篇01 - 整裝再發", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】雲南篇01 - 整裝再發/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 321, 
+    title: "雲南篇02 - 我是新來的燈光師，請多關照", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】雲南篇02 - 我是新來的燈光師，請多關照/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 322, 
+    title: "雲南篇03 - 一个異類和他的同路人", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】雲南篇03 - 一个異類和他的同路人/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 323, 
+    title: "雲南篇04 - 大理想國", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】雲南篇04 - 大理想國/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 324, 
+    title: "雲南篇05 - 飛", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】雲南篇05 - 飛/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+},
+{ 
+    id: 325, 
+    title: "雲南篇番外 - 荒", 
+    url: "https://r2.1701701.xyz/334/李志【我們的叁叁肆】雲南篇番外 - 荒/playlist.m3u8", 
+    thumb: "https://v.1701701.xyz/img/334.jpg"
+}
             ],
                 knxy: [ // 跨年音乐会 -> knxy
                       { 
@@ -324,24 +324,41 @@
                     { 
                         id: 406, 
                         title: "IMAGINE", 
-                        url: "https://b2.1701701.xyz/api/2011/playlist.m3u8", 
-                        thumb: "./img/wanj.jpg"
+                        url: "https://r2.1701701.xyz/2011/playlist.m3u8", 
+                        thumb: "./img/2011.jpg"
                         
                     }
                     ,
                     { 
                         id: 407, 
                         title: "108个关键词", 
-                        url: "https://b2.1701701.xyz/api/2012/playlist.m3u8", 
-                        thumb: "./img/wanj.jpg"
+                        url: "https://r2.1701701.xyz/2012/playlist.m3u8", 
+                        thumb: "./img/2012.jpg"
                         
                     }
                     ,
                     { 
                         id: 408, 
                         title: "北京降噪Ⅳ", 
-                        url: "https://b2.1701701.xyz/api/2016/playlist.m3u8", 
-                        thumb: "./img/wanj.jpg"
+                        url: "https://r2.1701701.xyz/2016/playlist.m3u8", 
+                        thumb: "./img/2016.jpg"
+                        
+                    }
+                    ,
+                    { 
+                        id: 409, 
+                        title: "电声与管弦乐Ⅱ", 
+                        isFolder: true,
+                        thumb: "./img/dian2.jpg", // 文件夹封面
+                        folderId: "dsygxl2" 
+                        
+                    },
+                    { 
+                        id: 410, 
+                        title: "爵士乐与不插电新编12首", 
+                        isFolder: true,
+                        thumb: "./img/js.jpg", // 文件夹封面
+                        folderId: "jsy" 
                         
                     }
                 ],
@@ -351,75 +368,206 @@
                     {
                         id: 4051,
                         title: "01 序曲",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ec7ht7iHFJpIu6hJU1dBJuYBhOIyIo7qScWGMR4Gu-tf6Q&download=1.mp4",
+                        url: "https://b2.1701701.xyz/api/dian1/01. 序曲.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                     {
                         id: 4052,
                         title: "02 杭州",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWKhR5tS5ulKvZzsLQH-8wcBGrhz11t48WR2yo4exs8Ulg&download=1.mp4",
+                        url: "https://b2.1701701.xyz/api/dian1/02 杭州 “家”跨年現場.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                     {
                         id: 4053,
                         title: "03 尽头",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EU-LNzQZe3dIhNrJ1Xl8D_kB7peN6WY9SZCnSBJWOxfdbw&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/03.尽头.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4054,
                         title: "04 定西",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EZgWkUGMOZ1Ol1nrCHmT3MkBaOahLDiQzMqUM1EFB5riEA&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/04. 定西.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4055,
-                        title: " 05 春末的南方城市",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EQPRtx_A505AobP9kluGkrUBZpjhwjrLZOFRkmxfSKb05Q&download=1.mp4",
+                        title: "05 春末的南方城市",
+                      url: "https://b2.1701701.xyz/api/dian1/05. 春末的南方城市.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4056,
                         title: "06 黑色信封",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EW0maOWdzaJJgLP-QpKjVocBrMXenFBwng8IPNuCqIIaRA&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/06. 黑色信封.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4057,
                         title: "07 铅笔",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYG6W3DEPcxMvOxViCOW7GoBu0g5GypurNYlOj2eyiGWIw&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/07.铅笔.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4058,
                         title: "08 和你在一起",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EQ3_wK5aKVZIj0NcvcooRkcBwdFjhEC_DIbJBMVcfqUlqg&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/08. 和你在一起.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4059,
                         title: "09 墙上的向日葵",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWFJ6JlLFxBFifyTK0Ei9jUBHJVMycGx7ez0_tVryJIWLw&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/09. 墙上的向日葵.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4060,
                         title: "10 大象",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EeG9ZKjul5BIu3tprqBFDoYBa17XJd6A1VAbnlasgPzumA&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/10. 大象.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4061,
                         title: "11 门",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EXHCldFO65hJpivB8GW_a9kBIsJvUp6Efz32DN6d2L72aQ&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/11.门.mp4",
                         thumb: "./img/dsygxy.jpg"
                     },
                      {
                         id: 4062,
                         title: "12 回答",
-                      url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EbHODu90XCFPuCOeJN8N5pYBX8BRD_iGyG1XLdwioVMYnA&download=1.mp4",
+                      url: "https://b2.1701701.xyz/api/dian1/12.回答.mp4",
                         thumb: "./img/dsygxy.jpg"
                     }
+                ],
+                dsygxl2: [ // 电声与管弦乐子文件夹
+                    {
+                        id: 4091,
+                        title: "01.相信未来序曲 Intro",
+                        url: "https://b2.1701701.xyz/api/dian2/01.相信未来序曲 Intro.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },
+                  {
+                        id: 4092,
+                        title: "02.一头偶像 A Piece of Idol",
+                        url: "https://b2.1701701.xyz/api/dian2/02.一头偶像 A Piece of Idol.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },  
+                    {
+                        id: 4093,
+                        title: "03.你好明天 Ciao Tomorrow",
+                        url: "https://b2.1701701.xyz/api/dian2/03.你好明天 Ciao Tomorrow.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },
+                  {
+                        id: 4094,
+                        title: "04.寻找 Seek",
+                        url: "https://b2.1701701.xyz/api/dian2/04.寻找 Seek.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },
+                  {
+                        id: 4095,
+                        title: "05.山阴路的夏天 Nanjing Summer Day",
+                        url: "https://b2.1701701.xyz/api/dian2/05.山阴路的夏天 Nanjing Summer Day.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },
+                      {
+                        id: 4096,
+                        title: "06.哦吼 Oho",
+                        url: "https://b2.1701701.xyz/api/dian2/06.哦吼 Oho.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },
+                      {
+                        id: 4097,
+                        title: "07.天空之城 Sky City",
+                        url: "https://b2.1701701.xyz/api/dian2/07.天空之城 Sky City.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },
+                      {
+                        id: 4098,
+                        title: "08.家乡 About Hometown",
+                        url: "https://b2.1701701.xyz/api/dian2/08.家乡 About Hometown.mp4",
+                        thumb: "./img/dian2.jpg"
+                    },
+                      {
+                        id: 4090,
+                        title: "09.这个世界会好吗 Has Man a Future",
+                        url: "https://b2.1701701.xyz/api/dian2/09.这个世界会好吗 Has Man a Future.mp4",
+                        thumb: "./img/dian2.jpg"
+                    }
+                ],
+                jsy: [ // 爵士乐与不插电
+                    {
+                        id: 4101,
+                        title: "01 看见 2018 相信未来 不插电版",
+                        url: "https://b2.1701701.xyz/api/js/01看见 2018相信未来 不插电版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4102,
+                        title: "02离婚 2018 相信未来 不插电版",
+                        url: "https://b2.1701701.xyz/api/js/02离婚 2018 相信未来 不插电版.mp4",
+                        thumb: "./img/js.jpg"
+                    },  
+                   
+                    {
+                        id: 4103,
+                        title: "03关于郑州的回忆 2018相信未来 不插电版",
+                        url: "https://b2.1701701.xyz/api/js/03关于郑州的回忆 2018相信未来 不插电版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4104,                       
+                        title: "04鸵鸟 李志 2018相信未来 不插电版",
+                        url: "https://b2.1701701.xyz/api/js/04鸵鸟 李志 2018相信未来 不插电版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4105,
+                        title: "05卡夫卡 2018相信未来 不插电版",
+                        url: "https://b2.1701701.xyz/api/js/05卡夫卡 2018相信未来 不插电版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4106,
+                        title: "06热河2018 相信未来 不插电版",
+                        url: "https://b2.1701701.xyz/api/js/06热河2018 相信未来 不插电版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4107,
+                        title: "07翁庆年的六英镑 2018 相信未来 爵士版",
+                        url: "https://b2.1701701.xyz/api/js/07翁庆年的六英镑 2018 相信未来 爵士版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4108,
+                        title: "08死人 2018相信未来 爵士版",
+                        url: "https://b2.1701701.xyz/api/js/08死人 2018相信未来 爵士版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4109,
+                        title: "09爱 2018相信未来 爵士版",
+                        url: "https://b2.1701701.xyz/api/js/09爱 2018相信未来 爵士版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4110,
+                        title: "10董卓瑶 2018相信未来 爵士版",
+                        url: "https://b2.1701701.xyz/api/js/10董卓瑶 2018相信未来 爵士版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4111,
+                        title: "11一个夜晚 2018相信未来 爵士版",
+                        url: "https://b2.1701701.xyz/api/js/11一个夜晚 2018相信未来 爵士版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
+                    {
+                        id: 4112,
+                        title: "12鼠说 2018 相信未来 爵士版",
+                        url: "https://b2.1701701.xyz/api/js/12鼠说 2018 相信未来 爵士版.mp4",
+                        thumb: "./img/js.jpg"
+                    },
                 ],
                 jlp: [ // 紀錄片 -> jlp
                    { 
@@ -427,7 +575,14 @@
                         title: "专访李志 凤凰非常道 20150508", 
                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWnFJY5oiz5On8JVy9Q1Iq4B8n8FEWiOVl-3tx6wKiSK7g&download=1.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
-                    }
+                    },
+                     { 
+                        id: 502, 
+                        title: "【欧拉三周年】 ON｜第二季 Vol.12 [跨年特刊]", 
+                        url: "", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+
                 ],
                 yjj: [ // 音乐节 -> yjj
                    { 
@@ -441,7 +596,31 @@
                         title: "【挺】李志不插电巡演石家庄站红糖俱乐部 ", 
                         url:"https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Eb-fcJzL6HBNjWmcu47mRE0BW2rh4DXMMYoQEZpgSwWv6w&download=1.mp4",
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
-                    }
+                    },
+                    { 
+                        id: 603,   
+                         title:"李志 2015简单生活节",
+                         url:"https://r2.1701701.xyz/李志 2015简单生活节/playlist.m3u8",
+                         thumb:"./img/jd2015.jpg"
+                    },
+                    { 
+                        id: 604,   
+                         title:"李志 2016简单生活节",
+                         url:"https://r2.1701701.xyz/李志 2016简单生活节/playlist.m3u8",
+                         thumb:"./img/jd2016.jpg"
+                    },
+                    { 
+                        id: 605,   
+                         title:"李志 2017简单生活节",
+                         url:"https://r2.1701701.xyz/李志 2017简单生活节/playlist.m3u8",
+                         thumb:"./img/jd2017.jpg"
+                    },
+                    { 
+                        id: 606,   
+                         title:"李志 2018简单生活节",
+                         url:"https://r2.1701701.xyz/李志 2018简单生活节/playlist.m3u8",
+                         thumb:"./img/jd2018.jpg"
+                    },
                     
                 ],
                 qt: [ // 其他 -> qt
@@ -488,7 +667,7 @@
                 { id: 'bgyh2', name: '逼哥夜話第二季', icon: 'fas fa-microphone-alt' },
                 { id: 'wmsss', name: '我們的叁叁肆', icon: 'fa-solid fa-clapperboard' },
                 { id: 'jlp', name: '紀錄片', icon: 'fas fa-video' },
-                { id: 'yjj', name: '音乐节', icon: 'fas fa-music' },
+                { id: 'yjj', name: '音乐节/巡演', icon: 'fas fa-music' },
                 { id: 'qt', name: '其他', icon: 'fa-solid fa-file-video' }
             ];
 
