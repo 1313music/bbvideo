@@ -26,6 +26,9 @@
         
         // 应用核心逻辑
         function initializeApp() {
+           
+            disableVideoContextMenu();
+            
             // 更完整的视频数据（民谣主题）
             const videoData = {
                      bgyh: [ // 逼哥夜話 -> bgyh
@@ -579,16 +582,48 @@
                      { 
                         id: 502, 
                         title: "【欧拉三周年】 ON｜第二季 Vol.12 [跨年特刊]", 
-                        url: "", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EcXY1R-l0TJJnhZgYg5X2a8BehpT_TfGer9ty0SviJ30oA&download=1.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
                     },
+                    { 
+                        id: 503, 
+                        title: "纪录片《摇滚南京》第一集私人之旅", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EW4tDlzp9zFAlvWTm1aCgCcBkIEjL4_Dq2KlSizZMhOTqQ&download=1.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 504, 
+                        title: "纪录片《摇滚南京》第二集生存实验 李志", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ETG6asaiueZOggfQ-aXTDO4Bc1sDg54uEsR8eSh8kW2MOg&download=1.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 505, 
+                        title: "李志 2014-2015 IO跨年音乐会 制作特辑 4K",
+                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EWg8uie1F4xNq5e-X9W2KK8BqV0Zw2daL3D-QPJuXDygtA&download=1.mp4",
+                         thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 506, 
+                        title: "【相信未来】2017-2018李志跨年音乐会筹备实录",
+                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EU9F7Y5rgvxArYZLCg41mIEBNIRem9QNRon92g5LfwfUAA&download=1.mp4",
+                         thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 507, 
+                        title: "李志十年发布会 叁叁肆",
+                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ETjJ7WTCR-lBgi5-cUXCvi8BdzpiXJFF8UME2bEnnNExkg&download=1.mp4",
+                         thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    }
+                    
+
 
                 ],
                 yjj: [ // 音乐节 -> yjj
                    { 
                         id: 601, 
-                        title: "李志 台北早上好 【和你在一起】(feat 李庭匡) ", 
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ed5IreZUtZ9NvItoolJbJTQB7bA1iHVD6cAFRHwS5E6vnA&download=1.mp4", 
+                        title: "李志 Another BrickIn The Wall 深圳巡演", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ETFevLsKV-dIq05vP1LwbtsBlcQwl9XjkgZlnKeF_o_TjQ&download=1.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
                     },
                     { 
@@ -617,9 +652,21 @@
                     },
                     { 
                         id: 606,   
-                         title:"李志 2018简单生活节",
-                         url:"https://r2.1701701.xyz/李志 2018简单生活节/playlist.m3u8",
-                         thumb:"./img/jd2018.jpg"
+                         title:"叁缺壹-李志复出-2020.8.9合集",
+                         url:"https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ecx45P7Uk2RJhHFSBQEfYFwB63oqqDuOPDLnWth9dWFxiA&download=1.mp4",
+                         thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 607, 
+                        title: "叁缺贰-现场合集",
+                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EabH4rkC-ipMmi6CrSU_pjkB8cyPJRoZPVH97pRe3guyfA&download=1.mp4",
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"
+                    },
+                    { 
+                        id: 608, 
+                        title: "李志全场—2018年成都仙人掌音乐节2018 09 23",
+                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYacdkYUgvxIjtprvcEu1-YBIPEGIr60EMhEu5omUzAbgg&download=1.mp4",
+                         thumb: "https://v.1701701.xyz/img/huida.JPG"
                     },
                     
                 ],
@@ -630,13 +677,25 @@
                         url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ER6R5JequA9AhbP9d22omCAB7Ds04A4aj5F2vo8oewE97Q&download=1.mp4", 
                         thumb: "https://v.1701701.xyz/img/huida.JPG"
                     },  
-                    {  id: 703, 
+                    {  id: 702, 
                         title: "关于郑州", 
                         url: "https://b2.1701701.xyz/api/gyzz.mp4", 
                         thumb: "https://v.1701701.xyz/img/back.jpg" },
+                        {
+                        id: 703,
+                        title: "李志《这个世界会好吗2015版》MV",
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EUYLcNON_KhNhFZMOEIl9TsBjTWvq_8HA-vfLgR1fz87Xw&download=1.mp4",
+                        thumb: "https://v.1701701.xyz/img/back.jpg"
+                    },
                     {
-                        id: 702,
-                        title: "测试文件夹",
+                        id: 704,
+                        title: "恋曲1980",
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYY5LvegFrxDhy6H6xpU8GIBRBZWKEBfCg--1pvsYLLmqg&download=1.mp4",
+                        thumb: "https://v.1701701.xyz/img/back.jpg"
+                    },
+                    {
+                        id: 705,
+                        title: "李志 台北早上好 20190113 at Legacy",
                         isFolder: true,
                         thumb: "https://v.1701701.xyz/img/back.jpg", // 文件夹封面
                         folderId: "qtfolder" // 文件夹ID，用于加载子文件夹内容
@@ -646,17 +705,21 @@
                 // 添加qt分类下的示例文件夹内容
                 qtfolder: [ // qt分类下的示例文件夹
                     {
-                        id: 7021,
-                        title: "李志《这个世界会好吗2015版》MV",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EUYLcNON_KhNhFZMOEIl9TsBjTWvq_8HA-vfLgR1fz87Xw&download=1.mp4",
-                        thumb: "https://v.1701701.xyz/img/back.jpg"
-                    },
+                        id: 7051,
+                        title: "【和你在一起】(feat 李庭匡) ", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=Ed5IreZUtZ9NvItoolJbJTQB7bA1iHVD6cAFRHwS5E6vnA&download=1.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"},
                     {
-                        id: 7022,
-                        title: "恋曲1980",
-                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EYY5LvegFrxDhy6H6xpU8GIBRBZWKEBfCg--1pvsYLLmqg&download=1.mp4",
-                        thumb: "https://v.1701701.xyz/img/back.jpg"
-                    }
+                        id: 7052,
+                        title: "【天空之城】   ", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=EZZUGgWkSV1EiAhipnjvAIgBT1PtWq9XgOM92G3Mu_ajWA&download=1.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"},
+                    {
+                        id: 7053,
+                        title: "【尋找】+【忽然】+【熱河】 ", 
+                        url: "https://stucuzeducn-my.sharepoint.com/personal/224101204_stu_cuz_edu_cn/_layouts/52/download.aspx?share=ETKXJZ21d5RNszAmrOpPxfgBcnHGb8YN3i85bjNV6YssxQ&download=1.mp4", 
+                        thumb: "https://v.1701701.xyz/img/huida.JPG"}
+       
                 ]
             };
 
@@ -690,6 +753,7 @@
                     volume: 0.7,
                     playbackSpeed: [0.5, 0.75, 1, 1.25, 1.5, 2],
                     mutex: true,
+                    contextmenu: [], 
                     video: {
                         url: '',
                         pic: 'https://v.1701701.xyz/img/bg.jpg' // 默认封面
@@ -704,6 +768,9 @@
                     autoHide: true // 默认自动隐藏控制栏
                 });
                 
+                
+                disableVideoContextMenu();
+                
                 // 初始化后立即隐藏控制栏
                 setTimeout(() => {
                     if (dp && dp.controller) {
@@ -712,6 +779,52 @@
                 }, 1000);
                 
                 return dp;
+            }
+            
+         
+            function disableVideoContextMenu() {
+                // 等待DOM加载完成
+                setTimeout(() => {
+                  
+                    const dplayerContainer = document.getElementById('dplayer-container');
+                    if (dplayerContainer) {
+                        dplayerContainer.addEventListener('contextmenu', function(e) {
+                            e.preventDefault();
+                            return false;
+                        });
+                    }
+                    
+                 
+                    const videoElements = document.querySelectorAll('video');
+                    videoElements.forEach(video => {
+                        video.addEventListener('contextmenu', function(e) {
+                            e.preventDefault();
+                            return false;
+                        });
+                        
+                       
+                        video.addEventListener('dragstart', function(e) {
+                            e.preventDefault();
+                            return false;
+                        });
+                    });
+                    
+               
+                    document.addEventListener('contextmenu', function(e) {
+                        if (e.target.tagName === 'VIDEO') {
+                            e.preventDefault();
+                            return false;
+                        }
+                    });
+                    
+               
+                    document.addEventListener('dragstart', function(e) {
+                        if (e.target.tagName === 'VIDEO') {
+                            e.preventDefault();
+                            return false;
+                        }
+                    });
+                }, 500);
             }
 
             // 初始化分类导航
@@ -905,6 +1018,7 @@
                                 
                                 dp = new DPlayer({
                                     container: document.getElementById('dplayer-container'),
+                                    contextmenu: [], 
                                     video: {
                                         url: url,
                                         pic: thumb,
@@ -919,6 +1033,10 @@
                                     autoHide: true,
                                     hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
                                 });
+                                
+                               
+                                disableVideoContextMenu();
+                                
                                 dp.on('play', function(){
                                     setTimeout(function(){
                                         document.getElementById('dplayer-container').classList.add('dplayer-hide-controller');
@@ -952,6 +1070,7 @@
                             
                             dp = new DPlayer({
                                 container: document.getElementById('dplayer-container'),
+                                contextmenu: [],
                                 video: {
                                     url: url,
                                     pic: thumb,
@@ -961,6 +1080,10 @@
                                 autoHide: true,
                                 hideControlsAfter: 3000 // 3秒后自动隐藏控制按钮
                             });
+                            
+                           
+                            disableVideoContextMenu();
+                            
                             dp.on('play', function(){
                                 setTimeout(function(){
                                     document.getElementById('dplayer-container').classList.add('dplayer-hide-controller');
@@ -987,7 +1110,7 @@
                     
                     dp = new DPlayer({
                         container: document.getElementById('dplayer-container'),
-                        contextmenu: [], // 禁用右键菜单
+                        contextmenu: [], 
                         video: {
                             url: url,
                             pic: thumb,
@@ -1012,6 +1135,9 @@
                     // 添加时长稳定处理
                     let durationStabilized = false;
                     let lastDuration = 0;
+                    
+                   
+                    disableVideoContextMenu();
                     
                     // 播放成功回调
                     dp.on('canplay', function() {
