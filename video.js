@@ -1476,11 +1476,12 @@
             if (commentsToggleBtn && walineContainer) {
                 commentsToggleBtn.addEventListener('click', function() {
                     const isHidden = !walineContainer.classList.contains('show');
+                    const textNode = commentsToggleBtn.childNodes[2]; // 获取文本节点
                     
                     if (isHidden) {
                         // 展开留言板
                         walineContainer.classList.add('show');
-                        commentsToggleBtn.innerHTML = '<i class="fas fa-comments"></i> 收起留言板';
+                        textNode.textContent = ' 收起留言板 ';
                         commentsToggleBtn.classList.add('active');
                         
                         // 如果留言板尚未初始化，可以在这里触发初始化
@@ -1491,8 +1492,43 @@
                     } else {
                         // 收起留言板
                         walineContainer.classList.remove('show');
-                        commentsToggleBtn.innerHTML = '<i class="fas fa-comments"></i> 展开留言板';
+                        textNode.textContent = ' 展开留言板 ';
                         commentsToggleBtn.classList.remove('active');
+                    }
+                });
+            }
+        });
+        
+        // 回到顶部按钮功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            if (backToTopBtn) {
+                // 监听滚动事件，显示/隐藏回到顶部按钮
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        backToTopBtn.classList.add('visible');
+                    } else {
+                        backToTopBtn.classList.remove('visible');
+                    }
+                });
+                
+                // 点击回到顶部
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+                
+                // 添加键盘支持
+                backToTopBtn.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
                     }
                 });
             }
