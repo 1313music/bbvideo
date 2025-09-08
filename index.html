@@ -95,29 +95,42 @@
                 </div>
             </div>
         </section>
- <!--  Waline -->
-   <div class="comments-toggle-container">
-        <button id="comments-toggle-btn" class="comments-toggle-btn">
-            <i class="fas fa-comments"></i> 展开留言板
-        </button>
-   </div>
-   <div id="waline">留言板</div>
-   <script type="module">
-    import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+<!-- Waline 留言板 -->
+        <div class="comments-toggle-container">
+            <button id="comments-toggle-btn" class="comments-toggle-btn">
+                <i class="fas fa-edit"></i> 展开留言板 <i class="fa fa-chevron-down"></i>
+            </button>
+        </div>
+        <div id="waline">留言板</div>
+        
+        <!-- Waline 初始化脚本 -->
+        <script type="module">
+         import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
 
-    init({
-      el: '#waline',
-      serverURL: 'https://hello.1701701.xyz',
-      emoji: [
-      'https://unpkg.com/@waline/emojis@1.2.0/weibo',
-      'https://unpkg.com/@waline/emojis@1.2.0/qq',
-      'https://unpkg.com/@waline/emojis@1.2.0/alus',
-      'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
-      'https://unpkg.com/@waline/emojis@1.2.0/tieba',
-    ],
-       search: false,
-     });
-   </script>
+         init({
+           el: '#waline',
+           serverURL: 'https://hello.1701701.xyz',
+           emoji: [
+           'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+           'https://unpkg.com/@waline/emojis@1.2.0/qq',
+           'https://unpkg.com/@waline/emojis@1.2.0/alus',
+           'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
+           'https://unpkg.com/@waline/emojis@1.2.0/tieba',
+         ],
+            search: false,
+             lang: 'zh',
+        locale: {
+        placeholder: '保持理智 相信未来',
+        level0: '潜水',
+        level1: '冒泡',
+        level2: '吐槽',
+        level3: '活跃',
+        level4: '话痨',
+        level5: '传说',
+        }
+
+          });
+        </script>
 
         
         <footer>
@@ -130,5 +143,10 @@
 
       <script src="video.js"></script>
       <script defer src="https://tongji.1701701.xyz/1701701.xyz" data-website-id="e8f49cd1-85d5-4df9-b41a-051cb4d3a78b"></script>
+      
+      <!-- 回到顶部按钮 -->
+      <button id="back-to-top" class="back-to-top" aria-label="回到顶部">
+          <i class="fas fa-arrow-up"></i>
+      </button>
 </body>
 </html>
