@@ -1354,42 +1354,22 @@
                     });
                 }
                 
-                // 修复移动端菜单在页面返回后失效的问题
-                function ensureMenuFunctionality() {
-                    // 重新获取DOM元素，确保引用有效
-                    const currentMenuBtn = document.getElementById('mobile-menu-btn');
-                    const currentMenu = document.getElementById('mobile-menu');
-                    
-                    // 移除旧的事件监听器（如果存在）
-                    currentMenuBtn.removeEventListener('click', toggleMobileMenu);
-                    
-                    // 添加新的事件监听器
-                    currentMenuBtn.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        toggleMobileMenu();
-                    });
-                    
-                    // 确保菜单状态一致
-                    if (currentMenu.classList.contains('active') && !currentMenuBtn.classList.contains('active')) {
-                        currentMenuBtn.classList.add('active');
-                    } else if (!currentMenu.classList.contains('active') && currentMenuBtn.classList.contains('active')) {
-                        currentMenuBtn.classList.remove('active');
-                    }
+                function closeMobileMenu() {
+                    mobileMenu.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
                 }
                 
-                // 初始化菜单功能
-                ensureMenuFunctionality();
-                
-                // 监听页面可见性变化，当用户返回页面时确保菜单功能正常
-                document.addEventListener('visibilitychange', function() {
-                    if (!document.hidden) {
-                        ensureMenuFunctionality();
+                mobileMenuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    // 如果菜单已经打开，先关闭再打开，确保状态正确
+                    if (mobileMenu.classList.contains('active')) {
+                        closeMobileMenu();
+                        setTimeout(() => {
+                            toggleMobileMenu();
+                        }, 10);
+                    } else {
+                        toggleMobileMenu();
                     }
-                });
-                
-                // 监听页面获得焦点事件，确保从其他页面返回时菜单功能正常
-                window.addEventListener('focus', function() {
-                    ensureMenuFunctionality();
                 });
                 
                 closeAlertBtn.addEventListener('click', () => {
@@ -1402,6 +1382,36 @@
                         if (mobileMenu.classList.contains('active')) {
                             toggleMobileMenu();
                         }
+                    }
+                });
+                
+                // 监听页面可见性变化，当用户返回页面时重置菜单状态
+                document.addEventListener('visibilitychange', () => {
+                    if (document.visibilityState === 'visible') {
+                        // 页面变为可见时，确保菜单状态正确
+                        if (mobileMenu.classList.contains('active')) {
+                            // 如果菜单是打开的，保持打开状态
+                            // 这里不需要做任何操作
+                        }
+                    }
+                });
+                
+                // 页面加载时检查并重置菜单状态
+                window.addEventListener('pageshow', (event) => {
+                    // 如果是从缓存中加载页面
+                    if (event.persisted) {
+                        // 重置菜单状态
+                        mobileMenu.classList.remove('active');
+                        mobileMenuBtn.classList.remove('active');
+                    }
+                });
+                
+                // 监听页面焦点变化
+                window.addEventListener('focus', () => {
+                    // 当页面获得焦点时，确保菜单状态正确
+                    if (mobileMenu.classList.contains('active')) {
+                        // 如果菜单是打开的，保持打开状态
+                        // 这里不需要做任何操作
                     }
                 });
                 
@@ -1454,8 +1464,7 @@
                         if (link.href !== '#' && link.href !== window.location.href) {
                             // 如果是移动端，关闭菜单
                             if (mobileMenu.classList.contains('active')) {
-                                mobileMenu.classList.remove('active');
-                                mobileMenuBtn.classList.remove('active');
+                                closeMobileMenu();
                             }
                             return; // 允许默认行为（打开链接）
                         }
@@ -1473,8 +1482,7 @@
                         
                         // 如果是移动端，关闭菜单
                         if (mobileMenu.classList.contains('active')) {
-                            mobileMenu.classList.remove('active');
-                            mobileMenuBtn.classList.remove('active');
+                            closeMobileMenu();
                         }
                     });
                 });
