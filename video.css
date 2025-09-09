@@ -416,7 +416,7 @@
             position: relative;
             overflow: hidden;
             font-weight: 500;
-            backdrop-filter: blur(8px);
+            backdrop-filter: none;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -476,7 +476,7 @@
             transition: var(--transition);
             cursor: pointer;
             position: relative;
-            backdrop-filter: blur(8px);
+            backdrop-filter: none;
             border: 1px solid rgba(212, 175, 55, 0.15);
             box-shadow: var(--shadow);
         }
@@ -664,7 +664,7 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: none;
         }
         
         .no-videos i {
