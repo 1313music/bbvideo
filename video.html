@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>民谣俱乐部 | 李志视频合集 - 跨年演唱会/巡演/音乐节/纪录片/叁叁肆/逼哥夜话</title>
+    <meta name="description" content="李志视频合集，收录跨年演唱会、全国巡演、音乐节现场、纪录片《我们的叁叁肆》、逼哥夜话等高清视频内容，让你感受最真实的民谣音乐现场。">
+    <meta name="keywords" content="李志,李志视频,李志演唱会,李志巡演,李志音乐节,李志纪录片,李志跨年,1701,我爱南京,南京市民,叁叁肆,逼哥夜话,逼哥,民谣视频">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="css/video.css">
+    <link rel="stylesheet" href="css/nightsky.css">
+    <link rel="stylesheet" href="css/waline.css"
+  />
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dplayer/dist/DPlayer.min.css">
+        <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
+</head>
+<body >
+    
+    <div class="compatibility-alert" id="compatibility-alert">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span id="compatibility-message">正在检测您的设备兼容性...</span>
+        <button class="close" id="close-alert">&times;</button>
+    </div>
+    
+    <!-- 移动端菜单 -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="mobile-menu-logo" >
+                <i class="fas fa-guitar" ></i>
+               民谣俱乐部
+            </div>
+            <div class="mobile-menu-center-logo">
+             <i class="fa-solid fa-champagne-glasses"></i>
+            </div>
+        </div>
+        <div class="mobile-menu-links">
+           <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
+            <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>   
+            <a href="https://1701701.xyz/" class="nav-link"><i class="fas fa-music"></i> 音乐</a>
+             <a href="https://mp.weixin.qq.com/s/pHsFSPTn3Cd7MXV81J4NHg" class="nav-link" data-menu="message" target="_blank"><i class="fa-solid fa-cloud-arrow-up "></i>一键上传网易云</a>
+            <a href="https://mp.weixin.qq.com/s/sBP_RPKBx9kOajL4gB6zQA" class="nav-link" data-menu="guitar" target="_blank"><i class="fa-solid fa-magnifying-glass"></i>更多</a>
+            <a href="https://mp.weixin.qq.com/s/DXdydTJnx_tG92TMxtMa9w" class="nav-link" data-menu="about" target="_blank"><i class="fas fa-info-circle"></i> 关于</a>
+        
+        </div>
+        <div class="mobile-menu-footer">
+            © 2025 民谣俱乐部
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-guitar"></i>
+               <a href="https://1701701.xyz/" style="color: inherit; text-decoration: none;"><span>民谣俱乐部</span></a>
+            </div>
+            
+            <!-- 导航菜单 - 优化设计 -->
+            <nav class="nav-menu">
+                <a href="#" class="nav-link" data-menu="home"><i class="fas fa-home"></i> 首页</a>
+                <a href="#" class="nav-link active" data-menu="videos"><i class="fas fa-video"></i> 视频</a>
+                <a href="https://1701701.xyz/" class="nav-link"><i class="fas fa-music"></i> 音乐</a>
+                <a href="https://mp.weixin.qq.com/s/pHsFSPTn3Cd7MXV81J4NHg" class="nav-link" data-menu="message" target="_blank"><i class="fa-solid fa-cloud-arrow-up "></i>一键上传网易云</a>
+                <a href="https://mp.weixin.qq.com/s/sBP_RPKBx9kOajL4gB6zQA" class="nav-link" data-menu="guitar" target="_blank"><i class="fa-solid fa-magnifying-glass"></i>更多</a>
+                <a href="https://mp.weixin.qq.com/s/DXdydTJnx_tG92TMxtMa9w" class="nav-link" data-menu="about" target="_blank"><i class="fas fa-info-circle"></i> 关于</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 - 优化设计 -->
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </header>
+        
+        <!-- DPlayer 播放器区域 -->
+        <section class="player-section">
+            <div id="dplayer-container" oncontextmenu="return false;"></div>
+        </section>
+        
+        <!-- 分类导航 -->
+        <section class="categories-container">
+            <div class="categories-scroll" id="categories-container">
+                <!-- 分类会通过JS动态添加 -->
+            </div>
+        </section>
+        
+        <!-- 视频列表 -->
+        <section class="videos-section">
+            <div class="videos-list" id="videos-list">
+                <div class="no-videos">
+                    <i class="fas fa-film"></i>
+                    <div>请选择分类浏览视频内容</div>
+                </div>
+            </div>
+        </section>
+<!-- Waline 留言板 -->
+        <div class="comments-toggle-container">
+            <button id="comments-toggle-btn" class="comments-toggle-btn">
+                <i class="fas fa-edit"></i> 展开留言板 <i class="fa fa-chevron-down"></i>
+            </button>
+        </div>
+        <div id="waline">留言板</div>
+        
+        <!-- Waline 初始化脚本 -->
+        <script type="module">
+         import { init } from 'https://unpkg.com/@waline/client@v3/dist/waline.js';
+
+         init({
+           el: '#waline',
+           serverURL: 'https://hello.1701701.xyz',
+           emoji: [
+           'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+           'https://unpkg.com/@waline/emojis@1.2.0/qq',
+           'https://unpkg.com/@waline/emojis@1.2.0/alus',
+           'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
+           'https://unpkg.com/@waline/emojis@1.2.0/tieba',
+         ],
+            search: false,
+             lang: 'zh',
+        locale: {
+        placeholder: ' 保持理智 相信未来',
+        level0: '潜水',
+        level1: '冒泡',
+        level2: '吐槽',
+        level3: '活跃',
+        level4: '话痨',
+        level5: '传说',
+        }
+
+          });
+        </script>
+
+        
+        <footer>
+            © 2025 民谣俱乐部 - 视频播放器
+            <p style="font-size:smaller;">本站资源来自互联网 仅供试看学习交流 不涉及任何商业用途</p>
+            <p style="font-size: smaller;">版权属于李志先生 请至现场感受live <a href="https://mp.weixin.qq.com/s/n9U1FQS0pLjVh_TzeO2JHw" style="color: inherit; text-decoration: none;" target="_blank">最新巡演 : 叁缺壹 吉隆坡站</a></p>
+        
+        </footer>
+    </div>
+
+      <script src="js/video.js"></script>
+      <script defer src="https://tongji.1701701.xyz/1701701.xyz" data-website-id="e8f49cd1-85d5-4df9-b41a-051cb4d3a78b"></script>
+      
+      <!-- 回到顶部按钮 -->
+      <button id="back-to-top" class="back-to-top" aria-label="回到顶部">
+          <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <!-- 夜间模式背景 -->
+      <canvas id="universe"></canvas>
+      
+      <!-- 引入星空效果脚本 -->
+      <script src="js/nightsky.js"></script>
+</body>
+</html>
